@@ -1,0 +1,3 @@
+INDEX VERSION 1.126+/home/dan/Desktop/Fall_2013/ResearchPal/ResearchPal/~/Desktop/Fall_2013/ResearchPal/.metadata/.plugins/org.eclipse.jdt.core
+1169953962.index
+2822753843.index
