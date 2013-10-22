@@ -17,7 +17,7 @@ app.use(express.bodyParser());
 app.use(app.router);
 
 
-var mysql      = require('mysql');
+/*var mysql      = require('mysql');
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
@@ -33,7 +33,7 @@ connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
 });
 
 connection.end();
-
+*/
 
 //posts requests
 //app.post('/login', mainSite.default);
