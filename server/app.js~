@@ -6,7 +6,6 @@ var app = express();
 var rek = require('rekuire');
 var mainSite = rek('mainSite.js');
 var db = rek('database.js');
-var appAuth = rek('appAuth.js');
 
 //setup ejs with views folder
 app.set('views', __dirname + '/views');
@@ -18,15 +17,16 @@ app.use(express.cookieSession());
 app.use(express.bodyParser());
 app.use(app.router);
 
+
+//posts requests
+//app.post('/login', mainSite.default);
+
 //static requests
 app.get('/public/*', function(req, res, next){
     express.static(__dirname)(req, res, function(){next('route')});
 });
 
 app.get('/*', mainSite.showMainPage);
-
-//posts requests
-app.post('/appAuth', appAuth.validateUser);
 app.listen(80);
 
 db.connect();
