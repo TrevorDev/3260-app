@@ -4,9 +4,11 @@ var connection;
 exports.connect = function() {
 	connection = mysql.createConnection({
 	  host     : '131.104.48.208',
-	  user     : 'root',
-	  password : 'pal',
-	  database : 'pal',
+      server   : '131.104.48.208',
+      user     : 'root',
+      password : 'pal',
+      database : 'pal',
+      port:'3306',
 	});
 	connection.connect();
 }
