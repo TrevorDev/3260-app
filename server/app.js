@@ -4,9 +4,11 @@ var ejs = require('ejs');
 var app = express();
 //CUSTOM modules
 var rek = require('rekuire');
-var mainSite = rek('mainSite.js');
 var db = rek('database.js');
+
+var mainSite = rek('mainSite.js');
 var appAuth = rek('appAuth.js');
+var applyForm = rek('applyForm.js');
 
 //setup ejs with views folder
 app.set('views', __dirname + '/views');
@@ -23,18 +25,11 @@ app.get('/public/*', function(req, res, next){
     express.static(__dirname)(req, res, function(){next('route')});
 });
 
+app.get('/applyForm', applyForm.getApplyForm);
 app.get('/*', mainSite.showMainPage);
 
 //posts requests
 app.post('/appAuth', appAuth.validateUser);
 app.listen(80);
-
-db.connect();
-var c = db.getConnection();
-c.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
-	  if (err) throw err;
-
-	  console.log('The solution is: ', rows[0].solution);
-	});
 
 console.log("Started----------------------");
