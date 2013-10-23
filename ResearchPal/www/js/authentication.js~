@@ -19,8 +19,8 @@ function validateUser(pinEntered){
 
 function onError(jqXHR, textStatus, errorThrown) {
 // or use alerts if you can't see your log
-console.log("status: " + textStatus);
-console.log("errorThrown: " + errorThrown);
+alert("status: " + textStatus);
+alert("errorThrown: " + errorThrown);
 // can't remember if this works:
-console.log(jqXHR.statusText);
+alert(jqXHR.statusText);
 }
