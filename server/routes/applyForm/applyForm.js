@@ -2,8 +2,12 @@ var fs = require('fs');
 var ejs = require('ejs');
 var rek = require('rekuire');
 
+var formM = rek('formModel.js');
+
 exports.getApplyForm = function(req, res, next) {
-    res.send({"valid": "test"});
+	formM.getGroupsApplyForm(1,function(form){
+		res.send(form);
+	});
 };
 
 exports.createForm = function(req, res, next) {

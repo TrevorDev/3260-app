@@ -6,6 +6,7 @@ exports.connect = function() {
 	  host     : '131.104.48.208',
 	  user     : 'root',
 	  password : 'pal',
+	  database : 'pal',
 	});
 	connection.connect();
 }
@@ -16,15 +17,6 @@ exports.disconnect = function() {
 
 exports.getConnection = function(){
 	return connection;
-}
-
-
-exports.test= function() {
-	connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
-	  if (err) throw err;
-
-	  console.log('The solution is: ', rows[0].solution);
-	});
 }
 
 

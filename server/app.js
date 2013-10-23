@@ -5,6 +5,7 @@ var app = express();
 //CUSTOM modules
 var rek = require('rekuire');
 var db = rek('database.js');
+db.connect();
 
 var mainSite = rek('mainSite.js');
 var appAuth = rek('appAuth.js');
