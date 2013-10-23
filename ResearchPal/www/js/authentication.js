@@ -1,7 +1,7 @@
 function validateUser(pinEntered){
 	$.ajax({
 		type: "POST",
-		url: 'http://127.0.0.1/appAuth',
+		url: 'http://131.104.48.208/appAuth',
 		crossDomain: true,
 		data: {
 			pin: pinEntered
