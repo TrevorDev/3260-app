@@ -32,9 +32,10 @@ app.get('/createForm', mainSite.showCreateForm);
 app.get('/dashboard', mainSite.showDashboard);
 app.get('/researchAuth/logout', researchAuth.logout);
 app.get('/*', mainSite.showMainPage);
+app.get('/appAuth/check', appAuth.auth);
 
 //posts requests
-app.post('/appAuth', appAuth.validateUser);
+app.post('/appAuth/login', appAuth.validateUser);
 app.post('/researchAuth', researchAuth.login);
 app.listen(80);
 

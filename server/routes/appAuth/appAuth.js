@@ -11,13 +11,21 @@ exports.validateUser = function(req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept');
 	var pin;
 
-    if(!req.session.auth){
-        req.session.auth='hit'; 
-        pin = req.body.pin;
+    userM.authParticipant(req.body.pin,function(success){
+        if(success){
+            req.session.auth=req.body.pin;
+            res.send("success");
+        }else{
+            res.send("false");
+        }
+        
+    });
+}
+exports.auth = function(req) {  
+    return req.session.pin;
+}
 
-    }else{
-	   req.session.auth='hit2';
-       pin = req.body.pin + " authenticated already";
-    }
-    res.send(req.session.auth + "" + pin);
+exports.logout = function(req, res, next) { 
+    req.session=null;
+    res.redirect('/');
 }

@@ -1,7 +1,21 @@
+function checkIfAuthenticated(){
+		$.ajax({
+		type: "GET",
+		url: 'http://131.104.48.208/appAuth/check',
+		crossDomain: true,
+		success: function(data) {
+			alert("Am I validated? " + data);
+	  },
+	    	error: onError
+	  });
+		return false;
+}
+
 function validateUser(pinEntered){
+	checkIfAuthenticated();
 	$.ajax({
 		type: "POST",
-		url: 'http://131.104.48.208/appAuth',
+		url: 'http://131.104.48.208/appAuth/login',
 		crossDomain: true,
 		data: {
 			pin: pinEntered

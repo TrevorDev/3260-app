@@ -14,3 +14,15 @@ exports.authResearcher= function(username, password, callback) {
 	  }
 	});
 }
+
+exports.authParticipant= function(pin, callback) {
+  var conn = db.getConnection();
+  conn.query('SELECT * from participant where pin = '+conn.escape(pin), function(err, rows, fields) {
+    if (err) throw err;
+    if(rows.length>0){
+      callback(true);
+    }else{
+      callback(false);
+    }
+  });
+}
