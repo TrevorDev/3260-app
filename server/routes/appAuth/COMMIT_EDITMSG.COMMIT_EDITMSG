@@ -1,0 +1,17 @@
+fixing error
+
+# --------------
+# Please enter the commit message for your changes. Everything below
+# this paragraph is ignored, and an empty message aborts the commit.
+# Just close the window to accept your message.
+diff --git a/server/routes/appAuth/appAuth.js b/server/routes/appAuth/appAuth.js
+index b1833f0..fcff7b6 100644
+--- a/server/routes/appAuth/appAuth.js
++++ b/server/routes/appAuth/appAuth.js
+@@ -1,6 +1,7 @@
+ var fs = require('fs');
+ var ejs = require('ejs');
+ var rek = require('rekuire');
++var userM = rek('userModel.js');
+ 
+ exports.validateUser = function(req, res, next) {

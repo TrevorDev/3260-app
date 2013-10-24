@@ -60,6 +60,13 @@ body {
     margin: -110px 0 0 -145px;
 }
 
+.warning{
+    color: #fff;
+    background: #b94a48;
+    border-radius: 5px;
+    padding: 5px;
+}
+
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
     .app {
@@ -111,3 +118,4 @@ h1 {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
 }
+

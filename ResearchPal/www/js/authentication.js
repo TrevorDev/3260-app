@@ -12,7 +12,8 @@ function checkIfAuthenticated(){
 }
 
 function validateUser(pinEntered){
-	checkIfAuthenticated();
+	/* Add this eventually to check session.
+	checkIfAuthenticated(); */
 	$.ajax({
 		type: "POST",
 		url: 'http://131.104.48.208/appAuth/login',
@@ -21,7 +22,11 @@ function validateUser(pinEntered){
 			pin: pinEntered
 		},
 		success: function(data) {
-			alert("validating user.... returned " + data);
+			if ($.trim(data) == "success"){
+					window.location = "dashboard.html";
+			} else {
+					$('#pinLabel').after('<p class="warning">Invalid PIN, please try again.</p>');
+			}
 	  },
 	    	error: onError
 	 });

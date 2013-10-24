@@ -23,7 +23,8 @@ exports.validateUser = function(req, res, next) {
     });
 }
 exports.auth = function(req) {  
-    return req.session.auth;
+    return "HELLO";
+    /* req.session.auth; */
 }
 
 exports.logout = function(req, res, next) { 

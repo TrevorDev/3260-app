@@ -1,13 +1,32 @@
+function checkIfAuthenticated(){
+		$.ajax({
+		type: "GET",
+		url: 'http://131.104.48.208/appAuth/check',
+		crossDomain: true,
+		success: function(data) {
+			alert("Am I validated? " + data);
+	  },
+	    	error: onError
+	  });
+		return false;
+}
+
 function validateUser(pinEntered){
+	/* Add this eventually to check session.
+	checkIfAuthenticated(); */
 	$.ajax({
 		type: "POST",
-		url: 'http://131.104.48.208/appAuth',
+		url: 'http://131.104.48.208/appAuth/login',
 		crossDomain: true,
 		data: {
 			pin: pinEntered
 		},
 		success: function(data) {
-			alert("validating user.... returned " + data);
+			if ($.trim(data) == "success"){
+					window.location = "dashboard.html";
+			} else {
+					$('#pinLabel').after('<p class="warning">Invalid PIN, please try again.</p>');
+			}
 	  },
 	    	error: onError
 	 });
