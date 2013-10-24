@@ -27,7 +27,7 @@ app.get('/public/*', function(req, res, next){
     express.static(__dirname)(req, res, function(){next('route')});
 });
 
-app.get('/applyForm', applyForm.getApplyForm);
+app.get('/applyForm/:id', applyForm.getApplyForm);
 app.get('/createForm', mainSite.showCreateForm);
 app.get('/dashboard', mainSite.showDashboard);
 app.get('/researchAuth/logout', researchAuth.logout);

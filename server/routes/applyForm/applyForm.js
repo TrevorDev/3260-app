@@ -5,7 +5,12 @@ var rek = require('rekuire');
 var formM = rek('formModel.js');
 
 exports.getApplyForm = function(req, res, next) {
-	formM.getGroupsApplyForm(1,function(form){
+	var groupID=null;
+	if(req.params.id){
+		groupID=req.params.id;
+	}
+
+	formM.getGroupsApplyForm(groupID,function(form){
 		res.send(form);
 	});
 };
