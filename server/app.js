@@ -8,6 +8,7 @@ var db = rek('database.js');
 db.connect();
 
 var mainSite = rek('mainSite.js');
+var researchAuth = rek('researchAuth.js');
 var appAuth = rek('appAuth.js');
 var applyForm = rek('applyForm.js');
 
@@ -27,10 +28,14 @@ app.get('/public/*', function(req, res, next){
 });
 
 app.get('/applyForm', applyForm.getApplyForm);
+app.get('/createForm', mainSite.showCreateForm);
+app.get('/dashboard', mainSite.showDashboard);
+app.get('/researchAuth/logout', researchAuth.logout);
 app.get('/*', mainSite.showMainPage);
 
 //posts requests
 app.post('/appAuth', appAuth.validateUser);
+app.post('/researchAuth', researchAuth.login);
 app.listen(80);
 
 console.log("Started----------------------");
