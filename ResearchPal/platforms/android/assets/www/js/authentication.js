@@ -1,17 +1,14 @@
 function validateUser(pinEntered){
 	$.ajax({
 		type: "POST",
-		url: 'http://127.0.0.1/appAuth',
+		url: 'http://131.104.48.208/appAuth',
 		crossDomain: true,
-		dataType: 'json',
 		data: {
 			pin: pinEntered
 		},
 		success: function(data) {
-			var jsonData = $.parseJSON(data);
-			var valid = jsonData.valid;
-			alert("yay" + valid);
-	    	},
+			alert("validating user.... returned " + data);
+	  },
 	    	error: onError
 	 });
 	return false;
@@ -19,8 +16,6 @@ function validateUser(pinEntered){
 
 function onError(jqXHR, textStatus, errorThrown) {
 // or use alerts if you can't see your log
-alert("status: " + textStatus);
-alert("errorThrown: " + errorThrown);
-// can't remember if this works:
-alert(jqXHR.statusText);
+	alert("status: " + textStatus + "errorThrown: " + errorThrown + " " + jqXHR.statusText);
 }
+
