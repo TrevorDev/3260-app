@@ -9,11 +9,15 @@ exports.validateUser = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', "*");     // TODO - Make this more secure!!
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST');
     res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept');
-	
-    if(!req.session.test){
-	req.session.test='hit';
+	var pin;
+
+    if(!req.session.auth){
+        req.session.auth='hit'; 
+        pin = req.body.pin;
+
     }else{
-	req.session.test='hit2';
+	   req.session.auth='hit2';
+       pin = req.body.pin + " authenticated already";
     }
-    res.send(req.session.test);
+    res.send(req.session.auth + "" + pin);
 }
