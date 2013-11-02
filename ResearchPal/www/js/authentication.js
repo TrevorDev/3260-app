@@ -14,22 +14,29 @@ function checkIfAuthenticated(){
 function validateUser(pinEntered){
 	/* Add this eventually to check session.
 	checkIfAuthenticated(); */
-	$.ajax({
-		type: "POST",
-		url: 'http://131.104.48.208/appAuth/login',
-		crossDomain: true,
-		data: {
-			pin: pinEntered
-		},
-		success: function(data) {
-			if ($.trim(data) == "success"){
-					window.location = "dashboard.html";
-			} else {
-					$('#pinLabel').after('<p class="warning">Invalid PIN, please try again.</p>');
-			}
-	  },
-	    	error: onError
-	 });
+	if (pinEntered.length > 0)
+	{
+		$.ajax({
+			type: "POST",
+			url: 'http://131.104.48.208/appAuth/login',
+			crossDomain: true,
+			data: {
+				pin: pinEntered
+			},
+			success: function(data) {
+				if ($.trim(data) == "success"){
+						window.location = "dashboard.html";
+				} else {
+						$('#error').text('Invalid PIN, please try again.');
+				}
+		  },
+		    	error: onError
+		 });
+	}
+	else
+	{
+		$('#error').text('Please enter PIN.');
+	}
 	return false;
 }
 
