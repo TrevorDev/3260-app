@@ -1,0 +1,54 @@
+<% include includes/header %>
+
+ 
+    <div class="masthead">
+        <div class="container-wide">
+            <div class="row">
+                <center>
+                    <h1 style="display: inline;">Research Pal</h1>
+                    <form id="login">
+                        <fieldset>
+                            <input name="username" type="text" placeholder="Username" /><br>
+                            <br> <input name="password" type="text" placeholder="Password" /><br>
+                            <br>
+                            <button id="loginButton" type="submit" class="btn btn-danger">Login</button>
+                        </fieldset>
+                    </form>
+                </center>
+            </div>
+        </div>
+    </div>
+
+<!-- <div id="push"></div> -->
+<!-- </div> -->
+<!-- <div id="footer"> -->
+<!-- 	<div class="container-wide"> -->
+<!-- 		<p class="muted credit"> -->
+<!-- 			Site by <a href="http://trevordev.com">Trevor Baron</a> . -->
+			<!-- <t class="pull-right" style="font-size: 20px;"> --> <!-- <img id="logo" width="130px" src="/public/mainSite/assets/img/nodejs.png" alt="node.js">-->
+<!-- 			<i class="icon-facebook-sign"></i> <i class="icon-twitter-sign"></i> -->
+<!-- 			<i class="icon-google-plus-sign"></i> </t> -->
+<!-- 		</p> -->
+<!-- 	</div> -->
+<!-- </div> -->
+
+    <% include includes/footer %>
+    <script>
+         $("#loginButton").click(function() {
+             $.ajax({
+               type: "POST",
+               url: '/researchAuth',
+               data: $("#login").serialize(), // serializes the form's elements.
+               success: function(data)
+               {
+                   if(data=='success'){
+                    window.location = "/dashboard";
+                   }else{
+                    alert('Invalid Login');
+                   }
+               }
+             });
+
+             return false;
+        });
+    </script>

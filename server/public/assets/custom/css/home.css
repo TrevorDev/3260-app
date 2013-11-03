@@ -1,0 +1,54 @@
+@CHARSET "ISO-8859-1";
+
+body {
+  padding-top: 20px;
+  padding-bottom: 0px;
+  background-color: #2e64fe;
+  
+  padding-right: 200px;
+  padding-left: 200px;
+  
+  min-width: 320px;
+  
+  align: center;  
+  
+  background-image:url('../img/ResearchPal Banner.png');
+  background-repeat: no-repeat;
+}
+
+.row img {
+	height: 200px;	
+}
+
+h1 {
+	color: #bd1516;
+	font-size: 50px;
+	
+}	
+
+.centered-text {
+    text-align:center
+}
+
+
+.hero-unit {
+  padding: 60px;
+  margin-bottom: 30px;
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 30px;
+  background-color: #eeeeee;
+  border:1px solid #cacaca;
+  -webkit-border-radius: 10px;
+         -moz-border-radius: 10px;
+          border-radius: 10px;
+          
+   min-height: 370px;
+ }
+ 
+ 
+ .btn {
+ 	vertical-align:bottom;
+ 	bottom: 0px;
+ 	width: 160px;
+ }

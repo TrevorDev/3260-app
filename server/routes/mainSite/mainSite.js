@@ -9,6 +9,11 @@ exports.showMainPage = function(req, res, next) {
     exports.render(req, res, next, 'researcherPortal/' + view);
 };
 
+exports.showLogon = function(req, res, next) {
+    view = 'logon';
+    exports.render(req, res, next, 'researcherPortal/' + view);
+};
+
 exports.showApply = function(req, res, next) {
     view = 'apply';
     formM.getGroupsApplyForm(req.params.id,function(form){
