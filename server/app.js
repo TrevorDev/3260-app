@@ -44,6 +44,8 @@ app.get('/appAuth/check', appAuth.auth);
 //posts requests
 app.post('/appAuth/login', appAuth.validateUser);
 app.post('/researchAuth', researchAuth.login);
+app.post('/createGroup', applyForm.createGroup);
+app.post('/submitApplication', applyForm.submitForm);
 app.listen(80);
 
 console.log("Started----------------------");

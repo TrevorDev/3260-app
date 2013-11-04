@@ -1,40 +1,49 @@
 <% include includes/header %>
-<div class="masthead">
-        <h3 class="text-muted"><font color="black">Create an Application Form</font></h3>
-  </div>
-  
-  <img src="/public/assets/custom/img/Research_Pal_v4.png" id="logo" align="right">
 
-  
-  <hr>
-      
-      <div  id="initFields" class="unhidden">  
-          <p><font color="black" size="4">First Name: &nbsp; </font> <input type="text" name="firstName" id="frstName"><br>
-          <p><font  color="black" size="4">Last Name: &nbsp; </font><input type="text" name="lastName" id="LstName"></p> 
-          <p><font  color="black" size="4">E-Mail: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</font><input type="text" name="contact_email" id="email"></p>
-          
-      </div>
-      
-      
-      <div id="addFields" class="hidden">  
-          <p><font color="black" size="4"><input type="text" name="newField1" id="field1" placeholder="Field Name"><input type="text" name="newField4" id="field4" placeholder="Field Name"></font><br></p> 
-          <p><font color="black" size="4"><input type="text" name="newField2" id="field2" placeholder="Field Name"><input type="text" name="newField5" id="field5" placeholder="Field Name"></font></p> 
-          <p><font color="black" size="4"><input type="text" name="newField3" id="field3" placeholder="Field Name"><input type="text" name="newField6" id="field6" placeholder="Field Name"></font></p>        
-      </div>
+            <div class="masthead">
+                <div class="container-wide">
+                    <div class="row">
+                        
+                        <h1 style="display: inline;">
+                            Create Group
+                        </h1>
+                        <div class="well" style="margin-top:100px;border:solid 10px;">
+                        <form id="createGroup">
+                                <h3>Group Info</h3>
+                                <input name="name" type="text" placeholder="Group Name">
+                                <input name="keyword" type="text" placeholder="Keyword">
+                                <input type="date" name="start">
+                                <input type="date" name="end">
+                                <h3>Additional Info and questions to be displayed on application form</h3>
+                                <br>
+                                <textarea rows="10" name="questions" style="width:100%;"></textarea>
+                                <br>
+                                <br>
+                                <button id="create" type="submit" class="btn btn-danger">Create</button>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="push">
+            </div>
+        </div>
 
-      
-     <p><a id="addLink" href="javascript:unhide('addFields');" ><font color="black">Add fields</font></a>     
-     <p><button   class="btn btn-lg btn-success positionButton"  id="button1" type="button" ><font color="white">Submit</font></button>   
- 
-<script type="text/javascript">
-  function unhide(divID) {
-    var item = document.getElementById(divID);
-    if (item) {
-      item.className=(item.className == 'hidden')?'unhidden':'hidden';
-      item.className = 'unhidden';
-    }
-  }
-</script>
+        <% include includes/footer %>
+        <script>
+             $("#create").click(function() {
+                 $.ajax({
+                   type: "POST",
+                   url: '/createGroup',
+                   data: $("#createGroup").serialize(), // serializes the form's elements.
+                   success: function(data)
+                   {
+                        alert('Created!');
+                        window.location = "/dashboard";
+                   }
+                 });
 
-<% include includes/footer %>
-
+                 return false;
+            });
+        </script>

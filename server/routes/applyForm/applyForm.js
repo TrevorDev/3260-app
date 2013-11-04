@@ -3,6 +3,8 @@ var ejs = require('ejs');
 var rek = require('rekuire');
 
 var formM = rek('formModel.js');
+var groupM = rek('groupModel.js');
+var userM = rek('userModel.js');
 
 exports.getApplyForm = function(req, res, next) {
 	var groupID=null;
@@ -15,14 +17,16 @@ exports.getApplyForm = function(req, res, next) {
 	});
 };
 
-exports.createForm = function(req, res, next) {
-    res.send({"valid": "yes"});
-};
-
-exports.editForm = function(req, res, next) {
-    res.send({"valid": "yes"});
+exports.createGroup = function(req, res, next) {
+	groupM.createGroup(req.body.name,req.body.keyword,req.body.start,req.body.end,req.session.userID,function(success,groupID){
+		formM.createForm(req.body.questions,groupID,function(success){
+			res.send({"valid": success});
+		});
+	});
 };
 
 exports.submitForm = function(req, res, next) {
-    res.send({"valid": "yes"});
+	userM.createParticipant(req.body.fname,req.body.lname,req.body.email,req.body.groupID,function(){
+		res.send({"valid": "yes"});
+	});    
 };

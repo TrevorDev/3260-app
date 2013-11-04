@@ -92,25 +92,14 @@
 	            <th>Start Date</th>
 	            <th>End Date</th>
 			</tr>
-	  <tr>
-		<!-- <td onload="pTitle()">Project A</td> -->		
-		<td id="pTitle">Project A</td>
-		<td>3</td>
-	    <td>January 1, 2013</td>
-		<td>January 1, 2014</td>
-	  </tr>
-	  <tr>
-		<td>Project B</td>
-		<td>3</td>
-	    <td>January 1, 2013</td>
-		<td>January 1, 2014</td>
-	  </tr>
-	  <tr>
-		<td>Project C</td>
-		<td>3</td>
-	    <td>January 1, 2013</td>
-		<td>January 1, 2014</td>
-	  </tr>
+	<% for(var i=0; i<groups.length; i++) {%>
+   		<tr>	
+			<td><%= groups[i].name %></td>
+			<td><%= groups[i].numOfParticipants %></td>
+		    <td><%= groups[i].startDate %></td>
+			<td><%= groups[i].endDate %></td>
+	 	 </tr>
+	<% } %>
 		</table>
 	      
     
@@ -123,24 +112,14 @@
             <th>Group</th>
             <th>Application Submitted</th>            
 		</tr>
-    <tr>
-	<td>John</td>
-	<td>Smith</td>
-    <td>Project A</td>
-	<td>January 1, 2013</td>
-  </tr>
-  <tr>
-	<td>John</td>
-	<td>Doe</td>
-    <td>Project A</td>
-	<td>January 1, 2013</td>
-  </tr>
-  <tr>
-	<td>Bill</td>
-	<td>Bill</td>
-    <td>Project A</td>
-	<td>January 1, 2013</td>
-  </tr>
+		<% for(var i=0; i<queue.length; i++) {%>
+   		<tr>	
+			<td><%= queue[i].name %></td>
+			<td><%= queue[i].lastName %></td>
+		    <td><%= queue[i].gname %></td>
+			<td>Today</td>
+	 	 </tr>
+	<% } %>
 	</table>
 	
 	</div>

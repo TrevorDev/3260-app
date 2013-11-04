@@ -3,21 +3,31 @@
             <div class="masthead">
                 <div class="container-wide">
                     <div class="row">
-                        <center>
+                        
                         <h1 style="display: inline;">
-                            Apply
+                            Application Form
                         </h1>
-                        <form id="login">
-                            <% for(var i=form.length-1; i>=0; i--) {%>
-                                <%= form[i].name %>
-                            <% } %>
+                        <div class="well" style="margin-top:100px;border:solid 10px;">
+                        <form id="application">
+                                <h3>Your Info</h3>
+                                <input name="fname" type="text" placeholder="First Name">
+                                <input name="lname" type="text" placeholder="Last Name">
+                                <input name="email" type="text" placeholder="Email">
+                                <input name="groupID" type="hidden" value=<%= form.groupID %>>
+                                <h3>Additional Questions</h3>
+                                <%- form.extraQuestions %>
+                                <br>
+                                <textarea rows="10" name="answers" style="width:100%;"></textarea>
+                                <br>
+                                <p>I agree to everything above <input type="checkbox"></p>
+                                <button id="apply" type="submit" class="btn btn-danger">Submit</button>
                             <!--<fieldset>
                                 <input name="username" type="text" placeholder="Username" /><br><br>
                                 <input name="password" type="text" placeholder="Password" /><br><br>
                                 <button id="loginButton" type="submit" class="btn btn-danger">Login</button>
                             </fieldset>-->
                         </form>
-                    </center>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -25,34 +35,18 @@
             <div id="push">
             </div>
         </div>
-        <div id="footer">
-            <div class="container-wide">
-                <p class="muted credit">
-                    Site by
-                    <a href="http://trevordev.com">Trevor Baron</a>
-                    .
-                    <t class="pull-right" style="font-size: 20px;">
-                       <!-- <img id="logo" width="130px" src="/public/mainSite/assets/img/nodejs.png" alt="node.js">-->
-            <i class="icon-facebook-sign"></i> <i class="icon-twitter-sign"></i> <i class="icon-google-plus-sign"></i>
-            </t>
-                </p>
-            </div>
-        </div>
 
         <% include includes/footer %>
         <script>
-             $("#loginButton").click(function() {
+              $("#apply").click(function() {
                  $.ajax({
                    type: "POST",
-                   url: '/researchAuth',
-                   data: $("#login").serialize(), // serializes the form's elements.
+                   url: '/submitApplication',
+                   data: $("#application").serialize(), // serializes the form's elements.
                    success: function(data)
                    {
-                       if(data=='success'){
+                        alert('Application Submitted!');
                         window.location = "/dashboard";
-                       }else{
-                        alert('Invalid Login');
-                       }
                    }
                  });
 

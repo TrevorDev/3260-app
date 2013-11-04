@@ -8,13 +8,29 @@ exports.getGroupsApplyForm= function(groupID,callback) {
 		return [];
 	}
 	var conn = db.getConnection();
-	conn.query('SELECT applyFormField.name,applyFormField.description,fieldType.name as type from applyFormInstance,fieldInApplyFormInstance,applyFormField,fieldType where groupID = '+conn.escape(groupID)+' and applyFormInstance.applyFormInstanceID = applyFormInstance.applyFormInstanceID and applyFormField.applyFormFieldsID = fieldInApplyFormInstance.applyFormFieldID and fieldType.fieldTypeID = applyFormField.type', function(err, rows, fields) {
+	conn.query('SELECT * from applicationForm,pal.group where pal.group.groupID = applicationForm.groupID and pal.group.groupID = '+conn.escape(groupID), function(err, rows, fields) {
 	  if (err) throw err;
 	  for(var i =0;i<rows.length;i++){
-	  	if(rows[i].description){
-	  		rows[i].description=rows[i].description.toString();
+	  	if(rows[i].extraQuestions){
+	  		rows[i].extraQuestions=rows[i].extraQuestions.toString().replace(/\n/g, '<br />');
 	  	}
 	  }
 	  callback(rows);
+	});
+}
+
+exports.submitApplication= function(fname,lname,answers,groupid,callback) {
+	var conn = db.getConnection();
+	conn.query("INSERT INTO submittedApplicationForm (groupID, answers, firstName, lastName) VALUES (1, 'woo whooo', 'trev','bar');", function(err, rows, fields) {
+	  if (err) throw err;
+	  callback();
+	});
+}
+
+exports.createForm= function(questions, groupid,callback) {
+	var conn = db.getConnection();
+	conn.query("INSERT INTO applicationForm (extraQuestions, groupID) VALUES ("+conn.escape(questions)+","+conn.escape(groupid)+");", function(err, rows, fields) {
+	  if (err) throw err;
+	  callback();
 	});
 }
