@@ -46,6 +46,7 @@ exports.showDashboard = function(req, res, next) {
         groupM.getResearchersGroups(req.session.username, function(groups){
             res.template=new Object();
             res.template.groups = groups;
+            res.template.username = req.session.username;
             userM.getResearchersApprovalQueue(req.session.userID, function(queue){
                 res.template.queue = queue;
                 exports.render(req, res, next, 'researcherPortal/' + view);
