@@ -11,7 +11,7 @@ exports.addRecording = function(req, res, next) {
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST');
     res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept');
     var pin;
-    res.send('yay');
+    res.send(req.body);
 
     /*messageM.store(req.body.pin,function(success){
         if(success){
