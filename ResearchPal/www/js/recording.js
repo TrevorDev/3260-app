@@ -28,10 +28,10 @@ function play(){
       mediaVar.release();
     }
 
-    var src="/data/data/com.phonegap.hello_world/cache/" +recordFileName;
+    var src= recordFileName;
     mediaVar = new Media(src, function(){
             log("Media created successfully");
-        }, onError, null); 
+        }, onError, null);
 
     mediaVar.play();
 }
