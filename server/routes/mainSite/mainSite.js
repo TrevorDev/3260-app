@@ -16,6 +16,11 @@ exports.showLogon = function(req, res, next) {
     exports.render(req, res, next, 'researcherPortal/' + view);
 };
 
+exports.showMessage = function(req, res, next) {
+    view = 'message';
+    exports.render(req, res, next, 'researcherPortal/' + view);
+};
+
 exports.showApply = function(req, res, next) {
     view = 'apply';
     formM.getGroupsApplyForm(req.params.id,function(form){
