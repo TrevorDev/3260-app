@@ -1,10 +1,3 @@
-function playRecording(file){
-    mediaVar = new Media(file, function(){
-          log("Media created successfully");
-    }, onError);
-    mediaVar.play();
-}
-
 var mediaVar = null;
 var recordFileName = "recording.wav";
 var status = null;
@@ -20,6 +13,10 @@ $(document).ready(function(){
 
     $('#playButton').click(function(){
         play();
+    });
+
+    $('#sendRecordingBtn').click(function(){
+        sendRecording();
     });
 });
 
@@ -110,4 +107,19 @@ function onError(err){
 
 function log(message){
     console.log(message);
+}
+
+
+function sendRecording(){
+    $.ajax({
+    type: "POST",
+    url: 'http://131.104.48.208/newRecording',
+    crossDomain: true,
+    data:{ "test" : "YAY"},
+    success: function(data) {
+        updateRecordingLabel("Recording sent");
+    },
+        error: onError
+    });
+    return false;
 }
