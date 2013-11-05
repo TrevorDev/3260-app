@@ -4,9 +4,10 @@ var rek = require('rekuire');
 var userM = rek('userModel.js');
 
 exports.login = function(req, res, next) {	
-    userM.authResearcher(req.body.username,req.body.password,function(success){
+    userM.authResearcher(req.body.username,req.body.password,function(success,userID){
         if(success){
             req.session.username=req.body.username;
+            req.session.userID=userID;
             res.send("success");
         }else{
             res.send("false");

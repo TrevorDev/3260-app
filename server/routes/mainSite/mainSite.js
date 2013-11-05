@@ -3,17 +3,30 @@ var ejs = require('ejs');
 var rek = require('rekuire');
 var researchAuth = rek('researchAuth.js');
 var formM = rek('formModel.js');
+var userM = rek('userModel.js');
+var groupM = rek('groupModel.js');
 
 exports.showMainPage = function(req, res, next) {
     view = 'home';
     exports.render(req, res, next, 'researcherPortal/' + view);
 };
 
+exports.showLogon = function(req, res, next) {
+    view = 'logon';
+    exports.render(req, res, next, 'researcherPortal/' + view);
+};
+
 exports.showApply = function(req, res, next) {
     view = 'apply';
     formM.getGroupsApplyForm(req.params.id,function(form){
-        res.template=new Object();
-        res.template.form = form;
+        res.template={};
+        if(form.length>0){
+            res.template.form = form[0];
+        }else{
+            res.template.form = {};
+
+        }
+
         exports.render(req, res, next, 'researcherPortal/' + view);
     });
 };
@@ -30,7 +43,15 @@ exports.showCreateForm = function(req, res, next) {
 exports.showDashboard = function(req, res, next) {
     view = 'dashboard';
     if(researchAuth.auth(req)){
-    	exports.render(req, res, next, 'researcherPortal/' + view);
+        groupM.getResearchersGroups(req.session.username, function(groups){
+            res.template=new Object();
+            res.template.groups = groups;
+            res.template.username = req.session.username;
+            userM.getResearchersApprovalQueue(req.session.userID, function(queue){
+                res.template.queue = queue;
+                exports.render(req, res, next, 'researcherPortal/' + view);
+            });
+        });
 	}else{
 		res.redirect('/');
 	}

@@ -1,58 +1,55 @@
 <% include includes/header %>
 
-            <div class="masthead">
+	<div class="masthead">
                 <div class="container-wide">
-                    <div class="row">
-                        <center>
-                        <h1 style="display: inline;">
+                    <div class="row centered-text">
+                   		<img class="" src="/public/assets/custom/img/Research Pal v5.png" alt="Research Pal">
+                        <h1 class="title">
                             Research Pal
                         </h1>
-                        <form id="login">
-                            <fieldset>
-                                <input name="username" type="text" placeholder="Username" /><br><br>
-                                <input name="password" type="text" placeholder="Password" /><br><br>
-                                <button id="loginButton" type="submit" class="btn btn-danger">Login</button>
-                            </fieldset>
-                        </form>
-                    </center>
                     </div>
                 </div>
             </div>
             
-            <div id="push">
-            </div>
+    <div class="row">
+        <div class="col-md-6">
+			<div class="hero-unit">
+			    <h2>Researchers</h2>
+			    <p>To get started in creating and managing your own research group please login or easily go through the process of 
+			    creating a new account.</p>
+			    
+			    <p>
+				    <button id="logonButton" class="btn btn-primary btn-large" onclick="javascript:window.location.href='/logon'">
+				    	Login
+				    </button>
+				    
+				    <a class="btn btn-primary btn-large">
+				    	Register an Account
+				    </a>
+			    </p>
+		    </div>    
         </div>
-        <div id="footer">
-            <div class="container-wide">
-                <p class="muted credit">
-                    Site by
-                    <a href="http://trevordev.com">Trevor Baron</a>
-                    .
-                    <t class="pull-right" style="font-size: 20px;">
-                       <!-- <img id="logo" width="130px" src="/public/mainSite/assets/img/nodejs.png" alt="node.js">-->
-            <i class="icon-facebook-sign"></i> <i class="icon-twitter-sign"></i> <i class="icon-google-plus-sign"></i>
-            </t>
-                </p>
-            </div>
+        <div class="col-md-6 text-right">
+			<div class="hero-unit">
+			    <h2>Available Projects</h2>
+			    <p>Browse active research projects looking for participants.</p>
+			    <p>
+				    <a class="btn btn-primary btn-large">
+				    	Search Projects
+				    </a>
+			    </p>
+			 </div>
         </div>
+    </div>
+    
+    
+  
 
-        <% include includes/footer %>
-        <script>
-             $("#loginButton").click(function() {
-                 $.ajax({
-                   type: "POST",
-                   url: '/researchAuth',
-                   data: $("#login").serialize(), // serializes the form's elements.
-                   success: function(data)
-                   {
-                       if(data=='success'){
-                        window.location = "/dashboard";
-                       }else{
-                        alert('Invalid Login');
-                       }
-                   }
-                 });
 
-                 return false;
-            });
-        </script>
+ 
+	
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  

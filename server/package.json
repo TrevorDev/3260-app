@@ -16,6 +16,7 @@
 		"rekuire": "x.x",
 		"crypto": "x.x",
 		"mysql": "x.x",
-		"ejs": "x.x"
+		"ejs": "x.x",
+		"node-uuid": "x.x"
 	}
 }

@@ -1,0 +1,159 @@
+@CHARSET "ISO-8859-1";
+
+body {
+    min-width: 350px;
+}
+.container {
+  padding-top: 20px;
+  padding-bottom: 0px;
+  /*background-color: #2e64fe;*/
+  
+  padding-right: 100px;
+  padding-left: 200px;
+  
+  min-width: 320px;
+  
+  align: center;  
+}
+
+h1 {
+	color: #bd1516;
+	font-size: 50px;
+	
+}	
+
+a.navbar-side:hover { 
+    width:100%;
+    background-color:#bababa;
+    
+    align: center;
+}
+
+.centered-text {
+    text-align:center
+}
+
+
+/****Menu Bar****/
+ .menuBar {
+ 	width: 100%;
+ }
+ 
+ .masthead {
+ 	width: 100%;
+ }
+ 
+ p.title {
+    font-size: 30px;
+ }
+ 
+ img.icon {
+ 	max-height: 50px;
+ }
+ 
+  
+ .rowContainer {
+ 	background-color: #ffff00;
+ 	width: 500px;
+ 	min-height: 370px;
+ }
+ 
+ .welcomeTag {
+ 	colour: #ff0000;
+ 	padding-top:10px;
+ 	
+   min-width:10px;
+   
+   font-size:15px;
+ }
+ 
+ .btn {
+  	 margin:10px;
+ }
+ 
+ 
+ .userInfo {
+/*  	background-color: #ffffff; */
+ 	padding:100px;
+ 	float: right;
+ }
+ 
+ td {
+/*  	margin-right:50%; */
+ }
+ 
+ .researcherInfo {
+ 	padding-left: 12%;
+ 	padding-right: 12%;
+ }
+ 
+ .topMenu {
+ 	padding-left: 7%;
+ 	padding-right: 7%;
+ }
+ 
+ 
+ 
+ /****Side Bar****/
+.sideMenu {
+    height: 100%;
+    background-color: #red;
+    position: fixed;
+    width: 145px;
+    margin-left: 0px;
+}
+
+.navbar-inverse {
+    height:100%;
+}
+
+.navbar-side {
+    min-height: 100px;
+    
+    align: center;
+    
+    padding: 25px;
+    padding-bottom: 0px;
+    
+    text-decoration:none;
+        
+    font-size:20px;
+    float:left;
+    
+    color: #red;
+}
+
+a.navbar-side {
+    color: #ffffff;
+}
+
+.space{
+    min-height: 50px;
+    align: center;
+    
+    padding: 15px;
+        
+    font-size:10px;
+    float:left;    
+}
+
+
+
+/****Notification Items****/
+.row img {
+	height: 200px;	
+}
+
+.notificationImg {
+	max-width: 200px;
+	max-height: 150px;	
+}
+
+
+
+/****Table Styles****/
+h3 {
+	padding-top: 50px;
+}
+
+
