@@ -1,13 +1,8 @@
-function playRecording(file){
-    mediaVar = new Media(file, function(){
-          log("Media created successfully");
-    }, onError);
-    mediaVar.play();
-}
-
 var mediaVar = null;
 var recordFileName = "recording.wav";
 var status = null;
+var fullRecordPath = null;
+var fullUploadPath = null;
 
 $(document).ready(function(){
     $('#recordButton').click(function(){
@@ -21,6 +16,10 @@ $(document).ready(function(){
     $('#playButton').click(function(){
         play();
     });
+
+    $('#sendRecordingBtn').click(function(){
+        sendRecording();
+    });
 });
 
 function play(){
@@ -28,7 +27,7 @@ function play(){
       mediaVar.release();
     }
 
-    var src= recordFileName;
+    var src= fullUploadPath;
     mediaVar = new Media(src, function(){
             log("Media created successfully");
         }, onError, null);
@@ -63,10 +62,28 @@ function createMedia(onMediaCreated, mediaStatusCallback){
         onMediaCreated();
         return;
     }
-    mediaVar = new Media(recordFileName, function(){
+
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
+
+        fileSystem.root.getFile(recordFileName, {
+            create: true,
+            exclusive: false
+        }, function(fileEntry){
+            log("---------> Android File " + recordFileName + " created at " + fileEntry.fullPath);
+            fullRecordPath = recordFileName;
+            fullUploadPath = fileEntry.fullPath;
+            mediaVar = new Media(recordFileName, function(){
+                log("Android media created successfully");
+            }, onError, mediaStatusCallback);
+            onMediaCreated();
+        }, onError); //of getFile
+    }, onError); //of requestFileSystem
+
+    /* mediaVar = new Media(recordFileName, function(){
         log("Media created successfully");
     }, onError, mediaStatusCallback); 
     onMediaCreated();
+    */
 }
 
 function stop() {
@@ -110,4 +127,43 @@ function onError(err){
 
 function log(message){
     console.log(message);
+}
+
+var win = function (r) {
+    console.log("Code = " + r.responseCode);
+    console.log("Response = " + r.response);
+    console.log("Sent = " + r.bytesSent);
+}
+
+var fail = function (error) {
+    alert("An error has occurred: Code = " + error.code);
+    console.log("upload error source " + error.source);
+    console.log("upload error target " + error.target);
+}
+function sendRecording(){
+
+    var file = new FileTransfer();
+    var options = new FileUploadOptions();
+
+    options.fileKey = "file";
+    options.fileName = fullUploadPath.substr(fullUploadPath.lastIndexOf('/')+1);
+    options.mimeType = 'audio/wav';
+    options.chunkedMode = false;
+    options.headers = {'Content-Type': 'multipart/form-data; boundary=+++++'};
+
+    log("PATH " + fullUploadPath);
+    file.upload(fullUploadPath, encodeURI("http://131.104.48.208/newRecording"), win, fail, options);
+
+    /*$.ajax({
+    type: "POST",
+    url: 'http://131.104.48.208/newRecording',
+    crossDomain: true,
+    data:{ "test" : "YAY"},
+    success: function(data) {
+        updateRecordingLabel("Recording sent " + data);
+    },
+        error: onError
+    });
+*/
+    return false;
 }

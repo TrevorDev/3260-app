@@ -19,15 +19,14 @@ exports.validateUser = function(req, res, next) {
         }else{
             res.send("false");
         }
-        
     });
 }
-exports.auth = function(req) {  
+exports.auth = function(req) {
     return "HELLO";
     /* req.session.auth; */
 }
 
-exports.logout = function(req, res, next) { 
+exports.logout = function(req, res, next) {
     req.session=null;
     res.redirect('/');
 }
