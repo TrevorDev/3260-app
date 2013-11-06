@@ -50,9 +50,13 @@ exports.getNewPin=function(){
 	return uuid.v4().split('-')[0];
 }
 
-exports.getCurrentUser= function(pin,callback) {
+exports.getResearcher= function(userID,callback) {
   var conn = db.getConnection();
-  conn.query('select userID from participant where pin = '+conn.escape(pin), function(err, rows, fields) {
+  conn.query("""Select researcher.userID as researcherID
+                from pal.group, participant, researcher
+                where participant.groupID = group.groupID
+                  and group.ownerID = researcher.userID
+                  and participant.userID = """+conn.escape(userID), function(err, rows, fields) {
     if (err) throw err;
     if(rows.length>0){
       callback(true,rows[0]);
@@ -60,7 +64,4 @@ exports.getCurrentUser= function(pin,callback) {
       callback(false);
     }
   });
-}
-
-exports.getResearcher= function(userID,callback) {
 }
