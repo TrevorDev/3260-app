@@ -7,7 +7,7 @@ var userM = rek('userModel.js');
 exports.addRecording = function(req, res, next) {
 
     /* view = 'home';
-    exports.render(req, res, next, 'researcherPortal/' + view); 
+    exports.render(req, res, next, 'researcherPortal/' + view);
     res.header('Access-Control-Allow-Origin', "*");     // TODO - Make this more secure!!
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST');
     res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept');
@@ -32,4 +32,15 @@ exports.addRecording = function(req, res, next) {
             }
         });
     });
+}
+
+exports.listMessages = function(req, res, next) {
+    var researcherID = req.session.userID;
+    var researcherName = req.session.username;
+
+    if (req.params.participantID){
+        var participantID = req.params.participantID;
+    }
+
+    res.send('Researcher ' + researcherName + '\nParticipant ' + participantID);
 }
