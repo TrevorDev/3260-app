@@ -9,7 +9,7 @@ $(document).ready(function(){
     var recordBtn = $('#recordButton');
     var stopBtn = $('#stopButton');
     var playBtn = $('#playButton');
-    var sendRecBtn = $('#sendRecordingButton');
+    var sendRecBtn = $('#sendRecordingBtn');
 
     recordBtn.click(function(){
         record();
