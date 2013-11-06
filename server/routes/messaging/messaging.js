@@ -20,8 +20,7 @@ exports.addRecording = function(req, res, next) {
             if (success){
                 msgFrom = userid;
             }
-            print "returning " + msgFrom;
-            res.send(msgFrom);
+            res.send("test");
         });
         /*var msgTo = userM.getResearcher();
         messageM.storeMessage(msgFrom, msgTo, data);
