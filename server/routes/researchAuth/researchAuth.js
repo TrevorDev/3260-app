@@ -3,7 +3,7 @@ var ejs = require('ejs');
 var rek = require('rekuire');
 var userM = rek('userModel.js');
 
-exports.login = function(req, res, next) {	
+exports.login = function(req, res, next) {
     userM.authResearcher(req.body.username,req.body.password,function(success,userID){
         if(success){
             req.session.username=req.body.username;
@@ -12,7 +12,6 @@ exports.login = function(req, res, next) {
         }else{
             res.send("false");
         }
-        
     });
 }
 

@@ -11,6 +11,7 @@ var mainSite = rek('mainSite.js');
 var researchAuth = rek('researchAuth.js');
 var appAuth = rek('appAuth.js');
 var applyForm = rek('applyForm.js');
+var messaging = rek('messaging.js');
 
 //setup ejs with views folder
 app.set('views', __dirname + '/views');
@@ -47,6 +48,7 @@ app.post('/appAuth/login', appAuth.validateUser);
 app.post('/researchAuth', researchAuth.login);
 app.post('/createGroup', applyForm.createGroup);
 app.post('/submitApplication', applyForm.submitForm);
+app.post('/newRecording', messaging.addRecording);
 app.listen(80);
 
 console.log("Started----------------------");
