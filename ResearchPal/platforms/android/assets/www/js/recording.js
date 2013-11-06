@@ -133,6 +133,8 @@ var win = function (r) {
     console.log("Code = " + r.responseCode);
     console.log("Response = " + r.response);
     console.log("Sent = " + r.bytesSent);
+
+    updateRecordingLabel('Recording sent!');
 }
 
 var fail = function (error) {
