@@ -27,6 +27,8 @@ exports.addRecording = function(req, res, next) {
                     }
                     res.send('failed');
                 });
+            } else {
+                res.send('failed');
             }
         });
     });
