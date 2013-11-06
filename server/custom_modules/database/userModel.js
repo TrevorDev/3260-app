@@ -49,3 +49,18 @@ exports.getResearchersApprovalQueue= function(userID,callback) {
 exports.getNewPin=function(){
 	return uuid.v4().split('-')[0];
 }
+
+exports.getCurrentUser= function(pin,callback) {
+  var conn = db.getConnection();
+  conn.query('select userid from participant where pin = %s'+conn.escape(pin), function(err, rows, fields) {
+    if (err) throw err;
+    if(rows.length>0){
+      callback(true,rows[0].userID);
+    }else{
+      callback(false);
+    }
+  });
+}
+
+exports.getResearcher= function(userID,callback) {
+}

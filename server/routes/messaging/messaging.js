@@ -2,6 +2,7 @@ var fs = require('fs');
 var ejs = require('ejs');
 var rek = require('rekuire');
 var messageM = rek('messageModel.js');
+var userM = rek('userModel.js');
 
 exports.addRecording = function(req, res, next) {
 
@@ -11,8 +12,15 @@ exports.addRecording = function(req, res, next) {
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST');
     res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept');
     var pin;
-    res.send(req.files);
+    /* res.send(req.files); */
 
+    fs.readFile(req.files.file.path, function (err, data) {
+        var msgFrom = userM.getCurrentUser();
+        res.send(msgFrom);
+        /*var msgTo = userM.getResearcher();
+        messageM.storeMessage(msgFrom, msgTo, data);
+        */
+    });
     /*messageM.store(req.body.pin,function(success){
         if(success){
             req.session.auth=req.body.pin;
