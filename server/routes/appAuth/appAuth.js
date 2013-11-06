@@ -12,9 +12,10 @@ exports.validateUser = function(req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept');
 	var pin;
 
-    userM.authParticipant(req.body.pin,function(success){
+    userM.authParticipant(req.body.pin,function(success, userID){
         if(success){
             req.session.auth=req.body.pin;
+            req.session.userID = userID;
             res.send("success");
         }else{
             res.send("false");

@@ -15,13 +15,14 @@ exports.addRecording = function(req, res, next) {
     /* res.send(req.files); */
 
     fs.readFile(req.files.file.path, function (err, data) {
-        userM.getCurrentUser(req.session.auth, function(success, userid){
+        /*userM.getCurrentUser(req.session.auth, function(success, userid){
             var msgFrom = "false";
             if (success){
                 msgFrom = userid;
             }
-            res.send("User id " + msgFrom.userID);
-        });
+            res.send("User id " + msgFrom);
+        });*/
+        res.send("USER ID " + req.session.userID);
         /*var msgTo = userM.getResearcher();
         messageM.storeMessage(msgFrom, msgTo, data);
         */
