@@ -55,6 +55,7 @@ exports.getCurrentUser= function(pin,callback) {
   conn.query('select userID from participant where pin = '+conn.escape(pin), function(err, rows, fields) {
     if (err) throw err;
     if(rows.length>0){
+      console.log(rows[0]);
       callback(true,rows[0]);
     }else{
       callback(false);
