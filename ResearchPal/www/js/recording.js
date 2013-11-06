@@ -5,20 +5,36 @@ var fullRecordPath = null;
 var fullUploadPath = null;
 
 $(document).ready(function(){
-    $('#recordButton').click(function(){
+    var recordBtn = $('#recordButton');
+    var stopBtn = $('#stopButton');
+    var playBtn = $('#playButton');
+    var sendRecBtn = $('#sendRecordingButton');
+
+    recordBtn.click(function(){
         record();
+        recordBtn.hide();
+        stopBtn.show();
     });
 
-    $('#stopButton').click(function(){
+    stopBtn.click(function(){
         stop();
+        stopBtn.hide();
+        playBtn.show();
+        sendRecBtn.show();
     });
 
-    $('#playButton').click(function(){
+    playBtn.click(function(){
         play();
+        playBtn.hide();
+        stopBtn.show();
     });
 
-    $('#sendRecordingBtn').click(function(){
+    sendRecBtn.click(function(){
         sendRecording();
+        sendRecBtn.hide();
+        stopBtn.hide();
+        playBtn.hide();
+        recordBtn.show();
     });
 });
 
@@ -92,26 +108,17 @@ function stop() {
 
     if (status == 'recording') {
         mediaVar.stopRecord();
-        log("Recording stopped");
+        updateRecordingLabel("Recording stopped");
     }
     else if (status == 'playing') {
         mediaVar.stop();
-        log("Play stopped");
+        updateRecordingLabel("Play stopped");
     } else {
-        log("Nothing stopped");
+        updateRecordingLabel("Nothing stopped");
     }
     status = 'stopped';
-    updateRecordingLabel(status);
 }
-/*
-function play(){
-    createMedia(function(){
-      status = "playing";
-      mediaVar.play();
-      updateRecordingLabel(status);
-    });
-}
-*/
+
 function onStatusChange(){
 }
 
@@ -129,21 +136,7 @@ function log(message){
     console.log(message);
 }
 
-var win = function (r) {
-    console.log("Code = " + r.responseCode);
-    console.log("Response = " + r.response);
-    console.log("Sent = " + r.bytesSent);
-
-    updateRecordingLabel('Recording sent!');
-}
-
-var fail = function (error) {
-    alert("An error has occurred: Code = " + error.code);
-    console.log("upload error source " + error.source);
-    console.log("upload error target " + error.target);
-}
 function sendRecording(){
-
     var file = new FileTransfer();
     var options = new FileUploadOptions();
 
@@ -153,19 +146,14 @@ function sendRecording(){
     options.chunkedMode = false;
     options.headers = {'Content-Type': 'multipart/form-data; boundary=+++++'};
 
-    log("PATH " + fullUploadPath);
-    file.upload(fullUploadPath, encodeURI("http://131.104.48.208/newRecording"), win, fail, options);
+    file.upload(fullUploadPath, encodeURI("http://131.104.48.208/newRecording"), function(success){
+            if (success = "success"){
+                updateRecordingLabel('Recording sent!');
+                // TODO: Delete recording here.
+            } else {
+                updateRecordingLabel('Failed to send the recording to the server. Check your connection.');
+            }
+        }, onError, options);
 
-    /*$.ajax({
-    type: "POST",
-    url: 'http://131.104.48.208/newRecording',
-    crossDomain: true,
-    data:{ "test" : "YAY"},
-    success: function(data) {
-        updateRecordingLabel("Recording sent " + data);
-    },
-        error: onError
-    });
-*/
     return false;
 }
