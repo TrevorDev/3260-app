@@ -15,8 +15,10 @@ exports.addRecording = function(req, res, next) {
     /* res.send(req.files); */
 
     fs.readFile(req.files.file.path, function (err, data) {
-        var msgFrom = userM.getCurrentUser();
-        res.send(msgFrom);
+        userM.getCurrentUser(req.session.auth, function(success, userid){
+            var msgFrom = userid;
+            res.send(msgFrom);
+        });
         /*var msgTo = userM.getResearcher();
         messageM.storeMessage(msgFrom, msgTo, data);
         */
