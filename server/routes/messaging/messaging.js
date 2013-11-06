@@ -22,7 +22,8 @@ exports.addRecording = function(req, res, next) {
             if (success){
                 msgTo = row.researcherID;
             }
-            res.send("User id " + msgFrom + " Researcher ID " + msgTo + "\n DATA " + data);
+            console.log("DATA  " + data);
+            res.send("User id " + msgFrom + " Researcher ID " + msgTo);
         });
         /*var msgTo = userM.getResearcher();
         messageM.storeMessage(msgFrom, msgTo, data);
