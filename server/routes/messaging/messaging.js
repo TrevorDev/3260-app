@@ -16,7 +16,7 @@ exports.addRecording = function(req, res, next) {
 
     fs.readFile(req.files.file.path, function (err, data) {
         userM.getCurrentUser(req.session.auth, function(success, userid){
-            var msgFrom = null;
+            var msgFrom = "false";
             if (success){
                 msgFrom = userid;
             }
