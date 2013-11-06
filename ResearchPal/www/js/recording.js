@@ -3,12 +3,13 @@ var recordFileName = "recording.wav";
 var status = null;
 var fullRecordPath = null;
 var fullUploadPath = null;
+var mediaTimer = null;
 
 $(document).ready(function(){
     var recordBtn = $('#recordButton');
     var stopBtn = $('#stopButton');
     var playBtn = $('#playButton');
-    var sendRecBtn = $('#sendRecordingButton');
+    var sendRecBtn = $('#sendRecordingBtn');
 
     recordBtn.click(function(){
         record();
@@ -49,6 +50,27 @@ function play(){
         }, onError, null);
 
     mediaVar.play();
+
+    if (mediaTimer == null) {
+        mediaTimer = setInterval(function() {
+            // get my_media position
+            mediaVar.getCurrentPosition(
+                // success callback
+                function(position) {
+                    if (position > -1) {
+                        updateRecordingLabel((position) + " sec");
+                    } else {
+                        stopBtn.click();
+                    }
+                },
+                // error callback
+                function(e) {
+                    console.log("Error getting pos=" + e);
+                    updateRecordingLabel("Error: " + e);
+                }
+            );
+        }, 1000);
+    }
 }
 function recordingSuccess(){
     console.log("Started recording");
