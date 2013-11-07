@@ -92,7 +92,7 @@ exports.getRecording = function(req,res,next) {
 
         console.log(stat.size);
         res.writeHead(200, {
-            'Content-Type': 'audio/x-wav'
+            'Content-Type': 'audio/wav',
         });
 
         fs.readFile(filePath, 'binary', function(err, file) {
