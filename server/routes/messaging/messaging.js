@@ -47,7 +47,7 @@ function createFile(path, data, timestamp, callback){
     // TODO: Check if directory and file exist before writing.
     var fullPath = path + '/' + timestamp + '.wav';
     fs.writeFile(fullPath, function(error){
-        if (err){
+        if (error){
            callback(false);
         }
         callback(true,fullPath);
