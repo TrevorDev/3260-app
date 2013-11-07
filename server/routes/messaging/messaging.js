@@ -23,15 +23,19 @@ exports.addRecording = function(req, res, next) {
                 msgTo = row.researcherID;
                 var path = mediaPath + msgFrom;
                 // Store message in <mediaPath>/fromID/
-                createFile(path, data, function(fullPath){
-                    // TODO: take out <mediaPath> from stored path
-                    messageM.store(msgFrom, msgTo, fullPath, function(success){
-                        if (success){
-                            res.send('success');
-                        }
+                createFile(path, data, function(success, fullPath){
+                    if (success){
+                        // TODO: take out <mediaPath> from stored path
+                        messageM.store(msgFrom, msgTo, fullPath, function(success){
+                            if (success){
+                                res.send('success');
+                            }
+                            res.send('failed');
+                        });
+                    } else {
                         res.send('failed');
-                    });
-                }, onError);
+                    }
+                });
             } else {
                 res.send('failed');
             }
@@ -39,14 +43,14 @@ exports.addRecording = function(req, res, next) {
     });
 }
 
-function createFile(path, data, timestamp, successCallback, errorCallback){
+function createFile(path, data, timestamp, callback){
     // TODO: Check if directory and file exist before writing.
     var fullPath = path + '/' + timestamp + '.wav';
     fs.writeFile(fullPath, function(error){
         if (err){
-           errorCallback(error);
+           callback(false);
         }
-        successCallback(fullPath);
+        callback(true,fullPath);
     });
 }
 
