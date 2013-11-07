@@ -117,7 +117,7 @@ exports.getRecording = function(req,res,next) {
           header["Content-Length"]= (end-start)+1;
           header["Content-Type"]= 'audio/wav';
           header['Transfer-Encoding'] = 'chunked';
-          header["Connection"] = "keep-alive";
+          header["Connection"] = "close";
 
           res.writeHead(206, header);
           res.write(file.slice(start, end)+'0', "binary");
