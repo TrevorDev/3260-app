@@ -1,4 +1,4 @@
-var serverLocation = 'http://131.104.48.208/';
+var serverLocation = 'http://131.104.48.208/public';
 
 $(function(){
     getMessageList();

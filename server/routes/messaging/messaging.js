@@ -3,7 +3,7 @@ var ejs = require('ejs');
 var rek = require('rekuire');
 var messageM = rek('messageModel.js');
 var userM = rek('userModel.js');
-var mediaPath = './';
+var mediaPath = './public/';
 
 exports.addRecording = function(req, res, next) {
 
