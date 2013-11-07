@@ -96,9 +96,9 @@ exports.getRecording = function(req,res,next) {
           // the WAVE header is stripped from the output of the reader
           reader.pipe(res);
         });
-
+        var readStream = fs.createReadStream(filePath);
         // pipe the WAVE file to the Reader instance
-        file.pipe(reader);
+        readStream.pipe(reader);
 	    /*console.log(stat.size);
         res.writeHead(200, {
             'Content-Type': 'audio/wav',
