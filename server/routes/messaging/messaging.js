@@ -114,7 +114,7 @@ exports.getRecording = function(req,res,next) {
             header["Content-Range"] = "bytes " + start + "-" + end + "/" + (total);
             header["Accept-Ranges"] = "bytes";
             header["Content-Length"]= (end-start)+1;
-            header["Content-Type"]= 'audio/wav';
+            header["Content-Type"]= 'audio/mpeg3';
             header['Transfer-Encoding'] = 'chunked';
             header["Connection"] = "close";
 
@@ -123,7 +123,7 @@ exports.getRecording = function(req,res,next) {
             res.end();
             return;
           } else {
-            header['Content-Type'] = 'audio/wav';
+            header['Content-Type'] = 'audio/mpeg3';
             res.writeHead(200, header);
             res.end(file);
           }
