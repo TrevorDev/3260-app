@@ -91,6 +91,7 @@ exports.getRecording = function(req,res,next) {
         var stat = fs.statSync(filePath);
 
         console.log(stat.size);
+        
         res.writeHead(200, {
             'Content-Type': 'audio/wav',
             'Content-Length': stat.size
