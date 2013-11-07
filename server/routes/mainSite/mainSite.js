@@ -44,10 +44,23 @@ exports.showCreateForm = function(req, res, next) {
     }
 };
 
+exports.approveApp = function(req, res, next) {
+    view = 'dashboard';
+    if(researchAuth.auth(req)){
+        userM.approveApplicant(req.params.id, function(applyData){
+            res.template=new Object();
+            res.template.applyData = applyData;
+            exports.render(req, res, next, 'researcherPortal/' + view);
+        });
+    }else{
+        res.redirect('/');
+    }
+};
+
 exports.showApplicants = function(req, res, next) {
     view = 'applicants';
     if(researchAuth.auth(req)){
-        userM.getApplicant(req.session.userID, function(applyData){
+        userM.getApplicant(req.params.id, function(applyData){
             res.template=new Object();
             res.template.applyData = applyData;
             exports.render(req, res, next, 'researcherPortal/' + view);

@@ -47,22 +47,23 @@ exports.getResearchersApprovalQueue= function(userID,callback) {
 	});
 }
 
-exports.getApplicant= function(userID,callback) {
+exports.getApplicant= function(participantID,callback) {
 	var conn = db.getConnection();
-	conn.query('select submittedApplicationForm.firstName,submittedApplicationForm.lastName,submittedApplicationForm.answers,submittedApplicationForm.userID from submittedApplicationForm where submittedApplicationForm.userID = 3', function(err, rows, fields) {
+	console.log(participantID);
+	conn.query('select submittedApplicationForm.firstName,submittedApplicationForm.lastName,submittedApplicationForm.answers,submittedApplicationForm.userID from submittedApplicationForm where submittedApplicationForm.userID = '+conn.escape(participantID), function(err, rows, fields) {
      if (err) throw err;
 	  callback(rows);
 	});
 }
 
-exports.approveApplicant=function(userID, res, callback){
+exports.approveApplicant=function(participantID, callback){
 	var conn = db.getConnection();
-	
-	conn.query("update pal.participant set active=1 where userID = 3", function(err, result) {
+	console.log(participantID);
+	conn.query("update pal.participant set active=1 where userID = "+conn.escape(participantID), function(err, result) {
 	 if (err) throw err;
 	   callback(true);
 	});
-	res.send("success");
+
 
 }
 

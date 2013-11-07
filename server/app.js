@@ -39,8 +39,9 @@ app.get('/group/:id', mainSite.showGroupParticipant);
 app.get('/message', mainSite.showMessage);
 app.get('/message/:participantID', messaging.listMessages);
 
-app.get('/applicants', mainSite.showApplicants);
-app.post('/approveApplicant', userModel.approveApplicant);
+app.get('/approveApp/:id', mainSite.approveApp);
+app.get('/applicants/:id', mainSite.showApplicants);
+
 
 app.get('/user', researchAuth.logout);
 

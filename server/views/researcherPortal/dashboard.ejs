@@ -118,7 +118,7 @@
 		<% for(var i=0; i<queue.length; i++) {%>
    		<%- '<tr id=\"applicant' %>
    		<%- i %>
-   		<%- '\" onclick=\"showApplicants(this.id)\"'%> 
+   		<%- '\" onclick=\"showApplicants('+queue[i].userID+')\"'%> 
    		<tr>
    			<td id="id"><%= queue[i].userID %></td>
 			<td id="firstName"><%= queue[i].name %></td>
@@ -152,12 +152,7 @@
     	
 
 		function showApplicants(id) {
-
-			var Row = document.getElementById(id);
-		    var Cells = Row.getElementsByTagName("td");
-			//window.alert(Cells[0].innerText);
-
-			window.location.href = "/applicants";
+			window.location.href = "/applicants/"+id;
 			return false;
 		}
         
