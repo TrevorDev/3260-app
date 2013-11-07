@@ -109,6 +109,7 @@ exports.getRecording = function(req,res,next) {
           header["Content-Range"] = "bytes " + start + "-" + end + "/" + (total);
           header["Accept-Ranges"] = "bytes";
           header["Content-Length"]= (end-start)+1;
+          header["Content-Type"]= 'audio/wav';
           //header['Transfer-Encoding'] = 'chunked';
           header["Connection"] = "close";
 
