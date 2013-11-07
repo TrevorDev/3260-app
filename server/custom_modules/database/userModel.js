@@ -31,19 +31,39 @@ exports.createParticipant= function(name,lastName,email,groupID,callback) {
 	var conn = db.getConnection();
 	conn.query("INSERT INTO user (name,lastName, email, type) VALUES ("+conn.escape(name)+","+conn.escape(lastName)+","+conn.escape(email)+",1);", function(err, result) {
 	  if (err) throw err;
-	  conn.query("INSERT INTO participant (userID,pin, groupID, active) VALUES ("+conn.escape(result.insertId)+","+conn.escape(exports.getNewPin())+","+conn.escape(groupID)+",0);", function(err, result) {
+	  var userid = result.insertId;
+	  conn.query("INSERT INTO participant (userID,pin, groupID, active) VALUES ("+conn.escape(userid)+","+conn.escape(exports.getNewPin())+","+conn.escape(groupID)+",0);", function(err, result) {
 		  if (err) throw err;
-		  callback(true);
+		  callback(userid);
 	  });
 	});
 }
 
 exports.getResearchersApprovalQueue= function(userID,callback) {
 	var conn = db.getConnection();
-	conn.query('select user.name,user.lastName,pal.group.name as gname from user,participant, pal.group where user.userID = participant.userID and participant.active = 0 and pal.group.groupID = participant.groupID and pal.group.ownerID = '+conn.escape(userID), function(err, rows, fields) {
+	conn.query('select user.userID,user.name,user.lastName,pal.group.name as gname from user,participant, pal.group where user.userID = participant.userID and participant.active = 0 and pal.group.groupID = participant.groupID and pal.group.ownerID = '+conn.escape(userID), function(err, rows, fields) {
 	  if (err) throw err;
 	  callback(rows);
 	});
+}
+
+exports.getApplicant= function(userID,callback) {
+	var conn = db.getConnection();
+	conn.query('select submittedApplicationForm.firstName,submittedApplicationForm.lastName,submittedApplicationForm.answers,submittedApplicationForm.userID from submittedApplicationForm where submittedApplicationForm.userID = 3', function(err, rows, fields) {
+     if (err) throw err;
+	  callback(rows);
+	});
+}
+
+exports.approveApplicant=function(userID, res, callback){
+	var conn = db.getConnection();
+	
+	conn.query("update pal.participant set active=1 where userID = 3", function(err, result) {
+	 if (err) throw err;
+	   callback(true);
+	});
+	res.send("success");
+
 }
 
 exports.getNewPin=function(){

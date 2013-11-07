@@ -107,16 +107,21 @@
     <h3>Pending Applications</h3>
 	<table class="application table table-hover">
 		<tr>
+			<th>User ID</th>
 			<th>First Name</th>
 			<th>Last Name</th>
             <th>Group</th>
             <th>Application Submitted</th>            
 		</tr>
 		<% for(var i=0; i<queue.length; i++) {%>
-   		<tr>	
-			<td><%= queue[i].name %></td>
-			<td><%= queue[i].lastName %></td>
-		    <td><%= queue[i].gname %></td>
+   		<%- '<tr id=\"applicant' %>
+   		<%- i %>
+   		<%- '\" onclick=\"showApplicants(this.id)\"'%> 
+   		<tr>
+   			<td id="id"><%= queue[i].userID %></td>
+			<td id="firstName"><%= queue[i].name %></td>
+			<td id="lastName"><%= queue[i].lastName %></td>
+		    <td id="grpName"><%= queue[i].gname %></td>
 			<td>Today</td>
 	 	 </tr>
 	<% } %>
@@ -144,9 +149,17 @@
 		});
     	
 
+		function showApplicants(id) {
+
+			var Row = document.getElementById(id);
+		    var Cells = Row.getElementsByTagName("td");
+			//window.alert(Cells[0].innerText);
+
+			window.location.href = "/applicants";
+			return false;
+		}
+
     </script>
-    
-    
     
     
     

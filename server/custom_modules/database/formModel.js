@@ -19,9 +19,9 @@ exports.getGroupsApplyForm= function(groupID,callback) {
 	});
 }
 
-exports.submitApplication= function(fname,lname,answers,groupid,callback) {
+exports.submitApplication= function(fname,lname,answers,groupid,userid,callback) {
 	var conn = db.getConnection();
-	conn.query("INSERT INTO submittedApplicationForm (groupID, answers, firstName, lastName) VALUES (1, 'woo whooo', 'trev','bar');", function(err, rows, fields) {
+	conn.query("INSERT INTO submittedApplicationForm (groupID,userID, answers, firstName, lastName) VALUES ("+conn.escape(groupid)+", "+conn.escape(userid)+", "+conn.escape(answers)+", "+conn.escape(fname)+","+conn.escape(lname)+");", function(err, rows, fields) {
 	  if (err) throw err;
 	  callback();
 	});

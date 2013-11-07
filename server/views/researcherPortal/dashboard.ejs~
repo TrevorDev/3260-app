@@ -1,0 +1,166 @@
+<% include includes/dashboardHeader %>
+
+	<!-- Side Menu Bar -->
+    <div class="sideMenu">     
+        <nav class="navbar navbar-inverse" role="navigation"> 
+            <a class="space" href="#">Top</a>
+            <a class="navbar-side" href="#">Home</a>
+            <a class="navbar-side" href="#">Application</a>
+            <a class="navbar-side" href="#">Groups</a>        
+        </nav>      
+            
+    </div>
+ 
+	<!-- Top Menu Bar -->
+	<div class="menuBar">
+		<!-- <nav class="navbar navbar-default" role="navigation"> -->
+		<nav class="navbar navbar-default">
+			<div class="row">
+				<div class="topMenu col-md-6">
+					
+					<table class="">
+						<tr>
+							<td>
+								<a href="#"> <img class="icon" src="/public/assets/custom/img/Research Pal v5.png"
+									alt="Research Pal">
+								</a>
+							</td>
+							<td>
+								<p class="title">Dashboard</p>
+							</td>
+						</tr>
+					</table>					
+				</div>
+	
+				<div class="researcherInfo col-md-6">	
+					<table class="userInfo pull-right">
+						<tr>
+							<td>
+								<p class="welcomeTag">Welcome</p>
+								<p class="researcher" onload="researcherName()"><%= username %></p>
+							</td>
+							<td>
+								<a href="/researchAuth/logout"><button type="submit" class="btn logout btn-danger">Logout</button></a>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</nav>
+	
+	</div>
+	
+   
+    
+    <!--  Web Page Content -->
+    <div class="container">
+	    <!-- Display notifications -->
+	     <div class="row">
+			  <div class="col-md-4">
+			  	<div class="Create Form">
+				    <a href="/createForm">
+	                	<img class="notificationImg" src="/public/assets/custom/img/Create Form.png" alt="Research Pal">
+	                </a>
+				 </div>
+			  </div>
+			 
+			  <div class="col-md-4">
+				<div class="Messages">
+					<a href="/createForm">
+	                	<img class="notificationImg" src="/public/assets/custom/img/Messages.png" alt="Research Pal">
+	                </a>
+				 </div>
+			  </div>
+			  
+			  
+			  <div class="col-md-4">
+			  	<div class="Application">
+			  		<a href="/createForm">
+				    	<img class="notificationImg" src="/public/assets/custom/img/Applications.png" alt="Research Pal">
+				    </a>
+				 </div>
+			  </div>
+		</div>
+	    
+	    
+	    <!-- Write this in Javascript -->
+	    <h3>Groups</h3>
+		<table class="group table table-hover">
+			<tr>
+				<th>Group</th>
+				<th>Number of Participants</th>
+	            <th>Start Date</th>
+	            <th>End Date</th>
+			</tr>
+	<% for(var i=0; i<groups.length; i++) {%>
+   		<tr>	
+			<td><%= groups[i].name %></td>
+			<td><%= groups[i].numOfParticipants %></td>
+		    <td><%= groups[i].startDate %></td>
+			<td><%= groups[i].endDate %></td>
+	 	 </tr>
+	<% } %>
+		</table>
+	      
+    
+    <!-- Write this in Javascript -->
+    <h3>Pending Applications</h3>
+	<table class="application table table-hover">
+		<tr>
+			<th>First Name</th>
+			<th>Last Name</th>
+            <th>Group</th>
+            <th>Application Submitted</th>            
+		</tr>
+		<% for(var i=0; i<queue.length; i++) {%>
+   		<tr>	
+			<td><%= queue[i].name %></td>
+			<td><%= queue[i].lastName %></td>
+		    <td><%= queue[i].gname %></td>
+			<td>Today</td>
+	 	 </tr>
+	<% } %>
+	</table>
+	
+	</div>
+    
+    <script>
+		$("#pTitle").text( function() {
+			$.ajax({
+		    	type: "POST",
+               url: '/user',
+               data: $("#login").serialize(), // serializes the form's elements.
+               success: function(data)
+               {
+                   if(data=='success'){
+                    console.log("found group");
+                   }else{
+                    alert('Invalid');
+                   }
+               }
+			});
+
+			return false;
+		});
+    	
+
+    </script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

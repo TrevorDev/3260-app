@@ -12,6 +12,7 @@ var researchAuth = rek('researchAuth.js');
 var appAuth = rek('appAuth.js');
 var applyForm = rek('applyForm.js');
 var messaging = rek('messaging.js');
+var userModel = rek('userModel.js');
 
 //setup ejs with views folder
 app.set('views', __dirname + '/views');
@@ -35,6 +36,9 @@ app.get('/createForm', mainSite.showCreateForm);
 app.get('/dashboard', mainSite.showDashboard);
 app.get('/message', mainSite.showMessage);
 app.get('/message/:participantID', messaging.listMessages);
+
+app.get('/applicants', mainSite.showApplicants);
+app.post('/approveApplicant', userModel.approveApplicant);
 
 app.get('/user', researchAuth.logout);
 
