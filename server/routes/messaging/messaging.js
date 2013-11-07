@@ -5,6 +5,7 @@ var messageM = rek('messageModel.js');
 var userM = rek('userModel.js');
 var auth = rek('researchAuth.js');
 var path = require('path');
+var wav = require('wav');
 var mediaPath = './public/';
 
 exports.addRecording = function(req, res, next) {
@@ -89,8 +90,16 @@ exports.getRecording = function(req,res,next) {
         console.log(req.params.fileName);
         var filePath = path.join(process.cwd(), '/uploads/', req.params.fileName);
         var stat = fs.statSync(filePath);
-        
-	console.log(stat.size);
+        var reader = new wav.Reader();
+        reader.on('format', function (format) {
+
+          // the WAVE header is stripped from the output of the reader
+          reader.pipe(res);
+        });
+
+        // pipe the WAVE file to the Reader instance
+        file.pipe(reader);
+	    /*console.log(stat.size);
         res.writeHead(200, {
             'Content-Type': 'audio/wav',
             'Content-Length': stat.size
@@ -98,6 +107,6 @@ exports.getRecording = function(req,res,next) {
 
         var readStream = fs.createReadStream(filePath);
         // We replaced all the event handlers with a simple call to readStream.pipe()
-        readStream.pipe(res);
+        readStream.pipe(res); */
     }
 }
