@@ -92,8 +92,7 @@ exports.getRecording = function(req,res,next) {
         
 	console.log(stat.size);
         res.writeHead(200, {
-            'Content-Type': 'audio/wav',
-            'Content-Length': stat.size
+            'Content-Type': 'audio/x-wav'
         });
 
         var readStream = fs.createReadStream(filePath);
