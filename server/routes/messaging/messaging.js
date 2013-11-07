@@ -92,7 +92,5 @@ exports.getRecording = function(req,res,next) {
             }
             res.send(fd);
         });
-        res.send('success');
     }
-    res.send('failed');
 }
