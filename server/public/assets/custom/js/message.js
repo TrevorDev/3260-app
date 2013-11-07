@@ -14,7 +14,7 @@ function getMessageList(){
       if (data != 'failed'){
         for (var i = 0; i < data.length; i++){
           console.log('row ' + data[i].path);
-          $('#autoMessageArea').append('<audio src="' + data[i].path + '" controls="controls"></audio>');
+          $('#autoMessageArea').append('<audio src="' + data[i].path + '" controls="controls" loop></audio>');
         }
       } else {
         console.log("ERROR: " + data);

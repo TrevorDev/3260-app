@@ -101,7 +101,6 @@ exports.getRecording = function(req,res,next) {
           var parts = range.replace(/bytes=/, "").split("-"); 
           var partialstart = parts[0];
           var partialend = parts[1];
-
           var total = file.length;
 
           var start = parseInt(partialstart, 10); 
