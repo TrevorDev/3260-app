@@ -89,15 +89,14 @@ exports.getRecording = function(req,res,next) {
         console.log(req.params.fileName);
         var filePath = path.join(process.cwd(), '/uploads/', req.params.fileName);
         var stat = fs.statSync(filePath);
-        
-	console.log(stat.size);
+
+        console.log(stat.size);
         res.writeHead(200, {
-            'Content-Type': 'audio/wav',
-            'Content-Length': stat.size
+            'Content-Type': 'audio/x-wav'
         });
 
         var readStream = fs.createReadStream(filePath);
         // We replaced all the event handlers with a simple call to readStream.pipe()
-        readStream.pipe(res);
+        readStream.pipe(res); 
     }
 }
