@@ -31,9 +31,10 @@ exports.createParticipant= function(name,lastName,email,groupID,callback) {
 	var conn = db.getConnection();
 	conn.query("INSERT INTO user (name,lastName, email, type) VALUES ("+conn.escape(name)+","+conn.escape(lastName)+","+conn.escape(email)+",1);", function(err, result) {
 	  if (err) throw err;
-	  conn.query("INSERT INTO participant (userID,pin, groupID, active) VALUES ("+conn.escape(result.insertId)+","+conn.escape(exports.getNewPin())+","+conn.escape(groupID)+",0);", function(err, result) {
+	  var userid = result.insertId;
+	  conn.query("INSERT INTO participant (userID,pin, groupID, active) VALUES ("+conn.escape(userid)+","+conn.escape(exports.getNewPin())+","+conn.escape(groupID)+",0);", function(err, result) {
 		  if (err) throw err;
-		  callback(true);
+		  callback(userid);
 	  });
 	});
 }
