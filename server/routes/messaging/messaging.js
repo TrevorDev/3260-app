@@ -14,8 +14,29 @@ exports.addRecording = function(req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept');
     */
     var pin;
+    var newPath = __dirname + "/uploads/" + req.files.file.name;
+    var relativePath = "/uploads/" + req.files.file.name;
 
-    fs.readFile(req.files.file.path, function (err, data) {
+    fs.rename(req.files.file.path, newPath, function(err){
+        var msgFrom = req.session.userID;
+        userM.getResearcher(msgFrom, function(success, row){
+            var msgTo = "false";
+            if (success){
+                msgTo = row.researcherID;
+                // TODO: take out <mediaPath> from stored path
+                messageM.store(msgFrom, msgTo, relativePath, function(success){
+                    if (success){
+                        res.send('success');
+                    }
+                    res.send('failed');
+                });
+            } else {
+                res.send('failed');
+            }
+        });
+    });
+
+    /*fs.readFile(req.files.file.path, function (err, data) {
         var msgFrom = req.session.userID;
         userM.getResearcher(msgFrom, function(success, row){
             var msgTo = "false";
@@ -40,7 +61,7 @@ exports.addRecording = function(req, res, next) {
                 res.send('failed');
             }
         });
-    });
+    }); */
 }
 
 function createFile(path, data, timestamp, callback){
