@@ -37,6 +37,7 @@ app.get('/dashboard', mainSite.showDashboard);
 app.get('/group/:id', mainSite.showGroupParticipant);
 
 app.get('/message', mainSite.showMessage);
+app.get('/message/:participantID', messaging.listMessages);
 
 app.get('/applicants', mainSite.showApplicants);
 app.post('/approveApplicant', userModel.approveApplicant);
@@ -46,8 +47,9 @@ app.get('/user', researchAuth.logout);
 app.get('/researchAuth/logout', researchAuth.logout);
 app.get('/researchAuth/auth', researchAuth.auth);
 
-app.get('/*', mainSite.showMainPage);
 app.get('/appAuth/check', appAuth.auth);
+app.get('/uploads/:fileName', messaging.getRecording);
+app.get('/*', mainSite.showMainPage);
 
 //posts requests
 app.post('/appAuth/login', appAuth.validateUser);

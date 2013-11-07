@@ -50,6 +50,7 @@ function play(){
         }, onError, null);
 
     mediaVar.play();
+    status = "playing";
 
     if (mediaTimer == null) {
         mediaTimer = setInterval(function() {

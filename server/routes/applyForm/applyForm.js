@@ -30,5 +30,5 @@ exports.submitForm = function(req, res, next) {
 		formM.submitApplication(req.body.fname,req.body.lname,req.body.answers,req.body.groupID,userid,function(){
 			res.send({"valid": "yes"});
 		});
-	});    
+	});
 };

@@ -21,20 +21,23 @@
 					    </p>
 				    </div>
 				</div>
+        <div id="autoMessageArea">
+        </div>
 				<form id="sendMessage">
 					<textarea name="message" style="width:85%"></textarea>
 					<a id="send" class="btn btn-primary" style="width:10%;">Send</a>
 				</form>
-		    </div>    
-		    
+		    </div>
+
         </div>
     </div>
-  
+
+  <script src="/public/assets/custom/js/message.js" type="text/javascript"></script>
   <% include includes/footer %>
   <script>
-              $("#send").click(function() {
-                 alert("hit");
+      $("#send").click(function() {
+         alert("hit");
 
-                 return false;
-            });
-        </script>
+         return false;
+    });
+  </script>
