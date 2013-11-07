@@ -169,6 +169,7 @@ function sendRecording(){
     options.chunkedMode = false;
     options.headers = {'Content-Type': 'multipart/form-data; boundary=+++++'};
 
+
     file.upload(fullUploadPath, encodeURI("http://131.104.48.208/newRecording"), function(success){
             if (success = "success"){
                 updateRecordingLabel('Recording sent!');
