@@ -1,0 +1,48 @@
+<% include includes/header %>
+
+            <div class="masthead">
+                <div class="container-wide">
+                    <div class="row">
+                        
+                        <h1 style="display: inline;">
+                            Applicant Information
+                        </h1>
+                        <div class="well" style="margin-top:100px;border:solid 10px;">
+                        <form id="createGroup">
+                                <h3 style="display:inline"><%= applyData[0].firstName %></h3>
+                                <h3 style="display:inline"><%= applyData[0].lastName %></h3>
+                                <textarea rows="10" name="questions" style="width:100%;"><%= applyData[0].answers %></textarea>
+                                <br>
+                                <br>
+                                 <button id="approve" type="submit" class="btn btn-success">Approve</button>
+                                <button id="reject" type="submit" class="btn btn-danger">Reject</button>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="push">
+            </div>
+        </div>
+
+        <% include includes/footer %>
+        <script>
+
+            //console.log(<%= applyData[0].userID %>);
+            var userIDtemp = <%= applyData[0].userID %>;
+            $("#approve").click(function() {
+                $.ajax({
+                type: "POST",
+                url: '/approveApplicant',
+                data: userIDtemp, 
+                success: function(data)
+                {
+                   window.alert("Approved!");
+                   window.location = "/dashboard";
+                }
+                });
+                return false;
+            });
+
+        </script>
