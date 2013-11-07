@@ -5,7 +5,8 @@ var db = rek('database.js');
 
 exports.getResearchersGroups= function(username,callback) {
 	var conn = db.getConnection();
-	conn.query('select name,startDate,endDate,count(participant.userID) as numOfParticipants from pal.group, participant,researcher where participant.active = 1 and researcher.userID = pal.group.ownerID and researcher.username = '+conn.escape(username)+' group by pal.group.groupID;', function(err, rows, fields) {
+	conn.query('select group.groupID,name,startDate,endDate,count(participant.userID) as numOfParticipants from pal.group, participant,researcher where participant.active = 1 and researcher.userID = pal.group.ownerID and researcher.username = '+conn.escape(username)+' group by pal.group.groupID;', function(err, rows, fields) {
+    //conn.query('select name,startDate,endDate,count(participant.userID) as numOfParticipants from pal.group, participant,researcher where participant.active = 1 and researcher.userID = pal.group.ownerID and researcher.username = '+conn.escape(username)+' group by pal.group.groupID;', function(err, rows, fields) {
 	  if (err) throw err;
 	  callback(rows);
 	});
