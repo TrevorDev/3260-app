@@ -86,6 +86,12 @@ exports.listMessages = function(req, res, next) {
 exports.getRecording = function(req,res,next) {
     if (auth.auth(req)){
         console.log(req.params.fileName);
+        fs.open(process.cwd() + '/uploads/' + req.params.fileName, 'r', function(err, fd){
+            if (err){
+                res.send('failed');
+            }
+            res.send(fd);
+        });
         res.send('success');
     }
     res.send('failed');
