@@ -23,7 +23,7 @@ exports.addRecording = function(req, res, next) {
                 msgTo = row.researcherID;
                 var path = mediaPath + msgFrom;
                 // Store message in <mediaPath>/fromID/
-                createFile(path, data, 'test' function(success, fullPath){
+                createFile(path, data, 'test', function(success, fullPath){
                     if (success){
                         // TODO: take out <mediaPath> from stored path
                         messageM.store(msgFrom, msgTo, fullPath, function(success){
