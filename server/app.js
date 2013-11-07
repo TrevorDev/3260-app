@@ -34,6 +34,8 @@ app.get('/applyForm/:id', applyForm.getApplyForm);
 app.get('/apply/:id', mainSite.showApply);
 app.get('/createForm', mainSite.showCreateForm);
 app.get('/dashboard', mainSite.showDashboard);
+app.get('/group/:id', mainSite.showGroupParticipant);
+
 app.get('/message', mainSite.showMessage);
 
 app.get('/applicants', mainSite.showApplicants);

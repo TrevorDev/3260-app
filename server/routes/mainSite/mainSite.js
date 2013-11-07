@@ -74,6 +74,20 @@ exports.showDashboard = function(req, res, next) {
 	}
 };
 
+exports.showGroupParticipant = function(req, res, next) {
+    view = 'group';
+    if(researchAuth.auth(req)){
+        userM.getGroupParticipants(req.params.id, function(participants){
+            res.template=new Object();
+            res.template.participants = participants;
+            res.template.username = req.session.username;
+            exports.render(req, res, next, 'researcherPortal/' + view);
+        });
+    }else{
+        res.redirect('/');
+    }
+}
+
 exports.render = function(req, res, next, file) {
     fs.exists(process.cwd() + '/views/' + file + '.ejs', function(exists) {
         if (exists) {
