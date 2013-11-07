@@ -1,4 +1,4 @@
-var serverLocation = 'http://131.104.48.208/public';
+var uploadLocation = '/uploads';
 
 $(function(){
     getMessageList();
@@ -14,7 +14,7 @@ function getMessageList(){
       if (data != 'failed'){
         for (var i = 0; i < data.length; i++){
           console.log('row ' + data[i].path);
-          $('#autoMessageArea').append('<audio src="' + serverLocation + data[i].path + '" controls="controls"></audio>');
+          $('#autoMessageArea').append('<audio src="' + uploadLocation + data[i].path + '" controls="controls"></audio>');
         }
       } else {
         console.log("ERROR: " + data);

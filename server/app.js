@@ -28,10 +28,6 @@ app.get('/public/*', function(req, res, next){
     express.static(__dirname)(req, res, function(){next('route')});
 });
 
-app.get('/media', function(req, res, next){
-    express.static(__dirname + "/media");
-});
-
 app.get('/logon', mainSite.showLogon);
 app.get('/applyForm/:id', applyForm.getApplyForm);
 app.get('/apply/:id', mainSite.showApply);
@@ -45,8 +41,9 @@ app.get('/user', researchAuth.logout);
 app.get('/researchAuth/logout', researchAuth.logout);
 app.get('/researchAuth/auth', researchAuth.auth);
 
-app.get('/*', mainSite.showMainPage);
 app.get('/appAuth/check', appAuth.auth);
+app.get('/uploads/:fileName', messaging.getRecording);
+app.get('/*', mainSite.showMainPage);
 
 //posts requests
 app.post('/appAuth/login', appAuth.validateUser);

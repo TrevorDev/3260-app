@@ -3,6 +3,7 @@ var ejs = require('ejs');
 var rek = require('rekuire');
 var messageM = rek('messageModel.js');
 var userM = rek('userModel.js');
+var auth = rek('researchAuth.js');
 var mediaPath = './public/';
 
 exports.addRecording = function(req, res, next) {
@@ -14,7 +15,7 @@ exports.addRecording = function(req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept');
     */
     var pin;
-    var newPath = __dirname + "/uploads/" + req.files.file.name;
+    var newPath = process.cwd() + "/uploads/" + req.files.file.name;
     var relativePath = "/uploads/" + req.files.file.name;
     console.log("PATH " + newPath);
 
@@ -65,18 +66,6 @@ exports.addRecording = function(req, res, next) {
     }); */
 }
 
-function createFile(path, data, timestamp, callback){
-    // TODO: Check if directory and file exist before writing.
-    /* var fullPath = path + '/' + timestamp + '.wav'; */
-    var fullPath = mediaPath + timestamp + '.wav';
-    fs.writeFile(fullPath, function(error){
-        if (error){
-           callback(false);
-        }
-        callback(true,fullPath);
-    });
-}
-
 exports.listMessages = function(req, res, next) {
     var researcherID = req.session.userID;
 
@@ -92,4 +81,12 @@ exports.listMessages = function(req, res, next) {
     }
 
     /* res.send('Researcher ' + researcherID + '\nParticipant ' + participantID); */
+}
+
+exports.getRecording = function(req,res,next) {
+    if (auth.auth(req)){
+        console.log(req.params.fileName);
+        res.send('success');
+    }
+    res.send('failed');
 }
