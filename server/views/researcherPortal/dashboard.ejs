@@ -83,23 +83,25 @@
 		</div>
 	    
 	    
-	    <!-- Write this in Javascript -->
+	    	    <!-- Group List -->
 	    <h3>Groups</h3>
-		<table class="group table table-hover">
+		<table class="group table table-hover">		
 			<tr>
 				<th>Group</th>
 				<th>Number of Participants</th>
 	            <th>Start Date</th>
 	            <th>End Date</th>
 			</tr>
-	<% for(var i=0; i<groups.length; i++) {%>
-   		<tr>	
-			<td><%= groups[i].name %></td>
-			<td><%= groups[i].numOfParticipants %></td>
-		    <td><%= groups[i].startDate %></td>
-			<td><%= groups[i].endDate %></td>
-	 	 </tr>
-	<% } %>
+			
+            <% for(var i=0; i<groups.length; i++) {%>           
+                <tr id='<%= groups[i].groupID %>' onclick="showParticipants(this.id)">
+                    <td><%= groups[i].name %></td>
+                    <td><%= groups[i].numOfParticipants %></td>
+                    <td><%= groups[i].startDate %></td>
+                    <td><%= groups[i].endDate %></td>
+                 </tr>
+             
+            <% } %>
 		</table>
 	      
     
@@ -158,6 +160,11 @@
 			window.location.href = "/applicants";
 			return false;
 		}
+        
+        function showParticipants(id) {
+		    var link = "/group/"+id;
+		    window.location.href = link;
+		} 
 
     </script>
     
