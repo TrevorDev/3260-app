@@ -3,7 +3,7 @@ var ejs = require('ejs');
 var rek = require('rekuire');
 var messageM = rek('messageModel.js');
 var userM = rek('userModel.js');
-var mediaPath = '/public/media/';
+var mediaPath = './';
 
 exports.addRecording = function(req, res, next) {
 
@@ -45,7 +45,8 @@ exports.addRecording = function(req, res, next) {
 
 function createFile(path, data, timestamp, callback){
     // TODO: Check if directory and file exist before writing.
-    var fullPath = path + '/' + timestamp + '.wav';
+    /* var fullPath = path + '/' + timestamp + '.wav'; */
+    var fullPath = mediaPath + timestamp + '.wav';
     fs.writeFile(fullPath, function(error){
         if (error){
            callback(false);
