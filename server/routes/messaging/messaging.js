@@ -16,6 +16,7 @@ exports.addRecording = function(req, res, next) {
     var pin;
     var newPath = __dirname + "/uploads/" + req.files.file.name;
     var relativePath = "/uploads/" + req.files.file.name;
+    console.log("PATH " + newPath);
 
     fs.rename(req.files.file.path, newPath, function(err){
         var msgFrom = req.session.userID;
