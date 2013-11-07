@@ -1,5 +1,5 @@
 var mediaVar = null;
-var recordFileName = "recording.wav";
+var recordFileName = "recording.mp3";
 var status = null;
 var fullRecordPath = null;
 var fullUploadPath = null;
@@ -165,9 +165,10 @@ function sendRecording(){
 
     options.fileKey = "file";
     options.fileName = fullUploadPath.substr(fullUploadPath.lastIndexOf('/')+1);
-    options.mimeType = 'audio/wav';
+    options.mimeType = 'audio/mpeg3';
     options.chunkedMode = false;
     options.headers = {'Content-Type': 'multipart/form-data; boundary=+++++'};
+
 
     file.upload(fullUploadPath, encodeURI("http://131.104.48.208/newRecording"), function(success){
             if (success = "success"){

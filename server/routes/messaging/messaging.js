@@ -95,7 +95,7 @@ exports.getRecording = function(req,res,next) {
             'Content-Type': 'audio/wav',
         }); */
 
-        fs.readFile(filePath, 'binary', function(err, file) {
+        /*fs.readFile(filePath, 'binary', function(err, file) {
           var header = {};
           var range = req.headers.range;
           if (range){
@@ -128,10 +128,12 @@ exports.getRecording = function(req,res,next) {
             res.end(file);
           }
 
-        });
+        }); */
         /*var readStream = fs.createReadStream(filePath);
         // We replaced all the event handlers with a simple call to readStream.pipe()
         readStream.pipe(res); 
         */
+
+        res.download(filePath);
     }
 }
