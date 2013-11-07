@@ -97,9 +97,9 @@ exports.getRecording = function(req,res,next) {
 
         fs.readFile(filePath, 'binary', function(err, file) {
           var header = {};
-          var range = req.headers.range; 
+          var range = req.headers.range;
           var parts = range.replace(/bytes=/, "").split("-");
-          console.log("PARTS " + parts);
+          console.log("PARTS " + parts + " RANGE " + range);
           var partialstart = parts[0];
           var partialend = parts[1];
           var total = file.length;
