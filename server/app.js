@@ -11,6 +11,7 @@ var mainSite = rek('mainSite.js');
 var researchAuth = rek('researchAuth.js');
 var appAuth = rek('appAuth.js');
 var applyForm = rek('applyForm.js');
+var userModel = rek('userModel.js');
 
 //setup ejs with views folder
 app.set('views', __dirname + '/views');
@@ -32,6 +33,9 @@ app.get('/applyForm/:id', applyForm.getApplyForm);
 app.get('/apply/:id', mainSite.showApply);
 app.get('/createForm', mainSite.showCreateForm);
 app.get('/dashboard', mainSite.showDashboard);
+
+app.get('/applicants', mainSite.showApplicants);
+app.post('/approveApplicant', userModel.approveApplicant);
 
 app.get('/user', researchAuth.logout);
 
