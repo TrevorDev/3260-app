@@ -1,14 +1,6 @@
-var context;
+var serverLocation = 'http://131.104.48.208/';
 
 $(function(){
-  try {
-    // Fix up for prefixing
-    window.AudioContext = window.AudioContext||window.webkitAudioContext;
-    context = new webkitAudioContext();
-  }
-  catch(e) {
-    alert('Web Audio API is not supported in this browser');
-  }
     getMessageList();
 });
 
@@ -22,6 +14,7 @@ function getMessageList(){
       if (data != 'failed'){
         for (var i = 0; i < data.length; i++){
           console.log('row ' + data[i].path);
+          $('#autoMessageArea').append('<audio src="' + serverLocation + data[i].path + '" controls="controls"></audio>');
         }
       } else {
         console.log("ERROR: " + data);
@@ -32,14 +25,6 @@ function getMessageList(){
     return false;
 }
 
-function loadSound(sound, callback){
-  var soundBuffer;
-  context.decodeAudioData(sound, function(buffer) {
-      soundBuffer = buffer;
-      callback(soundBuffer);
-  }, onError);
-
-}
 function onError(){
   console.log("ERROR");
 }
