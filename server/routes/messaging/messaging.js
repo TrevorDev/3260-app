@@ -95,8 +95,32 @@ exports.getRecording = function(req,res,next) {
             'Content-Type': 'audio/wav',
         });
 
-        var readStream = fs.createReadStream(filePath);
+        fs.readFile(filePath, 'binary', function(err, file) {
+          var header = {};
+          var range = req.headers.range; 
+          var parts = range.replace(/bytes=/, "").split("-"); 
+          var partialstart = parts[0];
+          var partialend = parts[1];
+
+          var total = file.length;
+
+          var start = parseInt(partialstart, 10); 
+          var end = partialend ? parseInt(partialend, 10) : total-1;
+
+          header["Content-Range"] = "bytes " + start + "-" + end + "/" + (total);
+          header["Accept-Ranges"] = "bytes";
+          header["Content-Length"]= (end-start)+1;
+          //header['Transfer-Encoding'] = 'chunked';
+          header["Connection"] = "close";
+
+          res.writeHead(206, header);
+          res.write(file.slice(start, end)+'0', "binary");
+          res.end();
+          return;
+        });
+        /*var readStream = fs.createReadStream(filePath);
         // We replaced all the event handlers with a simple call to readStream.pipe()
         readStream.pipe(res); 
+        */
     }
 }
