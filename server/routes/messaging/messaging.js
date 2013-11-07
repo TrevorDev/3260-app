@@ -102,7 +102,12 @@ exports.getRecording = function(req,res,next) {
           console.log("PARTS " + parts + " RANGE " + range);
           var partialstart = parts[0];
           var partialend = parts[1];
+          if (partialend == null){
+            partialend = file.length;
+          }
           var total = file.length;
+
+          console.log("TOTAL " + total);
 
           var start = parseInt(partialstart, 10); 
           var end = partialend ? parseInt(partialend, 10) : total-1;
