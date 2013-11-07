@@ -4,6 +4,7 @@ var rek = require('rekuire');
 var messageM = rek('messageModel.js');
 var userM = rek('userModel.js');
 var auth = rek('researchAuth.js');
+var path = require('path');
 var mediaPath = './public/';
 
 exports.addRecording = function(req, res, next) {
@@ -86,11 +87,16 @@ exports.listMessages = function(req, res, next) {
 exports.getRecording = function(req,res,next) {
     if (auth.auth(req)){
         console.log(req.params.fileName);
-        fs.open(process.cwd() + '/uploads/' + req.params.fileName, 'r', function(err, fd){
-            if (err){
-                res.send('failed');
-            }
-            res.send(fd);
+        var filePath = path.join(process.cwd(), req.params.fileName);
+        var stat = fs.statSync(filePath);
+
+        res.writeHead(200, {
+            'Content-Type': 'audio/wav',
+            'Content-Length': stat.size
         });
+
+        var readStream = fs.createReadStream(filePath);
+        // We replaced all the event handlers with a simple call to readStream.pipe()
+        readStream.pipe(res);
     }
 }
