@@ -98,31 +98,36 @@ exports.getRecording = function(req,res,next) {
         fs.readFile(filePath, 'binary', function(err, file) {
           var header = {};
           var range = req.headers.range;
-          var parts = range.replace(/bytes=/, "").split("-");
-          console.log("PARTS " + parts + " RANGE " + range);
-          var partialstart = parts[0];
-          var partialend = parts[1];
-          if (partialend == null){
-            partialend = file.length;
+          if (range){
+                var parts = range.replace(/bytes=/, "").split("-");
+            console.log("PARTS " + parts + " RANGE " + range);
+            var partialstart = parts[0];
+            var partialend = parts[1];
+            if (partialend == null){
+              partialend = file.length;
+            }
+            var total = file.length;
+            console.log("TOTAL " + total);
+
+            var start = parseInt(partialstart, 10); 
+            var end = partialend ? parseInt(partialend, 10) : total-1;
+            header["Content-Range"] = "bytes " + start + "-" + end + "/" + (total);
+            header["Accept-Ranges"] = "bytes";
+            header["Content-Length"]= (end-start)+1;
+            header["Content-Type"]= 'audio/wav';
+            header['Transfer-Encoding'] = 'chunked';
+            header["Connection"] = "close";
+
+            res.writeHead(206, header);
+            res.write(file.slice(start, end)+'0', "binary");
+            res.end();
+            return;
+          } else {
+            header['Content-Type'] = 'audio/wav';
+            res.writeHead(200, header);
+            res.end(file);
           }
-          var total = file.length;
 
-          console.log("TOTAL " + total);
-
-          var start = parseInt(partialstart, 10); 
-          var end = partialend ? parseInt(partialend, 10) : total-1;
-
-          header["Content-Range"] = "bytes " + start + "-" + end + "/" + (total);
-          header["Accept-Ranges"] = "bytes";
-          header["Content-Length"]= (end-start)+1;
-          header["Content-Type"]= 'audio/wav';
-          header['Transfer-Encoding'] = 'chunked';
-          header["Connection"] = "close";
-
-          res.writeHead(206, header);
-          res.write(file.slice(start, end)+'0', "binary");
-          res.end();
-          return;
         });
         /*var readStream = fs.createReadStream(filePath);
         // We replaced all the event handlers with a simple call to readStream.pipe()
