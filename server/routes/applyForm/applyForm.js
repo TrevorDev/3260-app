@@ -28,5 +28,5 @@ exports.createGroup = function(req, res, next) {
 exports.submitForm = function(req, res, next) {
 	userM.createParticipant(req.body.fname,req.body.lname,req.body.email,req.body.groupID,function(){
 		res.send({"valid": "yes"});
-	});    
+	});
 };

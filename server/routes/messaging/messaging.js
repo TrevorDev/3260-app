@@ -3,6 +3,7 @@ var ejs = require('ejs');
 var rek = require('rekuire');
 var messageM = rek('messageModel.js');
 var userM = rek('userModel.js');
+var mediaPath = '/media/';
 
 exports.addRecording = function(req, res, next) {
 
@@ -16,17 +17,21 @@ exports.addRecording = function(req, res, next) {
 
     fs.readFile(req.files.file.path, function (err, data) {
         var msgFrom = req.session.userID;
-
         userM.getResearcher(msgFrom, function(success, row){
             var msgTo = "false";
             if (success){
                 msgTo = row.researcherID;
-                messageM.store(msgFrom, msgTo, data, function(success){
-                    if (success){
-                        res.send('success');
-                    }
-                    res.send('failed');
-                });
+                var path = mediaPath + msgFrom;
+                // Store message in <mediaPath>/fromID/
+                createFile(path, data, function(fullPath){
+                    // TODO: take out <mediaPath> from stored path
+                    messageM.store(msgFrom, msgTo, fullPath, function(success){
+                        if (success){
+                            res.send('success');
+                        }
+                        res.send('failed');
+                    });
+                }, onError);
             } else {
                 res.send('failed');
             }
@@ -34,13 +39,30 @@ exports.addRecording = function(req, res, next) {
     });
 }
 
+function createFile(path, data, timestamp, successCallback, errorCallback){
+    // TODO: Check if directory and file exist before writing.
+    var fullPath = path + '/' + timestamp + '.wav';
+    fs.writeFile(fullPath, function(error){
+        if (err){
+           errorCallback(error);
+        }
+        successCallback(fullPath);
+    });
+}
+
 exports.listMessages = function(req, res, next) {
     var researcherID = req.session.userID;
-    var researcherName = req.session.username;
 
     if (req.params.participantID){
         var participantID = req.params.participantID;
+
+        messageM.retrieveList(participantID, researcherID, function(success, messages){
+            if (success){
+                res.send(messages);
+            }
+            res.send('failed');
+        });
     }
 
-    res.send('Researcher ' + researcherName + '\nParticipant ' + participantID);
+    /* res.send('Researcher ' + researcherID + '\nParticipant ' + participantID); */
 }
