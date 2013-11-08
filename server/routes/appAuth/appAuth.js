@@ -28,5 +28,5 @@ exports.auth = function(req) {
 
 exports.logout = function(req, res, next) {
     req.session=null;
-    res.redirect('/');
+    res.send('success');
 }
