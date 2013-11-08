@@ -19,3 +19,11 @@ exports.createGroup= function(name,keyword,start,end,userID,callback) {
 	  callback(true, result.insertId);
 	});
 }
+
+exports.getGroupName = function(groupID,callback) {
+    var conn = db.getConnection();
+    conn.query("SELECT group.name FROM pal.group WHERE group.groupID = " +conn.escape(groupID)+";", function(err, result) {
+      if (err) throw err;
+      callback(result);
+    });
+}

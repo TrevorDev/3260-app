@@ -94,7 +94,11 @@ exports.showGroupParticipant = function(req, res, next) {
             res.template=new Object();
             res.template.participants = participants;
             res.template.username = req.session.username;
-            exports.render(req, res, next, 'researcherPortal/' + view);
+            groupM.getGroupName(req.params.id, function(group) {
+                res.template.groupName = group[0].groupName;
+                //console.log(group[0].name);
+                exports.render(req, res, next, 'researcherPortal/' + view);   
+            });
         });
     }else{
         res.redirect('/');
