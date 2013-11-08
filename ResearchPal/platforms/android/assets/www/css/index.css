@@ -65,6 +65,7 @@ body {
     background: #b94a48;
     border-radius: 5px;
     padding: 5px;
+    display: none;
 }
 
 /* Landscape layout (with min-width) */

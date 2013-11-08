@@ -28,6 +28,7 @@ function validateUser(pinEntered){
 						window.location = "dashboard.html";
 				} else {
 						$('#error').text('Invalid PIN, please try again.');
+						$('#error').show();
 				}
 		  },
 		    	error: onError
@@ -38,6 +39,22 @@ function validateUser(pinEntered){
 		$('#error').text('Please enter PIN.');
 	}
 	return false;
+}
+
+function logout(){
+	$.ajax({
+		type: "GET",
+		url: 'http://131.104.48.208/appAuth/logout',
+		crossDomain: true,
+		success: function(data) {
+			if ($.trim(data) == "success"){
+					window.location = ".html";
+			} else {
+			
+			}
+	  },
+	    	error: onError
+	 });
 }
 
 function onError(jqXHR, textStatus, errorThrown) {

@@ -49,6 +49,7 @@ app.get('/researchAuth/logout', researchAuth.logout);
 app.get('/researchAuth/auth', researchAuth.auth);
 
 app.get('/appAuth/check', appAuth.auth);
+app.get('/appAuth/logout', appAuth.logout);
 app.get('/uploads/:fileName', messaging.getRecording);
 app.get('/*', mainSite.showMainPage);
 
