@@ -48,9 +48,7 @@ function logout(){
 		crossDomain: true,
 		success: function(data) {
 			if ($.trim(data) == "success"){
-					console.log("logged out");
-			} else {
-			
+					window.location = "index.html";
 			}
 	  },
 	    	error: onError
