@@ -95,3 +95,20 @@ input {
 .btn-black{
     border:1px solid #cccccc
 }
+
+/* Message Page */
+.messageWindow{
+    background-color:#444444;
+}
+.message.left{
+    text-align:left;
+}
+
+.bubble{
+    width:75%;
+    display: inline-block;
+}
+
+.bubble h3{
+    margin-top:2px;
+}
