@@ -1,7 +1,7 @@
 var uploadLocation = '/uploads';
 
 $(function(){
-    getMessageList();
+    /*getMessageList();*/
 });
 
 function getMessageList(){
