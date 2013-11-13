@@ -26,9 +26,7 @@
 					    </p>
 				    </div>
 				</div>
-        <% if (!messages){ %>
-          <p>No messages</p>
-        <% } else {%>
+        <% if (messages){ %>
           <% for(var i=0; i<messages.length; i++) {%>
               <div class="message right">
                 <div class="well bubble">
