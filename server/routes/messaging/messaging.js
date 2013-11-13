@@ -25,7 +25,7 @@ exports.addRecording = function(req, res, next) {
             msgTo = row.researcherID;
 
             // Files will be stored with the path /uploads/<fromID>_<toID>_<date sent>_filename.mp3
-            var fileName = msgFrom + "_" + msgTo + "_" + date.toString() + "_" + req.files.file.name;
+            var fileName = msgFrom + "_" + msgTo + "_" + date.valueOf() + "_" + req.files.file.name;
             var newPath = process.cwd() + "/uploads/" + fileName;
             var relativePath = "/uploads/" + fileName;
 
