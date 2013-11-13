@@ -43,12 +43,6 @@ exports.addRecording = function(req, res, next) {
     });
 }
 
-exports.listMessages = function(req, res, next) {
-    
-
-    /* res.send('Researcher ' + researcherID + '\nParticipant ' + participantID); */
-}
-
 exports.getRecording = function(req,res,next) {
     if (auth.auth(req)){
         console.log(req.params.fileName);

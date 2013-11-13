@@ -1,10 +1,6 @@
 var uploadLocation = '/uploads';
 
-$(function(){
-    /*getMessageList();*/
-});
-
-function getMessageList(){
+function updateMessageList(){
     var participantID = 1; // TODO: get this from somewhere
     $.ajax({
     type: "GET",

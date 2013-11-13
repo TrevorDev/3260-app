@@ -65,32 +65,11 @@
 	            
 			</tr>
             <% for(var i=0; i<participants.length; i++) {%>
-                <tr>	
+                <tr onclick="$(function(){ window.location.href = '/message/<%= participants[i].userID %>' });">
                     <td><%= participants[i].name %></td>
                     <td><%= participants[i].lastName %></td>
                     <td><%= participants[i].email %></td>
-                    
                  </tr>
             <% } %>
 		</table>
-	  
-	  <br>    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+	  <br>
