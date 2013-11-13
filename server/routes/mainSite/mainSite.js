@@ -29,6 +29,7 @@ exports.showMessage = function(req, res, next) {
                 res.template = {};
                 res.template.messages = messages;
 
+                console.log(messages);
                 view = 'message';
                 exports.render(req, res, next, 'researcherPortal/' + view);
             } else {
