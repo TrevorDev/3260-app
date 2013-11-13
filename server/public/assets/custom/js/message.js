@@ -15,7 +15,7 @@ function getMessageList(){
         for (var i = 0; i < data.length; i++){
           var template = '<div class="message right"><div class="well bubble">';
           template = template + '<h3>New recording</h3>';
-          template = template + '<p><a href="' + data[i].path + '">' + data[i].path + '</a></p></div></div>';
+          template = template + '<p><a href="' + data[i].path + '"><img src="/public/mainSite/assets/img/mp3.png" /></a></p></div></div>';
           $('#autoMessageArea').append(template);
         }
       } else {
