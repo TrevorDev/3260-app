@@ -24,14 +24,15 @@
 				</div>
         <% if (!messages){ %>
           <p>No messages</p>
-        <% } %>
-        <% for(var i=0; i<messages.length; i++) {%>
-            <div class="message right">
-              <div class="well bubble">
-                <h3>Participant</h3>
-                <p><a href="<%= messages[i].path %>"><img src="/public/assets/custom/img/mp3.png" /></a></p>
+        <% } else {%>
+          <% for(var i=0; i<messages.length; i++) {%>
+              <div class="message right">
+                <div class="well bubble">
+                  <h3>Participant</h3>
+                  <p><a href="<%= messages[i].path %>"><img src="/public/assets/custom/img/mp3.png" /></a></p>
+                </div>
               </div>
-            </div>
+          <% } %>
         <% } %>
         <div id="autoMessageArea">
         </div>
