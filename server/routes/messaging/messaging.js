@@ -44,18 +44,7 @@ exports.addRecording = function(req, res, next) {
 }
 
 exports.listMessages = function(req, res, next) {
-    var researcherID = req.session.userID;
-
-    if (req.params.participantID){
-        var participantID = req.params.participantID;
-
-        messageM.retrieveList(participantID, researcherID, function(success, messages){
-            if (success){
-                res.send(messages);
-            }
-            res.send('failed');
-        });
-    }
+    
 
     /* res.send('Researcher ' + researcherID + '\nParticipant ' + participantID); */
 }
@@ -64,7 +53,7 @@ exports.getRecording = function(req,res,next) {
     if (auth.auth(req)){
         console.log(req.params.fileName);
         var filePath = path.join(process.cwd(), '/uploads/', req.params.fileName);
-        
+
         res.download(filePath);
     }
 }
