@@ -21,6 +21,9 @@
 					    </p>
 				    </div>
 				</div>
+        <% if (messages.length <= 0){ %>
+          <p>No messages</p>
+        <% } %>
         <% for(var i=0; i<messages.length; i++) {%>
             <div class="message right">
               <div class="well bubble">

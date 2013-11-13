@@ -25,16 +25,12 @@ exports.showMessage = function(req, res, next) {
         var participantID = req.params.participantID;
 
         messageM.retrieveList(participantID, researcherID, function(success, messages){
-            if (success){
-                res.template = {};
-                res.template.messages = messages;
+            res.template = {};
+            res.template.messages = messages;
 
-                console.log(messages);
-                view = 'message';
-                exports.render(req, res, next, 'researcherPortal/' + view);
-            } else {
-                res.redirect('/');
-            }
+            console.log(messages);
+            view = 'message';
+            exports.render(req, res, next, 'researcherPortal/' + view);
         });
     }
 };
