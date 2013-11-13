@@ -1,7 +1,6 @@
 var mediaVar = null;
 var recordFileName = "recording.mp3";
 var status = null;
-var fullRecordPath = null;
 var fullUploadPath = null;
 var mediaTimer = null;
 
@@ -96,7 +95,7 @@ function record(){
     },onStatusChange);
 }
 
-function createMedia(onMediaCreated, mediaStatusCallback){
+function createMedia(fileName, onMediaCreated, mediaStatusCallback){
     if (mediaVar != null) {
         onMediaCreated();
         return;
@@ -104,25 +103,17 @@ function createMedia(onMediaCreated, mediaStatusCallback){
 
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
 
-        fileSystem.root.getFile(recordFileName, {
+        fileSystem.root.getFile(fileName, {
             create: true,
             exclusive: false
         }, function(fileEntry){
-            log("---------> Android File " + recordFileName + " created at " + fileEntry.fullPath);
-            fullRecordPath = recordFileName;
             fullUploadPath = fileEntry.fullPath;
-            mediaVar = new Media(recordFileName, function(){
+            mediaVar = new Media(fileName, function(){
                 log("Android media created successfully");
             }, onError, mediaStatusCallback);
             onMediaCreated();
         }, onError); //of getFile
     }, onError); //of requestFileSystem
-
-    /* mediaVar = new Media(recordFileName, function(){
-        log("Media created successfully");
-    }, onError, mediaStatusCallback); 
-    onMediaCreated();
-    */
 }
 
 function stop() {

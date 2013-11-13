@@ -13,7 +13,7 @@ function getMessageList(){
     success: function(data) {
       if (data != 'failed'){
         for (var i = 0; i < data.length; i++){
-          console.log('row ' + data[i].path);
+          console.log('row ' + data[i]);
           $('#autoMessageArea').append('<a href="' + data[i].path + '">New Recording</a>');
         }
       } else {
