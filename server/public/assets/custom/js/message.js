@@ -13,8 +13,10 @@ function getMessageList(){
     success: function(data) {
       if (data != 'failed'){
         for (var i = 0; i < data.length; i++){
-          console.log('row ' + data[i]);
-          $('#autoMessageArea').append('<a href="' + data[i].path + '">New Recording' + data[i].path + '</a>');
+          var template = '<div class="message right"><div class="well bubble">';
+          template = template + '<h3>New recording</h3>';
+          template = template + '<p><a href="' + data[i].path + '">' + data[i].path + '</a></p></div></div>';
+          $('#autoMessageArea').append(template);
         }
       } else {
         console.log("ERROR: " + data);
