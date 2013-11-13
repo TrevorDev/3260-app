@@ -72,3 +72,8 @@ h1 {
 .bubble h3{
     margin-top:2px;
 }
+
+.bubble img{
+    width: 48px;
+    height: 48px;
+}
