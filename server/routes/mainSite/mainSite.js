@@ -5,6 +5,7 @@ var researchAuth = rek('researchAuth.js');
 var formM = rek('formModel.js');
 var userM = rek('userModel.js');
 var groupM = rek('groupModel.js');
+var messageM = rek('messageModel.js');
 
 exports.showMainPage = function(req, res, next) {
     view = 'home';
