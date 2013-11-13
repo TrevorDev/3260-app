@@ -60,6 +60,9 @@ h1 {
 .message.left{
     text-align:left;
 }
+.message.right{
+    text-align:right;
+}
 
 .bubble{
     width:75%;
