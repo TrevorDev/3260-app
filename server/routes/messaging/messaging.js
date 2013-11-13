@@ -16,27 +16,30 @@ exports.addRecording = function(req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept');
     */
     var pin;
-    var newPath = process.cwd() + "/uploads/" + req.files.file.name;
-    var relativePath = "/uploads/" + req.files.file.name;
-    console.log("PATH " + newPath);
+    var date = new Date();
 
-    fs.rename(req.files.file.path, newPath, function(err){
-        var msgFrom = req.session.userID;
-        userM.getResearcher(msgFrom, function(success, row){
-            var msgTo = "false";
-            if (success){
-                msgTo = row.researcherID;
-                // TODO: take out <mediaPath> from stored path
+    var msgFrom = req.session.userID;
+    userM.getResearcher(msgFrom, function(success, row){
+        var msgTo = "false";
+        if (success){
+            msgTo = row.researcherID;
+
+            // Files will be stored with the path /uploads/<fromID>_<toID>_<date sent>_filename.mp3
+            var fileName = msgFrom + "_" + msgTo + "_" + date.toString() + "_" + req.files.file.name;
+            var newPath = process.cwd() + "/uploads/" + fileName;
+            var relativePath = "/uploads/" + fileName;
+
+            fs.rename(req.files.file.path, newPath, function(err){
                 messageM.store(msgFrom, msgTo, relativePath, function(success){
                     if (success){
                         res.send('success');
                     }
                     res.send('failed');
                 });
-            } else {
-                res.send('failed');
-            }
-        });
+            });
+        } else {
+            res.send('failed');
+        }
     });
 }
 

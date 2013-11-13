@@ -95,7 +95,7 @@ function record(){
     },onStatusChange);
 }
 
-function createMedia(fileName, onMediaCreated, mediaStatusCallback){
+function createMedia(onMediaCreated, mediaStatusCallback){
     if (mediaVar != null) {
         onMediaCreated();
         return;
@@ -103,12 +103,12 @@ function createMedia(fileName, onMediaCreated, mediaStatusCallback){
 
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
 
-        fileSystem.root.getFile(fileName, {
+        fileSystem.root.getFile(recordFileName, {
             create: true,
             exclusive: false
         }, function(fileEntry){
             fullUploadPath = fileEntry.fullPath;
-            mediaVar = new Media(fileName, function(){
+            mediaVar = new Media(recordFileName, function(){
                 log("Android media created successfully");
             }, onError, mediaStatusCallback);
             onMediaCreated();
