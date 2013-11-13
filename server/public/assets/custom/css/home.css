@@ -53,10 +53,6 @@ h1 {
  	width: 160px;
  }
 
- .participants tr{
-    cursor: pointer;
- }
-
  /* Message Page */
 .messageWindow{
     background-color:#444444;

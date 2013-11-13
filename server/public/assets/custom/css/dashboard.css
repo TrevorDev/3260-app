@@ -157,3 +157,8 @@ h3 {
 }
 
 
+.participants tr{
+  cursor: pointer;
+}
+
+
