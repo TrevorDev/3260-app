@@ -58,6 +58,7 @@ app.post('/researchAuth', researchAuth.login);
 app.post('/createGroup', applyForm.createGroup);
 app.post('/submitApplication', applyForm.submitForm);
 app.post('/newRecording', messaging.addRecording);
+app.post('/sendTextMessage', messaging.sendTextMessage);
 app.listen(80);
 
 console.log("Started----------------------");
