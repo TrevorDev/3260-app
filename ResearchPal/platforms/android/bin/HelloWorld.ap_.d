@@ -23,6 +23,7 @@
 /home/dan/Desktop/Fall_2013/ResearchPal/3260-app/ResearchPal/platforms/android/assets/www \
 /home/dan/Desktop/Fall_2013/ResearchPal/3260-app/ResearchPal/platforms/android/assets/www/css \
 /home/dan/Desktop/Fall_2013/ResearchPal/3260-app/ResearchPal/platforms/android/assets/www/js \
+/home/dan/Desktop/Fall_2013/ResearchPal/3260-app/ResearchPal/platforms/android/assets/www/chat.html \
 /home/dan/Desktop/Fall_2013/ResearchPal/3260-app/ResearchPal/platforms/android/assets/www/index.html \
 /home/dan/Desktop/Fall_2013/ResearchPal/3260-app/ResearchPal/platforms/android/assets/www/spec.html \
 /home/dan/Desktop/Fall_2013/ResearchPal/3260-app/ResearchPal/platforms/android/assets/www/config.xml \
@@ -41,6 +42,7 @@
 /home/dan/Desktop/Fall_2013/ResearchPal/3260-app/ResearchPal/platforms/android/assets/www/css/bootstrap-responsive.min.css \
 /home/dan/Desktop/Fall_2013/ResearchPal/3260-app/ResearchPal/platforms/android/assets/www/js/index.js \
 /home/dan/Desktop/Fall_2013/ResearchPal/3260-app/ResearchPal/platforms/android/assets/www/js/authentication.js \
+/home/dan/Desktop/Fall_2013/ResearchPal/3260-app/ResearchPal/platforms/android/assets/www/js/general.js \
 /home/dan/Desktop/Fall_2013/ResearchPal/3260-app/ResearchPal/platforms/android/assets/www/js/recording.js \
 /home/dan/Desktop/Fall_2013/ResearchPal/3260-app/ResearchPal/platforms/android/assets/www/js/jquery.mobile-1.3.2.min.js \
 /home/dan/Desktop/Fall_2013/ResearchPal/3260-app/ResearchPal/platforms/android/assets/www/js/jquery-1.10.2.min.js \
