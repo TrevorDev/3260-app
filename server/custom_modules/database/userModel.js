@@ -89,7 +89,6 @@ exports.getResearcher= function(userID,callback) {
 
 exports.getGroupParticipants = function(groupID, callback) {
     var conn = db.getConnection();
-    //conn.query("select user.name, user.lastName, user.email, group.name as groupName from pal.user, pal.participant, pal.group where participant.groupID = " + conn.escape(groupID) +" and pal.user.userID = pal.participant.userID and participant.active = 1;", function(err, rows, fields) {
     conn.query(
             "select group.groupID, user.name, user.lastName, user.email, group.name " +
             "as groupName from pal.user, pal.participant, pal.group " +
@@ -98,7 +97,6 @@ exports.getGroupParticipants = function(groupID, callback) {
                 "and pal.user.userID = pal.participant.userID " + 
                 "and participant.active = 1;"
             , function(err, rows, fields) {
-    
       if (err) throw err;
       callback(rows);
     });

@@ -16,123 +16,36 @@ exports.addRecording = function(req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept');
     */
     var pin;
-    var newPath = process.cwd() + "/uploads/" + req.files.file.name;
-    var relativePath = "/uploads/" + req.files.file.name;
-    console.log("PATH " + newPath);
+    var date = new Date();
 
-    fs.rename(req.files.file.path, newPath, function(err){
-        var msgFrom = req.session.userID;
-        userM.getResearcher(msgFrom, function(success, row){
-            var msgTo = "false";
-            if (success){
-                msgTo = row.researcherID;
-                // TODO: take out <mediaPath> from stored path
+    var msgFrom = req.session.userID;
+    userM.getResearcher(msgFrom, function(success, row){
+        var msgTo = "false";
+        if (success){
+            msgTo = row.researcherID;
+
+            // Files will be stored with the path /uploads/<fromID>_<toID>_<date sent>_filename.mp3
+            var fileName = msgFrom + "_" + msgTo + "_" + date.valueOf() + "_" + req.files.file.name;
+            var newPath = process.cwd() + "/uploads/" + fileName;
+            var relativePath = "/uploads/" + fileName;
+
+            fs.rename(req.files.file.path, newPath, function(err){
                 messageM.store(msgFrom, msgTo, relativePath, function(success){
                     if (success){
                         res.send('success');
                     }
                     res.send('failed');
                 });
-            } else {
-                res.send('failed');
-            }
-        });
-    });
-
-    /*fs.readFile(req.files.file.path, function (err, data) {
-        var msgFrom = req.session.userID;
-        userM.getResearcher(msgFrom, function(success, row){
-            var msgTo = "false";
-            if (success){
-                msgTo = row.researcherID;
-                var path = mediaPath + msgFrom;
-                // Store message in <mediaPath>/fromID/
-                createFile(path, data, 'test', function(success, fullPath){
-                    if (success){
-                        // TODO: take out <mediaPath> from stored path
-                        messageM.store(msgFrom, msgTo, fullPath, function(success){
-                            if (success){
-                                res.send('success');
-                            }
-                            res.send('failed');
-                        });
-                    } else {
-                        res.send('failed');
-                    }
-                });
-            } else {
-                res.send('failed');
-            }
-        });
-    }); */
-}
-
-exports.listMessages = function(req, res, next) {
-    var researcherID = req.session.userID;
-
-    if (req.params.participantID){
-        var participantID = req.params.participantID;
-
-        messageM.retrieveList(participantID, researcherID, function(success, messages){
-            if (success){
-                res.send(messages);
-            }
+            });
+        } else {
             res.send('failed');
-        });
-    }
-
-    /* res.send('Researcher ' + researcherID + '\nParticipant ' + participantID); */
+        }
+    });
 }
 
 exports.getRecording = function(req,res,next) {
     if (auth.auth(req)){
-        console.log(req.params.fileName);
         var filePath = path.join(process.cwd(), '/uploads/', req.params.fileName);
-        /* var stat = fs.statSync(filePath);
-
-        console.log(stat.size);
-        res.writeHead(200, {
-            'Content-Type': 'audio/wav',
-        }); */
-
-        /*fs.readFile(filePath, 'binary', function(err, file) {
-          var header = {};
-          var range = req.headers.range;
-          if (range){
-                var parts = range.replace(/bytes=/, "").split("-");
-            console.log("PARTS " + parts + " RANGE " + range);
-            var partialstart = parts[0];
-            var partialend = parts[1];
-            if (partialend == null){
-              partialend = file.length;
-            }
-            var total = file.length;
-            console.log("TOTAL " + total);
-
-            var start = parseInt(partialstart, 10); 
-            var end = partialend ? parseInt(partialend, 10) : total-1;
-            header["Content-Range"] = "bytes " + start + "-" + end + "/" + (total);
-            header["Accept-Ranges"] = "bytes";
-            header["Content-Length"]= (end-start)+1;
-            header["Content-Type"]= 'audio/mpeg3';
-            header['Transfer-Encoding'] = 'chunked';
-            header["Connection"] = "close";
-
-            res.writeHead(206, header);
-            res.write(file.slice(start, end)+'0', "binary");
-            res.end();
-            return;
-          } else {
-            header['Content-Type'] = 'audio/mpeg3';
-            res.writeHead(200, header);
-            res.end(file);
-          }
-
-        }); */
-        /*var readStream = fs.createReadStream(filePath);
-        // We replaced all the event handlers with a simple call to readStream.pipe()
-        readStream.pipe(res); 
-        */
 
         res.download(filePath);
     }

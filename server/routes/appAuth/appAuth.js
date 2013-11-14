@@ -23,11 +23,10 @@ exports.validateUser = function(req, res, next) {
     });
 }
 exports.auth = function(req) {
-    return "HELLO";
-    /* req.session.auth; */
+    req.session.auth;
 }
 
 exports.logout = function(req, res, next) {
     req.session=null;
-    res.redirect('/');
+    res.send('success');
 }

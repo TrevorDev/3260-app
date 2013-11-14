@@ -52,3 +52,28 @@ h1 {
  	bottom: 0px;
  	width: 160px;
  }
+
+ /* Message Page */
+.messageWindow{
+    background-color:#444444;
+}
+.message.left{
+    text-align:left;
+}
+.message.right{
+    text-align:right;
+}
+
+.bubble{
+    width:75%;
+    display: inline-block;
+}
+
+.bubble h3{
+    margin-top:2px;
+}
+
+.bubble img{
+    width: 48px;
+    height: 48px;
+}

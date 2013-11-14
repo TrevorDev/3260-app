@@ -1,10 +1,6 @@
 var uploadLocation = '/uploads';
 
-$(function(){
-    getMessageList();
-});
-
-function getMessageList(){
+function updateMessageList(){
     var participantID = 1; // TODO: get this from somewhere
     $.ajax({
     type: "GET",
@@ -13,8 +9,10 @@ function getMessageList(){
     success: function(data) {
       if (data != 'failed'){
         for (var i = 0; i < data.length; i++){
-          console.log('row ' + data[i].path);
-          $('#autoMessageArea').append('<a href="' + data[i].path + '">New Recording</a>');
+          var template = '<div class="message right"><div class="well bubble">';
+          template = template + '<h3>New recording</h3>';
+          template = template + '<p><a href="' + data[i].path + '"><img src="/public/assets/custom/img/mp3.png" /></a></p></div></div>';
+          $('#autoMessageArea').append(template);
         }
       } else {
         console.log("ERROR: " + data);

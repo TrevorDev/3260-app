@@ -5,6 +5,7 @@ var researchAuth = rek('researchAuth.js');
 var formM = rek('formModel.js');
 var userM = rek('userModel.js');
 var groupM = rek('groupModel.js');
+var messageM = rek('messageModel.js');
 
 exports.showMainPage = function(req, res, next) {
     view = 'home';
@@ -17,8 +18,20 @@ exports.showLogon = function(req, res, next) {
 };
 
 exports.showMessage = function(req, res, next) {
-    view = 'message';
-    exports.render(req, res, next, 'researcherPortal/' + view);
+
+    var researcherID = req.session.userID;
+
+    if (req.params.participantID){
+        var participantID = req.params.participantID;
+
+        messageM.retrieveList(participantID, researcherID, function(success, messages){
+            res.template = {};
+            res.template.messages = messages;
+
+            view = 'message';
+            exports.render(req, res, next, 'researcherPortal/' + view);
+        });
+    }
 };
 
 exports.showApply = function(req, res, next) {

@@ -42,13 +42,13 @@ app.get('/createForm', mainSite.showCreateForm);
 app.get('/dashboard', mainSite.showDashboard);
 app.get('/group/:id', mainSite.showGroupParticipant);
 
-app.get('/message', mainSite.showMessage);
-app.get('/message/:participantID', messaging.listMessages);
+app.get('/message/:participantID', mainSite.showMessage);
 
 app.get('/approveApp/:id', mainSite.approveApp);
 app.get('/applicants/:id', mainSite.showApplicants);
 
 app.get('/appAuth/check', appAuth.auth);
+app.get('/appAuth/logout', appAuth.logout);
 app.get('/uploads/:fileName', messaging.getRecording);
 app.get('/*', mainSite.showMainPage);
 
