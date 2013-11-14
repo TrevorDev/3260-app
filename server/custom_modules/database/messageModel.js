@@ -15,6 +15,18 @@ exports.store = function(msgFrom, msgTo, path, callback) {
   });
 }
 
+exports.storeText = function(msgFrom, msgTo, path, callback) {
+  var dateTime = new Date();
+  var conn = db.getConnection();
+  conn.query("INSERT INTO message (fromUserID,toUserID, messageType, timeSent) VALUES ("+conn.escape(msgFrom)+","+conn.escape(msgTo)+",1,"+conn.escape(dateTime.toString())+");", function(err, result) {
+    if (err) throw err;
+    conn.query("INSERT INTO recording (messageID, path) VALUES ("+conn.escape(result.insertId)+","+conn.escape(path)+");", function(err, result) {
+      if (err) throw err;
+      callback(true);
+    });
+  });
+}
+
 exports.retrieveList = function(msgFrom, msgTo, callback){
   var conn = db.getConnection();
   conn.query("Select path, timeSent " +
