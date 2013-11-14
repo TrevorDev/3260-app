@@ -19,3 +19,22 @@ exports.createGroup= function(name,keyword,start,end,userID,callback) {
 	  callback(true, result.insertId);
 	});
 }
+
+exports.getGroupName = function(groupID,callback) {
+    var conn = db.getConnection();
+    conn.query("SELECT group.name FROM pal.group WHERE group.groupID = " +conn.escape(groupID)+";", function(err, result) {
+      if (err) throw err;
+      callback(result);
+    });
+}
+
+exports.getProjectList = function(callback) {
+    var conn = db.getConnection();
+    conn.query(
+            "SELECT groupID, group.name AS groupName, group.startDate, group.endDate, user.name, user.lastname " +
+            "FROM pal.group, pal.researcher, pal.user " + 
+            "WHERE researcher.userID = user.userID;", function(err, row) {
+      if (err) throw err;
+      callback(row);
+    });
+}

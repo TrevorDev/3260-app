@@ -107,11 +107,23 @@ exports.showGroupParticipant = function(req, res, next) {
             res.template=new Object();
             res.template.participants = participants;
             res.template.username = req.session.username;
-            exports.render(req, res, next, 'researcherPortal/' + view);
+            groupM.getGroupName(req.params.id, function(group) {
+                res.template.groupName = group[0].groupName;
+                exports.render(req, res, next, 'researcherPortal/' + view);   
+            });
         });
     }else{
         res.redirect('/');
     }
+}
+
+exports.showProjects = function(req, res, next) {
+    view = 'projectLists';
+    groupM.getProjectList( function(project){
+        res.template=new Object();
+        res.template.project = project;
+        exports.render(req, res, next, 'researcherPortal/' + view);   
+    });
 }
 
 exports.render = function(req, res, next, file) {
@@ -123,3 +135,4 @@ exports.render = function(req, res, next, file) {
         }
     });
 };
+

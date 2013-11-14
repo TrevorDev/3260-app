@@ -30,8 +30,14 @@ app.get('/public/*', function(req, res, next){
 });
 
 app.get('/logon', mainSite.showLogon);
+app.get('/user', researchAuth.logout);
+app.get('/researchAuth/logout', researchAuth.logout);
+app.get('/researchAuth/auth', researchAuth.auth);
+
+app.get('/projects', mainSite.showProjects);
 app.get('/applyForm/:id', applyForm.getApplyForm);
 app.get('/apply/:id', mainSite.showApply);
+
 app.get('/createForm', mainSite.showCreateForm);
 app.get('/dashboard', mainSite.showDashboard);
 app.get('/group/:id', mainSite.showGroupParticipant);
@@ -40,12 +46,6 @@ app.get('/message/:participantID', mainSite.showMessage);
 
 app.get('/approveApp/:id', mainSite.approveApp);
 app.get('/applicants/:id', mainSite.showApplicants);
-
-
-app.get('/user', researchAuth.logout);
-
-app.get('/researchAuth/logout', researchAuth.logout);
-app.get('/researchAuth/auth', researchAuth.auth);
 
 app.get('/appAuth/check', appAuth.auth);
 app.get('/appAuth/logout', appAuth.logout);
