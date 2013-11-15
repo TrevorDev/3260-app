@@ -120,3 +120,43 @@ h1 {
     -webkit-animation:fade 3000ms infinite;
 }
 
+/* Message Page */
+.messageWindow{
+    /*background-color:#444444;*/
+    width:250px;                   /* text area width */
+    height: 350px;
+    text-align:center;
+    color: white;
+    background: rgba(0, 0, 0, .4);
+    box-shadow: 2px 2px 7px 0px #000;
+    border-radius: 10px;
+    padding: 20px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    margin: -110px 0 0 -145px;
+}
+.message.left{
+    text-align:left;
+}
+.message.right{
+    text-align:right;
+}
+
+.bubble{
+    width:auto;
+    display: inline-block;
+    color: black;
+}
+
+.bubble h3{
+    margin-top:2px;
+}
+
+.bubble img{
+    width: 48px;
+    height: 48px;
+}
+.msgInputArea{
+    height: 30px;
+}

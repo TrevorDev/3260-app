@@ -131,25 +131,7 @@
 	
 	</div>
     
-    <script>
-		$("#pTitle").text( function() {
-			$.ajax({
-		    	type: "POST",
-               url: '/user',
-               data: $("#login").serialize(), // serializes the form's elements.
-               success: function(data)
-               {
-                   if(data=='success'){
-                    console.log("found group");
-                   }else{
-                    alert('Invalid');
-                   }
-               }
-			});
-
-			return false;
-		});
-    	
+    <script>  	
 
 		function showApplicants(id) {
 			window.location.href = "/applicants/"+id;
