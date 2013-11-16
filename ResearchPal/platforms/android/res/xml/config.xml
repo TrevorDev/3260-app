@@ -21,7 +21,11 @@
     <feature name="FileTransfer">
         <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
     </feature>
+    <feature name="PushNotification">
+        <param name="android-package" onload="true" value="com.pushwoosh.plugin.pushnotifications.PushNotifications" />
+    </feature>
     <access origin="*" />
+    <access origin="*.pushwoosh.com" />
     <preference name="useBrowserHistory" value="true" />
     <preference name="exit-on-suspend" value="false" />
     <preference name="permissions" value="none" />

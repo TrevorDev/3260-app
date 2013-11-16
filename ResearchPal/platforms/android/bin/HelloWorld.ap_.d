@@ -108,11 +108,14 @@
 /home/ahnh/3260-app/ResearchPal/platforms/android/assets/www/res/screen/android/screen-ldpi-landscape.png \
 /home/ahnh/3260-app/ResearchPal/platforms/android/assets/www/img/logo.png \
 /home/ahnh/3260-app/ResearchPal/platforms/android/assets/www/plugins/org.apache.cordova.media \
+/home/ahnh/3260-app/ResearchPal/platforms/android/assets/www/plugins/com.pushwoosh.plugins.pushwoosh \
 /home/ahnh/3260-app/ResearchPal/platforms/android/assets/www/plugins/org.apache.cordova.file \
 /home/ahnh/3260-app/ResearchPal/platforms/android/assets/www/plugins/org.apache.cordova.file-transfer \
 /home/ahnh/3260-app/ResearchPal/platforms/android/assets/www/plugins/org.apache.cordova.media/www \
 /home/ahnh/3260-app/ResearchPal/platforms/android/assets/www/plugins/org.apache.cordova.media/www/MediaError.js \
 /home/ahnh/3260-app/ResearchPal/platforms/android/assets/www/plugins/org.apache.cordova.media/www/Media.js \
+/home/ahnh/3260-app/ResearchPal/platforms/android/assets/www/plugins/com.pushwoosh.plugins.pushwoosh/www \
+/home/ahnh/3260-app/ResearchPal/platforms/android/assets/www/plugins/com.pushwoosh.plugins.pushwoosh/www/PushNotification.js \
 /home/ahnh/3260-app/ResearchPal/platforms/android/assets/www/plugins/org.apache.cordova.file/www \
 /home/ahnh/3260-app/ResearchPal/platforms/android/assets/www/plugins/org.apache.cordova.file/www/DirectoryEntry.js \
 /home/ahnh/3260-app/ResearchPal/platforms/android/assets/www/plugins/org.apache.cordova.file/www/ProgressEvent.js \
