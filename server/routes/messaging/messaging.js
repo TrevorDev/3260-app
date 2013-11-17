@@ -47,7 +47,8 @@ exports.sendTextMessage = function(req, res, next) {
     var date = new Date();
     var msgFrom = req.session.userID;
     var msgTo = req.body.messageToID;
-    messageM.store(msgFrom, msgTo, relativePath, function(success){
+    var msg = req.body.message;
+    messageM.storeText(msgFrom, msgTo, msg, function(success){
         if (success){
             res.send('success');
         }

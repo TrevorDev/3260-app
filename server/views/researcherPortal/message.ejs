@@ -24,10 +24,11 @@
 				</div>
         <% if (messages){ %>
           <% for(var i=0; i<messages.length; i++) {%>
-              <div class="message right">
+              <%if (messages[i].fromUserID == participantID) {%>  <div class="message right">  <%}else {%> <div class="message left">  <%}%>
                 <div class="well bubble">
-                  <h3>Participant</h3>
-                  <p><a href="<%= messages[i].path %>"><img src="/public/assets/custom/img/mp3.png" /></a></p>
+                  <h3><%if (messages[i].fromUserID == participantID) {%>  Participant  <%}else {%> You  <%}%></h3>
+                  <p>    <%if (messages[i].messageType == 1) {%>  <a href="<%= messages[i].path %>"><img src="/public/assets/custom/img/mp3.png" /></a>  <%}else {%> <%= messages[i].msg %>  <%}%></h3>       
+                  </p>
                 </div>
               </div>
           <% } %>
@@ -47,12 +48,10 @@
   <% include includes/footer %>
   <script>
       $("#send").click(function() {
-
-         alert($("#messageSend").val());
          $.ajax({
            type: "POST",
            url: '/sendTextMessage',
-           data: {textMessage:$("#messageSend").val()},
+           data: {message:$("#messageSend").val(),messageToID:<%= participantID %>},
            success: function(data)
            {
                 location.reload();
