@@ -25,7 +25,7 @@ exports.authParticipant= function(pin, callback) {
     }
 	
 	callback(false);
-    );
+	});
 }
 
 exports.createParticipant= function(name,lastName,email,groupID,callback) {
