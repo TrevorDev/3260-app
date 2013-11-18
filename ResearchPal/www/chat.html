@@ -38,7 +38,7 @@
         loadMessages();
         $('#refreshMsgs').click(loadMessages());
         $("#send").click(function(){
-          sendMessage($('#textMessage').html());
+          sendMessage($('#textMessage').val());
         })
       });
     </script>
