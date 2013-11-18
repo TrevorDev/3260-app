@@ -23,3 +23,23 @@ function loadMessages(){
     error: onError
   });
 }
+
+function sendMessage(msg){
+  $.ajax({
+    type: "POST",
+    url: 'http://131.104.48.208/sendTextMessage',
+    crossDomain: true,
+    success: function(success) {
+      if ($.trim(success) = "success"){
+        updateStatus('Message sent successfully');
+      } else {
+        updateStatus('There was an error sending your message');
+      }
+    },
+    error: onError
+  });
+}
+
+function updateStatus(status){
+  $('.statusLabel').html(status);
+}

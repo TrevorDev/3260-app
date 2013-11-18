@@ -37,6 +37,9 @@
       $(function(){
         loadMessages();
         $('#refreshMsgs').click(loadMessages());
+        $("#send").click(function(){
+          sendMessage($('#textMessage').html());
+        })
       });
     </script>
   </head>
@@ -49,7 +52,8 @@
         <div id="messages">
         </div>
         <div style='position: absolute; left: 0; width: 100%; bottom: 0;'>
-              <textarea style='height: 25px; margin: 0 auto;'></textarea>
+              <div class="statusLabel"></div>
+              <textarea id="textMessage" style='height: 25px; margin: 0 auto;'></textarea>
               <a id="send" class="btn btn-primary">Send</a>
         </div>
 
