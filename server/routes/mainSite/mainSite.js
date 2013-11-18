@@ -24,9 +24,10 @@ exports.showMessage = function(req, res, next) {
     if (req.params.participantID){
         var participantID = req.params.participantID;
 
-        messageM.retrieveList(participantID, researcherID, function(success, messages){
+        messageM.getConversation(participantID, researcherID, function(success, messages){
             res.template = {};
             res.template.messages = messages;
+            res.template.participantID=participantID;
 
             view = 'message';
             exports.render(req, res, next, 'researcherPortal/' + view);
