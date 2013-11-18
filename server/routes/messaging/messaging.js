@@ -8,13 +8,6 @@ var path = require('path');
 var mediaPath = './public/';
 
 exports.addRecording = function(req, res, next) {
-
-    /* view = 'home';
-    exports.render(req, res, next, 'researcherPortal/' + view);
-    res.header('Access-Control-Allow-Origin', "*");     // TODO - Make this more secure!!
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST');
-    res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept');
-    */
     var pin;
     var date = new Date();
 
