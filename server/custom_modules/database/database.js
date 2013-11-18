@@ -6,7 +6,7 @@ exports.connect = function() {
 	  host     : '131.104.48.208',
       server   : '131.104.48.208',
       user     : 'root',
-      password : 'pal',
+      password : '',
       database : 'pal',
       port:'3306',
 	});
