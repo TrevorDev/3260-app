@@ -1,4 +1,4 @@
 # Phonegap configuration files
 ResearchPal/platforms/android/local.properties
 ResearchPal/platforms/android/project.properties
-ResearchPal/platforms/android/bin
+ResearchPal/platforms/android/bin/*
