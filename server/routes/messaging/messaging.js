@@ -43,6 +43,19 @@ exports.addRecording = function(req, res, next) {
     });
 }
 
+exports.sendTextMessage = function(req, res, next) {
+    var date = new Date();
+    var msgFrom = req.session.userID;
+    var msgTo = req.body.messageToID;
+    var msg = req.body.message;
+    messageM.storeText(msgFrom, msgTo, msg, function(success){
+        if (success){
+            res.send('success');
+        }
+        res.send('failed');
+    });
+}
+
 exports.getRecording = function(req,res,next) {
     if (auth.auth(req)){
         var filePath = path.join(process.cwd(), '/uploads/', req.params.fileName);

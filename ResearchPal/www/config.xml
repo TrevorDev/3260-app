@@ -4,10 +4,10 @@
         Research Pal
     </name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+        CIS*3260 Research Pal Project 
     </description>
     <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+        Research Pal Team
     </author>
     <feature name="http://api.phonegap.com/1.0/device" />
     <preference name="permissions" value="none" />
@@ -50,5 +50,7 @@
     <gap:splash gap:platform="ios" height="768" src="res/screen/ios/screen-ipad-landscape.png" width="1024" />
     <gap:splash gap:platform="winphone" src="res/screen/windows-phone/screen-portrait.jpg" />
     <access origin="*" />
+    <gap:plugin name="com.pushwoosh.plugins.pushwoosh" />
+    <access origin="*.pushwoosh.com" />
     <content src="index.html" />
 </widget>

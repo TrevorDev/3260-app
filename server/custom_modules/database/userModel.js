@@ -90,7 +90,7 @@ exports.getResearcher= function(userID,callback) {
 exports.getGroupParticipants = function(groupID, callback) {
     var conn = db.getConnection();
     conn.query(
-            "select group.groupID, user.name, user.lastName, user.email, group.name " +
+            "select group.groupID, user.userID, user.name, user.lastName, user.email, group.name " +
             "as groupName from pal.user, pal.participant, pal.group " +
             "where participant.groupID = group.groupID " +
                 "and participant.groupID = " + conn.escape(groupID) + " " +

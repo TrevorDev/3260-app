@@ -5,10 +5,6 @@
     <div class="row">
         <div class="col-md-12">
 			<div class="well messageWindow">
-      <audio controls>
-         <source src="/uploads/1_2_1384371017309_recording.mp3" type="audio/mpeg">
-          Your browser does not support this audio format.
-        </audio>
 				<div class="message left">
 				    <div class="well bubble">
 				    	<h3>You</h3>
@@ -28,10 +24,11 @@
 				</div>
         <% if (messages){ %>
           <% for(var i=0; i<messages.length; i++) {%>
-              <div class="message right">
+              <%if (messages[i].fromUserID == participantID) {%>  <div class="message right">  <%}else {%> <div class="message left">  <%}%>
                 <div class="well bubble">
-                  <h3>Participant</h3>
-                  <p><a href="<%= messages[i].path %>"><img src="/public/assets/custom/img/mp3.png" /></a></p>
+                  <h3><%if (messages[i].fromUserID == participantID) {%>  Participant  <%}else {%> You  <%}%></h3>
+                  <p>    <%if (messages[i].messageType == 1) {%>  <a href="<%= messages[i].path %>"><img src="/public/assets/custom/img/mp3.png" /></a>  <%}else {%> <%= messages[i].msg %>  <%}%></h3>       
+                  </p>
                 </div>
               </div>
           <% } %>
@@ -39,7 +36,7 @@
         <div id="autoMessageArea">
         </div>
 				<form id="sendMessage">
-					<textarea name="message" style="width:85%"></textarea>
+					<textarea id="messageSend" name="message" style="width:85%"></textarea>
 					<a id="send" class="btn btn-primary" style="width:10%;">Send</a>
 				</form>
 		    </div>
@@ -51,7 +48,15 @@
   <% include includes/footer %>
   <script>
       $("#send").click(function() {
-         alert("hit");
+         $.ajax({
+           type: "POST",
+           url: '/sendTextMessage',
+           data: {message:$("#messageSend").val(),messageToID:<%= participantID %>},
+           success: function(data)
+           {
+                location.reload();
+           }
+         });
          return false;
     });
   </script>

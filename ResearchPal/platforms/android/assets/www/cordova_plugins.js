@@ -149,6 +149,13 @@ module.exports = [
         "clobbers": [
             "window.FileTransfer"
         ]
+    },
+    {
+        "file": "plugins/com.pushwoosh.plugins.pushwoosh/www/PushNotification.js",
+        "id": "com.pushwoosh.plugins.pushwoosh.PushNotification",
+        "clobbers": [
+            "plugins.pushNotification"
+        ]
     }
 ]
 });
