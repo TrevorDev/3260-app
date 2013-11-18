@@ -25,9 +25,10 @@ function validateUser(pinEntered){
 			},
 			success: function(data) {
 				if ($.trim(data) == "success"){
+					//check user if it
 						window.location = "dashboard.html";
 				} else {
-						$('#error').text('Invalid PIN, please try again.');
+						$('#error').text('PIN is invalid or expired.');
 						$('#error').show();
 				}
 		  },
@@ -39,6 +40,20 @@ function validateUser(pinEntered){
 		$('#error').text('Please enter PIN.');
 	}
 	return false;
+}
+
+function validateProjectDate(){
+	var today = new Date();
+	var projectEndDate = new Date(); // need to replace with actual project date
+
+	if (today > projectEndDate)
+	{
+		// then we redirect
+	}
+	else
+	{
+		// redirect to project over page
+	}
 }
 
 function logout(){

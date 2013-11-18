@@ -1,5 +1,4 @@
 var rek = require('rekuire');
-
 var db = rek('database.js');
 var uuid = require('node-uuid');
 
@@ -25,8 +24,7 @@ exports.authParticipant= function(pin, callback) {
 	}
     }else{
       callback(false);
-    }
-  });
+    });
 }
 
 exports.createParticipant= function(name,lastName,email,groupID,callback) {
