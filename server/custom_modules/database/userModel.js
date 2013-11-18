@@ -19,12 +19,13 @@ exports.authParticipant= function(pin, callback) {
   conn.query('SELECT userID from participant where pin = '+conn.escape(pin), function(err, rows, fields) {
     if (err) throw err;
     if(rows.length>0){
-	if (row[0].activate == 1){
- 	     callback(true, rows[0].userID);
-	}
-    }else{
-      callback(false);
-    });
+		if (rows[0].activate == 1){
+ 		     callback(true, rows[0].userID);
+		}
+    }
+	
+	callback(false);
+    );
 }
 
 exports.createParticipant= function(name,lastName,email,groupID,callback) {

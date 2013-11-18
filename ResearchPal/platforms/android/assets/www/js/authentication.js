@@ -28,6 +28,7 @@ function validateUser(pinEntered){
 					//check user if it
 						window.location = "dashboard.html";
 				} else {
+					alert("hello");
 						$('#error').text('PIN is invalid or expired.');
 						$('#error').show();
 				}
@@ -72,6 +73,6 @@ function logout(){
 
 function onError(jqXHR, textStatus, errorThrown) {
 // or use alerts if you can't see your log
-	alert("status: " + textStatus + "errorThrown: " + errorThrown + " " + jqXHR.statusText);
+	//alert("status: " + textStatus + "errorThrown: " + errorThrown + " " + jqXHR.statusText);
 }
 

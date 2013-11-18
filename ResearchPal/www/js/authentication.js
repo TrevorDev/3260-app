@@ -72,6 +72,6 @@ function logout(){
 
 function onError(jqXHR, textStatus, errorThrown) {
 // or use alerts if you can't see your log
-	alert("status: " + textStatus + "errorThrown: " + errorThrown + " " + jqXHR.statusText);
+	//alert("status: " + textStatus + "errorThrown: " + errorThrown + " " + jqXHR.statusText);
 }
 
