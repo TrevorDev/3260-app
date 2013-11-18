@@ -41,6 +41,21 @@ exports.sendTextMessage = function(req, res, next) {
     var msgFrom = req.session.userID;
     var msgTo = req.body.messageToID;
     var msg = req.body.message;
+    if (!msgTo) {
+        // App sending a request
+        userM.getResearcher(msgFrom, function(success, row){
+            if (success){
+                msgTo = row.researcherID;
+                store(msgFrom, msgTo, msg);
+            } else {
+                res.send('failed');
+            }
+        });
+    } else {
+        store(msgFrom, msgTo, msg);
+    }
+}
+function store(msgFrom, msgTo, msg){
     messageM.storeText(msgFrom, msgTo, msg, function(success){
         if (success){
             res.send('success');
