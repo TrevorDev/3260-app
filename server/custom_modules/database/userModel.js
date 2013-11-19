@@ -50,7 +50,6 @@ exports.getResearchersApprovalQueue= function(userID,callback) {
 
 exports.getApplicant= function(participantID,callback) {
 	var conn = db.getConnection();
-	console.log(participantID);
 	conn.query('select submittedApplicationForm.firstName,submittedApplicationForm.lastName,submittedApplicationForm.answers,submittedApplicationForm.userID from submittedApplicationForm where submittedApplicationForm.userID = '+conn.escape(participantID), function(err, rows, fields) {
      if (err) throw err;
 	  callback(rows);
@@ -59,13 +58,18 @@ exports.getApplicant= function(participantID,callback) {
 
 exports.approveApplicant=function(participantID, callback){
 	var conn = db.getConnection();
-	console.log(participantID);
 	conn.query("update pal.participant set active=1 where userID = "+conn.escape(participantID), function(err, result) {
 	 if (err) throw err;
 	   callback(true);
 	});
+}
 
-
+exports.rejectApplicant=function(participantID, callback){
+	var conn = db.getConnection();
+	conn.query("update pal.participant set active=3 where userID = "+conn.escape(participantID), function(err, result) {
+	 if (err) throw err;
+	   callback(true);
+	});
 }
 
 exports.getNewPin=function(){
