@@ -157,7 +157,9 @@ h3 {
 }
 
 
-.participants tr{
+.participants tr,
+.application tr,
+.group tr{
   cursor: pointer;
 }
 
