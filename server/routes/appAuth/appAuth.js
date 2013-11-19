@@ -22,7 +22,7 @@ exports.validateUser = function(req, res, next) {
         }
     });
 }
-exports.auth = function(req) {
+exports.auth = function(req, res) {
     res.send({'userID': req.session.userID, 'pin': req.session.auth});
 }
 

@@ -36,7 +36,7 @@
     <script type="text/javascript">
       $(function(){
         loadMessages();
-        $('#refreshMsgs').click(loadMessages());
+        $('#refreshMsgs').click(function(){loadMessages(); });
         $("#send").click(function(){
           sendMessage($('#textMessage').val());
         });

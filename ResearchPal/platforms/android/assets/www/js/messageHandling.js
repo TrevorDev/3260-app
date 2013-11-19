@@ -1,27 +1,41 @@
 function loadMessages(){
   $('#messages').html('');
-  $.ajax({
-    type: "GET",
-    url: 'http://131.104.48.208/message',
-    crossDomain: true,
-    success: function(messages) {
-      if ($.trim(messages) == 'failed'){
-        alert('Error retrieving messages');
-      } else {
-        for (var i = 0; i < messages.length; i++){
-          updateStatus(i + " Messages ");
-          var msgType = messages[i].messageType;
-          if (msgType == '1'){
-            // Don't display recordings on the phone at this point
+  getUserID(function(userID){
+    if (userID){
+      $.ajax({
+        type: "GET",
+        url: 'http://131.104.48.208/message',
+        crossDomain: true,
+        success: function(messages) {
+          if ($.trim(messages) == 'failed'){
+            alert('Error retrieving messages');
           } else {
-            var message = messages[i].msg;
-            $('#messages').append('<div class="message left"><div class="well bubble"><p><b>Researcher</b><br />' + 
-              message + '</p></div></div>');
+            updateStatus(messages.length + " Messages ");
+            updateStatus('user ID ' + userID);
+            for (var i = 0; i < messages.length; i++){
+              var msgType = messages[i].messageType;
+              if (msgType == '1'){
+                // Don't display recordings on the phone at this point
+              } else {
+                var message = messages[i].msg;
+                $('#messages').append('<div class="message left"><div class="well bubble"><p><b>Researcher</b><br />' + 
+                  message + '</p></div></div>');
+              }
+            }
           }
-        }
-      }
-    },
-    error: onError
+        },
+        error: onError
+      });
+    }
+  });
+}
+
+function getUserID(callback){
+  checkIfAuthenticated(function(data){
+    var jsonObject = $.parseJSON(data);
+    var userId = jsonObject.userID;
+
+    callback(userId);
   });
 }
 
