@@ -3,7 +3,7 @@ var rek = require('rekuire');
 var db = rek('database.js');
 var uuid = require('node-uuid');
 
-exports.store = function(msgFrom, msgTo, latitude, longitude path, callback) {
+exports.store = function(msgFrom, msgTo, latitude, longitude, path, callback) {
   var dateTime = new Date();
   var conn = db.getConnection();
   conn.query("INSERT INTO message (fromUserID,toUserID, messageType, timeSent, latitude, longitude) VALUES ("+conn.escape(msgFrom)+","+conn.escape(msgTo)+",1,"+conn.escape(dateTime)+","+conn.escape(latitude)+ ","+conn.escape(longitude)+");", function(err, result) {
