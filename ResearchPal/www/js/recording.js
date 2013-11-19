@@ -10,6 +10,10 @@ $(document).ready(function(){
     var playBtn = $('#playButton');
     var sendRecBtn = $('#sendRecordingBtn');
 
+    getGPSLocation(function(data){
+        updateRecordingLabel("latitude " + data);
+    });
+
     recordBtn.click(function(){
         record();
         recordBtn.hide();
@@ -171,4 +175,10 @@ function sendRecording(){
         }, onError, options);
 
     return false;
+}
+
+function getGPSLocation(callback){
+    navigator.geolocation.getCurrentPosition(function(position){
+        callback(position.coords.latitute)
+        , onError);
 }

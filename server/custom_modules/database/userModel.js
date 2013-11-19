@@ -16,10 +16,10 @@ exports.authResearcher= function(username, password, callback) {
 
 exports.authParticipant= function(pin, callback) {
   var conn = db.getConnection();
-  conn.query('SELECT userID from participant where pin = '+conn.escape(pin), function(err, rows, fields) {
+  conn.query('SELECT userID, active from participant where pin = '+conn.escape(pin), function(err, rows, fields) {
     if (err) throw err;
     if(rows.length>0){
-		if (rows[0].activate == 1){
+		if (rows[0].active == 1){
  		     callback(true, rows[0].userID);
 		}
     }

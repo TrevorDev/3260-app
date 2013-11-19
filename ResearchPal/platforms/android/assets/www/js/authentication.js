@@ -28,7 +28,6 @@ function validateUser(pinEntered){
 					//check user if it
 						window.location = "dashboard.html";
 				} else {
-					alert("hello");
 						$('#error').text('PIN is invalid or expired.');
 						$('#error').show();
 				}
