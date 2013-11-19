@@ -1,10 +1,10 @@
-function checkIfAuthenticated(){
+function checkIfAuthenticated(callback){
 		$.ajax({
 		type: "GET",
 		url: 'http://131.104.48.208/appAuth/check',
 		crossDomain: true,
 		success: function(data) {
-			alert("Am I validated? " + data);
+			callback(data);
 	  },
 	    	error: onError
 	  });

@@ -32,23 +32,28 @@
     <script src="js/authentication.js" type="text/javascript"></script>
     <script src="js/recording.js" type="text/javascript"></script>
     <script src="js/general.js" type="text/javascript"></script>
+    <script src="js/messageHandling.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      $(function(){
+        loadMessages();
+        $('#refreshMsgs').click(function(){loadMessages(); });
+        $("#send").click(function(){
+          sendMessage($('#textMessage').val());
+        });
+      });
+    </script>
   </head>
   <body>
+    <div style="text-align: center;">
+        <button id="refreshMsgs" class="btn btn-primary">Refresh</button>
+    </div>
     <div class="app">
       <div class="messageWindow">
-        <div class="message left">
-          <div class="well bubble">
-              <p><b>Researcher</b><br />What is your favorite food?</p>
-            </div>
+        <div id="messages">
         </div>
-        <div class="message right">
-          <div class="well bubble">
-            <p><b>You</b><br />Pizza</p>
-          </div>
-        </div>
-
         <div style='position: absolute; left: 0; width: 100%; bottom: 0;'>
-              <textarea style='height: 25px; margin: 0 auto;'></textarea>
+              <div class="statusLabel"></div>
+              <textarea id="textMessage" style='height: 25px; margin: 0 auto;'></textarea>
               <a id="send" class="btn btn-primary">Send</a>
         </div>
 

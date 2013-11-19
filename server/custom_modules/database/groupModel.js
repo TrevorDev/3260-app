@@ -32,7 +32,7 @@ exports.getProjectList = function(callback) {
     var conn = db.getConnection();
     conn.query(
             "SELECT groupID, group.name AS groupName, group.startDate, group.endDate, user.name, user.lastname " +
-            "FROM pal.group, pal.researcher, pal.user " + 
+            "FROM pal.group, pal.researcher, pal.user " +
             "WHERE researcher.userID = user.userID;", function(err, row) {
       if (err) throw err;
       callback(row);

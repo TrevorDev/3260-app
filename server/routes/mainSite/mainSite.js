@@ -35,6 +35,24 @@ exports.showMessage = function(req, res, next) {
     }
 };
 
+exports.getMessages = function(req, res, next) {
+    var msgFrom = req.session.userID;
+    userM.getResearcher(msgFrom, function(success, row){
+        var msgTo = "false";
+        if (success){
+            msgTo = row.researcherID;
+            messageM.getConversation(msgFrom, msgTo, function(success, messages){
+                if (success){
+                    res.send(messages);
+                } else {
+                    res.send('failed');
+                }
+            });
+        } else {
+            res.send('failed');
+        }
+    });
+}
 exports.showApply = function(req, res, next) {
     view = 'apply';
     formM.getGroupsApplyForm(req.params.id,function(form){
