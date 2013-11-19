@@ -179,6 +179,6 @@ function sendRecording(){
 
 function getGPSLocation(callback){
     navigator.geolocation.getCurrentPosition(function(position){
-        callback(position.coords.latitute)
-        , onError);
+        callback(position.coords.latitude);
+    }, onError);
 }
