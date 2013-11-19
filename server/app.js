@@ -46,6 +46,7 @@ app.get('/message/:participantID', mainSite.showMessage);
 app.get('/message', mainSite.getMessages);
 
 app.get('/approveApp/:id', mainSite.approveApp);
+app.get('/rejectApp/:id', mainSite.rejectApp);
 app.get('/applicants/:id', mainSite.showApplicants);
 
 app.get('/appAuth/check', appAuth.auth);
@@ -58,6 +59,7 @@ app.post('/appAuth/login', appAuth.validateUser);
 app.post('/researchAuth', researchAuth.login);
 app.post('/createGroup', applyForm.createGroup);
 app.post('/submitApplication', applyForm.submitForm);
+app.get('/approveApplicant/:participantID', userModel.approveApplicant);
 app.post('/newRecording', messaging.addRecording);
 app.post('/sendTextMessage', messaging.sendTextMessage);
 app.listen(80);

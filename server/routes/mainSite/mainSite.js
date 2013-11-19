@@ -77,12 +77,21 @@ exports.showCreateForm = function(req, res, next) {
 };
 
 exports.approveApp = function(req, res, next) {
-    view = 'dashboard';
+
     if(researchAuth.auth(req)){
-        userM.approveApplicant(req.params.id, function(applyData){
-            res.template=new Object();
-            res.template.applyData = applyData;
-            exports.render(req, res, next, 'researcherPortal/' + view);
+        userM.approveApplicant(req.params.id, function(applyData){         
+            res.redirect('/dashboard');
+        });
+    }else{
+        res.redirect('/');
+    }
+};
+
+exports.rejectApp = function(req, res, next) {
+
+    if(researchAuth.auth(req)){
+        userM.rejectApplicant(req.params.id, function(applyData){         
+            res.redirect('/dashboard');
         });
     }else{
         res.redirect('/');
