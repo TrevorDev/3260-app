@@ -15,6 +15,7 @@ exports.addRecording = function(req, res, next) {
     var latitude = req.params.latitude;
     var longitude = req.params.longitude;
 
+    console.log(req);
     console.log("Lat " + latitude + " Long " + longitude);
     userM.getResearcher(msgFrom, function(success, row){
         var msgTo = "false";

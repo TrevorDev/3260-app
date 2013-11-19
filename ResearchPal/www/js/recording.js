@@ -167,7 +167,7 @@ function sendRecording(){
     getGPSLocation(function(latitude, longitude){
         var params = new Object();
         params.latitude = latitude;
-        params.logitude = longitude;
+        params.longitude = longitude;
 
         options.params = params;
 
