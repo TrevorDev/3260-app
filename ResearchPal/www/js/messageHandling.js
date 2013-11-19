@@ -11,15 +11,24 @@ function loadMessages(){
             alert('Error retrieving messages');
           } else {
             updateStatus(messages.length + " Messages ");
-            updateStatus('user ID ' + userID);
             for (var i = 0; i < messages.length; i++){
               var msgType = messages[i].messageType;
               if (msgType == '1'){
                 // Don't display recordings on the phone at this point
               } else {
                 var message = messages[i].msg;
-                $('#messages').append('<div class="message left"><div class="well bubble"><p><b>Researcher</b><br />' + 
-                  message + '</p></div></div>');
+                var template = '<div class="message ';
+                var user;
+                if (messages[i].fromUserID == userID){
+                  template += 'right';
+                  user = "You";
+                } else {
+                  template += 'left';
+                  user = "Researcher";
+                }
+
+                template += '"><div class="well bubble"><h3>' + user + '</h3><p>' + message + '</p></div></div>';
+                $('#messages').append(template);
               }
             }
           }
@@ -32,9 +41,7 @@ function loadMessages(){
 
 function getUserID(callback){
   checkIfAuthenticated(function(data){
-    var jsonObject = $.parseJSON(data);
-    var userId = jsonObject.userID;
-
+    var userId = data.userID;
     callback(userId);
   });
 }
