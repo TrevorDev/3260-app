@@ -9,6 +9,7 @@ function loadMessages(){
         alert('Error retrieving messages');
       } else {
         for (var i = 0; i < messages.length; i++){
+          updateStatus(i + " Messages ");
           var msgType = messages[i].messageType;
           if (msgType == '1'){
             // Don't display recordings on the phone at this point
@@ -29,6 +30,7 @@ function sendMessage(msg){
     type: "POST",
     url: 'http://131.104.48.208/sendTextMessage',
     crossDomain: true,
+    data: {'message': msg },
     success: function(success) {
       if ($.trim(success) == "success"){
         updateStatus('Message sent successfully');
