@@ -8,13 +8,6 @@ var path = require('path');
 var mediaPath = './public/';
 
 exports.addRecording = function(req, res, next) {
-
-    /* view = 'home';
-    exports.render(req, res, next, 'researcherPortal/' + view);
-    res.header('Access-Control-Allow-Origin', "*");     // TODO - Make this more secure!!
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST');
-    res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept');
-    */
     var pin;
     var date = new Date();
 
@@ -48,6 +41,22 @@ exports.sendTextMessage = function(req, res, next) {
     var msgFrom = req.session.userID;
     var msgTo = req.body.messageToID;
     var msg = req.body.message;
+    console.log("MESSAGE " + msg);
+    if (!msgTo) {
+        // App sending a request
+        userM.getResearcher(msgFrom, function(success, row){
+            if (success){
+                msgTo = row.researcherID;
+                store(res, msgFrom, msgTo, msg);
+            } else {
+                res.send('failed');
+            }
+        });
+    } else {
+        store(res, msgFrom, msgTo, msg);
+    }
+}
+function store(res, msgFrom, msgTo, msg){
     messageM.storeText(msgFrom, msgTo, msg, function(success){
         if (success){
             res.send('success');

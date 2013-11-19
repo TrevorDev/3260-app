@@ -22,8 +22,8 @@ exports.validateUser = function(req, res, next) {
         }
     });
 }
-exports.auth = function(req) {
-    req.session.auth;
+exports.auth = function(req, res) {
+    res.send({'userID': req.session.userID, 'pin': req.session.auth});
 }
 
 exports.logout = function(req, res, next) {

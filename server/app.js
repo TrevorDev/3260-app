@@ -43,6 +43,7 @@ app.get('/dashboard', mainSite.showDashboard);
 app.get('/group/:id', mainSite.showGroupParticipant);
 
 app.get('/message/:participantID', mainSite.showMessage);
+app.get('/message', mainSite.getMessages);
 
 app.get('/approveApp/:id', mainSite.approveApp);
 app.get('/applicants/:id', mainSite.showApplicants);
