@@ -12,6 +12,9 @@ exports.addRecording = function(req, res, next) {
     var date = new Date();
 
     var msgFrom = req.session.userID;
+    var latitude = req.body.latitude;
+    var longitude = req.body.longitude;
+
     userM.getResearcher(msgFrom, function(success, row){
         var msgTo = "false";
         if (success){
@@ -23,7 +26,7 @@ exports.addRecording = function(req, res, next) {
             var relativePath = "/uploads/" + fileName;
 
             fs.rename(req.files.file.path, newPath, function(err){
-                messageM.store(msgFrom, msgTo, relativePath, function(success){
+                messageM.store(msgFrom, msgTo, latitude, longitude, relativePath, function(success){
                     if (success){
                         res.send('success');
                     }

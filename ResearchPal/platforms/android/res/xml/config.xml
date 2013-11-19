@@ -24,6 +24,9 @@
     <feature name="PushNotification">
         <param name="android-package" onload="true" value="com.pushwoosh.plugin.pushnotifications.PushNotifications" />
     </feature>
+    <feature name="Geolocation">
+        <param name="android-package" value="org.apache.cordova.geolocation.GeoBroker" />
+    </feature>
     <access origin="*" />
     <access origin="*.pushwoosh.com" />
     <preference name="useBrowserHistory" value="true" />

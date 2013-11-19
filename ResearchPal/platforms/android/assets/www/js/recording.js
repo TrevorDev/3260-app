@@ -10,6 +10,10 @@ $(document).ready(function(){
     var playBtn = $('#playButton');
     var sendRecBtn = $('#sendRecordingBtn');
 
+    getGPSLocation(function(latitude, longitude){
+        updateRecordingLabel("latitude " + latitude + " longitude " + longitude);
+    });
+
     recordBtn.click(function(){
         record();
         recordBtn.hide();
@@ -160,15 +164,29 @@ function sendRecording(){
     options.chunkedMode = false;
     options.headers = {'Content-Type': 'multipart/form-data; boundary=+++++'};
 
+    getGPSLocation(function(latitude, longitude){
+        var params = new Object();
+        params.latitude = latitude;
+        params.longitude = longitude;
 
-    file.upload(fullUploadPath, encodeURI("http://131.104.48.208/newRecording"), function(success){
-            if (success = "success"){
-                updateRecordingLabel('Recording sent!');
-                // TODO: Delete recording here.
-            } else {
-                updateRecordingLabel('Failed to send the recording to the server. Check your connection.');
-            }
-        }, onError, options);
+        options.params = params;
+
+
+        file.upload(fullUploadPath, encodeURI("http://131.104.48.208/newRecording"), function(success){
+                if (success = "success"){
+                    updateRecordingLabel('Recording sent!');
+                    // TODO: Delete recording here.
+                } else {
+                    updateRecordingLabel('Failed to send the recording to the server. Check your connection.');
+                }
+            }, onError, options);
+    });
 
     return false;
+}
+
+function getGPSLocation(callback){
+    navigator.geolocation.getCurrentPosition(function(position){
+        callback(position.coords.latitude, position.coords.longitude);
+    }, onError);
 }
