@@ -44,7 +44,6 @@ exports.sendTextMessage = function(req, res, next) {
     var msgFrom = req.session.userID;
     var msgTo = req.body.messageToID;
     var msg = req.body.message;
-    console.log("MESSAGE " + msg);
     if (!msgTo) {
         // App sending a request
         userM.getResearcher(msgFrom, function(success, row){
