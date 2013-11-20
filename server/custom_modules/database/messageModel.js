@@ -31,7 +31,7 @@ exports.getConversation = function(msgFrom, msgTo, callback){
   var conn = db.getConnection();
 
   conn.query(
-    "Select path, timeSent, msg, messageType,fromUserID"+
+    "Select path, timeSent, msg, messageType,fromUserID, latitude, longitude"+
 " from recording, message, textMsg"+
 " where (recording.messageID = message.messageID or textMsg.messageID = message.messageID)"+
 " and ((fromUserID=" + conn.escape(msgFrom) + " and toUserID=" + conn.escape(msgTo) + ") or (fromUserID=" + conn.escape(msgTo) + " and toUserID=" + conn.escape(msgFrom) + "))"+

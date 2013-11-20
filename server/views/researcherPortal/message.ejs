@@ -5,6 +5,7 @@
     <div class="row">
         <div class="col-md-12">
 			<div class="well messageWindow">
+        <div id="map"></div>
 				<div class="message left">
 				    <div class="well bubble">
 				    	<h3>You</h3>
@@ -27,7 +28,7 @@
               <%if (messages[i].fromUserID == participantID) {%>  <div class="message right">  <%}else {%> <div class="message left">  <%}%>
                 <div class="well bubble">
                   <h3><%if (messages[i].fromUserID == participantID) {%>  Participant  <%}else {%> You  <%}%></h3>
-                  <p>    <%if (messages[i].messageType == 1) {%>  <a href="<%= messages[i].path %>"><img src="/public/assets/custom/img/mp3.png" /></a>  <%}else {%> <%= messages[i].msg %>  <%}%></h3>       
+                  <p>    <%if (messages[i].messageType == 1) {%>  <a href="<%= messages[i].path %>"><img src="/public/assets/custom/img/mp3.png" /></a><div class="location"><div class="lat"><%= messages[i].latitude %></div><div class="long"><%= messages[i].longitude %></div></div>  <%}else {%> <%= messages[i].msg %>  <%}%></h3>       
                   </p>
                 </div>
               </div>
@@ -58,5 +59,44 @@
            }
          });
          return false;
-    });
+      });
+
+      var map;
+
+      // Cretes the map
+      function initializeMap(centerLat, centerLong) {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 10,
+          center: new google.maps.LatLng(centerLat, centerLong),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+      }
+
+      // This function takes an array argument containing a list of marker data
+      function generateMarkers(locations) {
+        for (var i = 0; i < locations.length; i++) {
+          new google.maps.Marker({
+            position: new google.maps.LatLng(locations[i].latitude, locations[i].longitude),
+            map: map,
+            title: locations[i].title
+          });
+        }
+      }
+
+      $(function(){
+          var locations = [];
+          var numLocations = 0;
+          $('.location').each(function(index){
+            if ($.trim($(this).find('.lat').html()) != 'null'){
+              locations[numLocations] = {'latitude': $(this).find('.lat').html(), 'longitude': $(this).find('.long').html()};
+              numLocations++;
+            }
+          });
+          if (locations.length > 0){
+            // Initialize the map with a center at the first location
+            initializeMap(locations[0].latitude, locations[1].longitude);
+            generateMarkers(locations);
+            $('#map').show();
+          }
+      });
   </script>
