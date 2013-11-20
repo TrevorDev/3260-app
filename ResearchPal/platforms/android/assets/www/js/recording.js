@@ -34,13 +34,53 @@ $(document).ready(function(){
     });
 
     sendRecBtn.click(function(){
-        sendRecording();
-        sendRecBtn.hide();
-        stopBtn.hide();
-        playBtn.hide();
-        recordBtn.show();
+        var networkState = navigator.connection.type;
+
+        var states = {};
+        states[Connection.UNKNOWN]  = 'Unknown connection';
+        states[Connection.ETHERNET] = 'Ethernet connection';
+        states[Connection.WIFI]     = 'WiFi connection';
+        states[Connection.CELL_2G]  = 'Cell 2G connection';
+        states[Connection.CELL_3G]  = 'Cell 3G connection';
+        states[Connection.CELL_4G]  = 'Cell 4G connection';
+        states[Connection.CELL]     = 'Cell generic connection';
+        states[Connection.NONE]     = 'No network connection';
+
+        //alert('Connection type: ' + states[networkState]);
+        if (navigator.connection.type == Connection.NONE)
+        {
+            alert('No network connection');
+            return false;
+        }
+
+        if (navigator.connection.type == Connection.WIFI)
+        {
+            onConfirm();   
+        }
+        showConfirm();
+
+
     });
 });
+
+function showConfirm() {
+    navigator.notification.confirm(
+        'Are you sure send the message over data plan?',  // message
+        onConfirm,              // callback to invoke with index of button pressed
+        'WIFI Warning',            // title
+        ['Confirm', 'Cancel']          // buttonLabels
+    );
+}
+
+function onConfirm() {
+    alert("sending");
+    sendRecording();
+    sendRecBtn.hide();
+    stopBtn.hide();
+    playBtn.hide();
+    recordBtn.show();
+    alert("done");
+}
 
 function play(){
     if (mediaVar != null){

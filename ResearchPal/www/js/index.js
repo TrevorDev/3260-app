@@ -18,6 +18,7 @@
  */
 
 function initPushwoosh() {
+    alert("push");
     var pushNotification = window.plugins.pushNotification;
 
         //push notifications handler
@@ -129,6 +130,16 @@ function onPushwooshAndroidInitialized(pushToken)
         pushNotification.startGeoPushes();
 }
 
+function checkConnection() {
+    if (navigator.connection.type == Connection.NONE) {
+        $('#error').text('No network connection');
+        $('#error').show();
+    else {
+        initPushwoosh();
+        $('#error').hide();
+    }
+}
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -146,6 +157,7 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+        checkConnection();
         app.receivedEvent('deviceready');
     },
     // Update DOM on a Received Event
@@ -160,3 +172,4 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
+
