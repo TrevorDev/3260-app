@@ -1,36 +1,73 @@
 <!-- HTML Header File -->
 <% include includes/dashboardHeader %>
 <% include includes/dashboardHeaderBar %>
+
+    
+    
+    
     
     <!--  Web Page Content -->
     <div class="container">
-	    <!-- Display notifications -->
-	     <div class="row">
-			  <div class="col-md-4">
-			  	<div class="Create Form">
-				    <a href="/createForm">
-	                	<img class="notificationImg" src="/public/assets/custom/img/Create Form.png" alt="Research Pal">
-	                </a>
-				 </div>
-			  </div>
-			 
-			  <div class="col-md-4">
-				<div class="Messages">
-					<a href="/createForm">
-	                	<img class="notificationImg" src="/public/assets/custom/img/Messages.png" alt="Research Pal">
-	                </a>
-				 </div>
-			  </div>
-			  
-			  
-			  <div class="col-md-4">
-			  	<div class="Application">
-			  		<a href="/createForm">
-				    	<img class="notificationImg" src="/public/assets/custom/img/Applications.png" alt="Research Pal">
-				    </a>
-				 </div>
-			  </div>
+    
+    
+    	<!-- Chart -->
+    	<div class="chart">
+			<h3 align="center">Number of Diary Entries</h3>
+			<table id="data-table" border="1" cellpadding="10" cellspacing="0" summary="The effects of the zombie outbreak on the populations of endangered species from 2012 to 2016">
+				<caption></caption>
+				<thead>
+					<tr>
+						<td>&nbsp;</td>						
+						<th scope="col">2012</th>
+						<th scope="col">2013</th>
+						<th scope="col">2014</th>
+						<th scope="col">2015</th>
+						<th scope="col">2016</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% for(var i=0; i<groups.length; i++) {%>   
+						<tr>	
+							<th scope="row"><%= groups[i].name %></th>
+							<td>4080</td>
+							<td>6080</td>
+							<td>6240</td>
+							<td>3520</td>
+							<td>2240</td>			             
+						</tr>
+					<% } %>					
+				</tbody>
+			</table>
 		</div>
+    
+    
+	    <!-- Display notifications -->
+<!-- 	     <div class="row"> -->
+<!-- 			  <div class="col-md-4"> -->
+<!-- 			  	<div class="Create Form"> -->
+<!-- 				    <a href="/createForm"> -->
+<!-- 	                	<img class="notificationImg" src="/public/assets/custom/img/Create Form.png" alt="Research Pal"> -->
+<!-- 	                </a> -->
+<!-- 				 </div> -->
+<!-- 			  </div> -->
+			 
+<!-- 			  <div class="col-md-4"> -->
+<!-- 				<div class="Messages"> -->
+<!-- 					<a href="/createForm"> -->
+<!-- 	                	<img class="notificationImg" src="/public/assets/custom/img/Messages.png" alt="Research Pal"> -->
+<!-- 	                </a> -->
+<!-- 				 </div> -->
+<!-- 			  </div> -->
+			  
+			  
+<!-- 			  <div class="col-md-4"> -->
+<!-- 			  	<div class="Application"> -->
+<!-- 			  		<a href="/createForm"> -->
+<!-- 				    	<img class="notificationImg" src="/public/assets/custom/img/Applications.png" alt="Research Pal"> -->
+<!-- 				    </a> -->
+<!-- 				 </div> -->
+<!-- 			  </div> -->
+<!-- 		</div> -->
 	    
 	    
 	    	    <!-- Group List -->
@@ -95,7 +132,14 @@
 		} 
 
     </script>
+
     
+    
+    	<!-- Grab jQuery from Google -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+		
+		<!-- Chart Animation -->
+		<script src="/public/assets/custom/js/chartAnimation.js" type="text/javascript"></script>
     
     
     
