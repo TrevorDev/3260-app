@@ -1,21 +1,75 @@
 @CHARSET "ISO-8859-1";
 
 body {
-  padding-top: 20px;
-  padding-bottom: 0px;
   background-color: #2e64fe;
-  
-  padding-right: 200px;
-  padding-left: 200px;
-  
-  min-width: 320px;
-  
-  align: center;  
-  
   background-image:url('../img/ResearchPal Banner.png');
   background-repeat: repeat-x;
 }
 
+.centeredContent{
+  max-width: 886px;
+  width: 100%;
+  margin: auto;
+}
+
+/****Menu Bar****/
+ .menuBar {
+  width: 100%;
+ }
+ 
+ .masthead {
+  width: 100%;
+ }
+ 
+ p.title {
+    font-size: 30px;
+ }
+ 
+ img.icon {
+  max-height: 50px;
+ }
+ 
+  
+ .rowContainer {
+  background-color: #ffff00;
+  width: 500px;
+  min-height: 370px;
+ }
+ 
+ .welcomeTag {
+  colour: #ff0000;
+  padding-top:10px;
+  
+   min-width:10px;
+   
+   font-size:15px;
+ }
+ 
+ .btn {
+     margin:10px;
+ }
+ 
+ 
+ .userInfo {
+/*    background-color: #ffffff; */
+  padding:100px;
+  float: right;
+ }
+ 
+ td {
+/*    margin-right:50%; */
+ }
+ 
+ .researcherInfo {
+  padding-left: 12%;
+  padding-right: 12%;
+ }
+ 
+ .topMenu {
+  padding-left: 7%;
+  padding-right: 7%;
+ }
+/** END Menu Bar ***/
 .row img {
 	height: 200px;	
 }
@@ -47,14 +101,15 @@ h1 {
  }
  
  
- .btn {
+ .hero-unit .btn {
  	vertical-align:bottom;
  	bottom: 0px;
  	width: 160px;
  }
 
  /* Message Page */
-.messageWindow{
+.messageWindow,
+.mapWindow{
     background-color:#444444;
 }
 .message.left{
@@ -79,11 +134,15 @@ h1 {
 }
 
 #map{
-    display: none;
     width: 500px;
     height: 400px;
+    margin: 20px auto;
 }
 
 .message .location{
     display: none;
+}
+.mapWindow h2,
+.mapWindow p{
+  color: white;
 }

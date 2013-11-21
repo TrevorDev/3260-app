@@ -38,7 +38,8 @@ exports.showMessage = function(req, res, next) {
             res.template = {};
             res.template.messages = messages;
             res.template.participantID=participantID;
-
+            res.template.username = req.session.username;
+            
             /*Redirects to message page*/
             view = 'message';
             exports.render(req, res, next, 'researcherPortal/' + view);
