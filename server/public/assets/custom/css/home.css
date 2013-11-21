@@ -108,8 +108,12 @@ h1 {
  }
 
  /* Message Page */
-.messageWindow,
-.mapWindow{
+ .messageWindow,
+ .mapWindow{
+  background: transparent;
+  border: none;
+ }
+.tab-content{
     background-color:#444444;
 }
 .message.left{
