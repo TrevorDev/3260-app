@@ -51,6 +51,12 @@
     <gap:splash gap:platform="winphone" src="res/screen/windows-phone/screen-portrait.jpg" />
     <access origin="*" />
     <gap:plugin name="com.pushwoosh.plugins.pushwoosh" />
+    <feature name="NetworkStatus">
+        <param name="android-package" value="org.apache.cordova.NetworkManager" />
+    </feature>
+    <feature name="Notification">
+        <param name="android-package" value="org.apache.cordova.Notification" />
+    </feature>
     <access origin="*.pushwoosh.com" />
     <content src="index.html" />
 </widget>
