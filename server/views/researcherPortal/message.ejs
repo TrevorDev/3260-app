@@ -24,9 +24,9 @@
             <% if (messages){ %>
               <% for(var i=0; i<messages.length; i++) {%>
                   <%if (messages[i].fromUserID == participantID) {%>  <div class="message right">  <%}else {%> <div class="message left">  <%}%>
-                    <div class="well bubble">
+                    <div class="well bubble" <% if (messages[i].messageRead != 1 && messages[i].messageType == 1){ %> id="<%=messages[i].timeSent%>" onclick="readDiary('<%=messages[i].messageID%>')" style="background-color: #d9534f;" <% }%> >
                       <h3><%if (messages[i].fromUserID == participantID) {%>  Participant  <%}else {%> You  <%}%></h3>
-                      <p>    <%if (messages[i].messageType == 1) {%>  <a href="<%= messages[i].path %>"><img src="/public/assets/custom/img/mp3.png" /></a>
+                      <p>    <%if (messages[i].messageType == 1) {%>  <a href="<%= messages[i].path %>" ><img src="/public/assets/custom/img/mp3.png" /></a>
                         <div class="timeStamp"><%=messages[i].timeSent%></div>
                         <div class="location"><div class="lat"><%= messages[i].latitude %></div><div class="long"><%= messages[i].longitude %></div></div>  <%}else {%> <%= messages[i].msg %>  <%}%></h3>       
                       </p>
@@ -121,4 +121,26 @@
             generateMarkers(locations);
           }
       });
+
+
+      //Updates the database reasearcher has read diary
+      function readDiary(msgID) {
+      	$.ajax({
+        	type: "GET",
+            url: "/updateMsg/"+msgID,
+            success: function(data)
+            {
+            	location.reload();
+                
+			},
+			error: function(data) 
+			{
+				alert("Error");
+			}
+		});
+        return false;
+	}
+
+    	
+  	
   </script>

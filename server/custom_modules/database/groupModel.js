@@ -1,7 +1,7 @@
-/*nodeJS Function Variable Declaration*/
+/*NodeJS Module*/
 var rek = require('rekuire');
 
-/*Variable Referencing to additional files*/
+/*Custom modules*/
 var db = rek('database.js');
 
 

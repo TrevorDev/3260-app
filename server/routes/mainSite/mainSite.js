@@ -48,7 +48,7 @@ exports.showMessage = function(req, res, next) {
 };
 
 
-/*Gets the messages user messages*/
+/*Gets the user messages*/
 exports.getMessages = function(req, res, next) {
     var msgFrom = req.session.userID;
     
@@ -69,6 +69,21 @@ exports.getMessages = function(req, res, next) {
         }
     });
 }
+
+
+/*Update Diary Status*/
+exports.updateDiaryStatus = function(req, res, next) {
+    /*Determines if the user is logged in*/
+    if(researchAuth.auth(req)){
+        /*Call controller to approve applicant*/
+        messageM.updateMsgRead(req.params.msgID, function(applyData){         
+            res.redirect('/dashboard');
+        });
+    }else{
+        res.redirect('/');
+    }
+};
+
 
 /*Gets the application*/
 exports.showApply = function(req, res, next) {
