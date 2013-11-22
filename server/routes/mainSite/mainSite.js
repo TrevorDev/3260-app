@@ -95,6 +95,9 @@ exports.showCreateForm = function(req, res, next) {
     
     /*Determine if the user is logged in*/
     if(researchAuth.auth(req)){
+        res.template=new Object();
+        res.template.username = req.session.username;
+        
         exports.render(req, res, next, 'researcherPortal/' + view);
     }else{
         res.redirect('/');
@@ -140,6 +143,7 @@ exports.showApplicants = function(req, res, next) {
         userM.getApplicant(req.params.id, function(applyData){
             res.template=new Object();
             res.template.applyData = applyData;
+            res.template.username = req.session.username;
             
             /*Direct user to the applicant's application page*/
             exports.render(req, res, next, 'researcherPortal/' + view);

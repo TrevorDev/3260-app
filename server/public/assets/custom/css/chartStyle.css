@@ -170,6 +170,9 @@
 .bar.fig2 {
     left: 52px;
 }
+.bar.fig3 {
+    left: 78px;
+}
 .bar span {
     background: #fefefe;
     border-radius: 3px;
@@ -205,3 +208,19 @@
 .fig2 {
     background: #eea151 url(../images/bar-03-bg.gif) 0 0 repeat-y;
 }
+.fig3 {
+    background: #7165e8 url(../images/bar-02-bg.gif) 0 0 repeat-y;
+}
+
+/*
+
+e865cb
+e86584
+e86565
+e89665
+e8dd65
+a9e865
+65e8a0
+65e8ce
+
+*/
