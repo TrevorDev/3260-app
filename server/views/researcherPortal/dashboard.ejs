@@ -1,14 +1,11 @@
-<!-- HTML Header File -->
+<!-- HTML Header Files -->
 <% include includes/dashboardHeader %>
+<% include includes/dashboardSideBar %>
 <% include includes/dashboardHeaderBar %>
 
-    
-    
-    
-    
+
     <!--  Web Page Content -->
-    <div class="container">
-    
+    <div class="container">    
     
     	<!-- Chart -->
     	<div class="chart">
@@ -38,39 +35,9 @@
 					<% } %>					
 				</tbody>
 			</table>
-		</div>
-    
-    
-	    <!-- Display notifications -->
-<!-- 	     <div class="row"> -->
-<!-- 			  <div class="col-md-4"> -->
-<!-- 			  	<div class="Create Form"> -->
-<!-- 				    <a href="/createForm"> -->
-<!-- 	                	<img class="notificationImg" src="/public/assets/custom/img/Create Form.png" alt="Research Pal"> -->
-<!-- 	                </a> -->
-<!-- 				 </div> -->
-<!-- 			  </div> -->
-			 
-<!-- 			  <div class="col-md-4"> -->
-<!-- 				<div class="Messages"> -->
-<!-- 					<a href="/createForm"> -->
-<!-- 	                	<img class="notificationImg" src="/public/assets/custom/img/Messages.png" alt="Research Pal"> -->
-<!-- 	                </a> -->
-<!-- 				 </div> -->
-<!-- 			  </div> -->
-			  
-			  
-<!-- 			  <div class="col-md-4"> -->
-<!-- 			  	<div class="Application"> -->
-<!-- 			  		<a href="/createForm"> -->
-<!-- 				    	<img class="notificationImg" src="/public/assets/custom/img/Applications.png" alt="Research Pal"> -->
-<!-- 				    </a> -->
-<!-- 				 </div> -->
-<!-- 			  </div> -->
-<!-- 		</div> -->
+		</div> <!-- /chart -->	    
 	    
-	    
-	    	    <!-- Group List -->
+		<!-- Group List -->
 	    <h3>Groups</h3>
 		<table class="group table table-hover">		
 			<tr>
@@ -120,13 +87,16 @@
 	
 	</div>
     
-    <script>  	
-
+    
+    <!-- Java Script -->
+   	<script>  	
+		/*Direct user to applicants page*/
 		function showApplicants(id) {
 			window.location.href = "/applicants/"+id;
 			return false;
 		}
-        
+
+        /*Direct user to a list of participants for a group*/
         function showParticipants(id) {
 		    var link = "/group/"+id;
             console.log(link);
@@ -134,15 +104,12 @@
 		} 
 
     </script>
-
     
-    
-    	<!-- Grab jQuery from Google -->
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-		
-		<!-- Chart Animation -->
-		<script src="/public/assets/custom/js/chartAnimation.js" type="text/javascript"></script>
-    
+	<!-- Loads Java Script -->
+    <% include includes/footer %>
+	
+	<!-- Chart Animation -->
+	<script src="/public/assets/custom/js/chartAnimation.js" type="text/javascript"></script>
     
     
     

@@ -1,3 +1,4 @@
+<!-- HTML Header Files -->
 <% include includes/projectHeader %>
      
 	<div class="masthead">
@@ -10,11 +11,11 @@
         	</div>
     	</div>
 	</div>
- 
-	
-	
+ 	
     <!--  Web Page Content -->
     <div class="container">
+    
+    	<!-- List Available projects -->
     	<% for(var i=0; i<project.length; i++) {%>
 		<div class="hero-unit" onclick="showForm(<%= project[i].groupID %>)">
 			<div class="row">
@@ -36,6 +37,10 @@
 		<% }; %>
 		
 	</div>
+    
+    
+    <!-- Load Java Script -->
+    <% include includes/footer %>
     
     <script>    
     	/*Directs the user to the application for to the project they have selected*/

@@ -1,65 +1,64 @@
+<!-- HTML Header Files -->
+
 <% include includes/header %>
 
-            <div class="masthead">
-                <div class="container-wide">
-                    <div class="row">
-                        
-                        <h1 style="display: inline;">
-                            Applicant Information
-                        </h1>
-                        <div class="well" style="margin-top:100px;border:solid 10px;">
-                                <h3 style="display:inline"><%= applyData[0].firstName %></h3>
-                                <h3 style="display:inline"><%= applyData[0].lastName %></h3>
-                                <textarea rows="10" name="questions" style="width:100%;"><%= applyData[0].answers %></textarea>
-                                <br>
-                                <br>
-                                 <button id="approve" class="btn btn-success" <%- '\" onclick=\"approvePerson('+applyData[0].userID+')\"'%>>Approve</button>
-                                <button id="reject" type="submit" class="btn btn-danger"  <%- '\" onclick=\"rejectPerson('+applyData[0].userID+')\"'%>>Reject</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div id="push">
-            </div>
-        </div>
 
-        <% include includes/footer %>
-        <script>
-            function approvePerson(id) {
-                $.ajax({
-                    type: "GET",
-                    url: "/approveApp/"+id,
-                    success: function(data)
-                    {
-                        window.alert("Approved!");
-                        window.location = "/dashboard";
-                    },
-                    error: function()
-                    {
+
+	<div class="masthead">
+		<div class="container-wide">
+			<div class="row">
+				<h1 style="display: inline;">
+                	Applicant Information
+				</h1>
+                <div class="well" style="margin-top:100px;border:solid 10px;">
+                    <h3 style="display:inline"><%= applyData[0].firstName %></h3>
+                    <h3 style="display:inline"><%= applyData[0].lastName %></h3>
+                    <textarea rows="10" name="questions" style="width:100%;"><%= applyData[0].answers %></textarea>
+                    <br>
+                    <br>
+                    <button id="approve" class="btn btn-success" <%- '\" onclick=\"approvePerson('+applyData[0].userID+')\"'%>>Approve</button>
+					<button id="reject" type="submit" class="btn btn-danger"  <%- '\" onclick=\"rejectPerson('+applyData[0].userID+')\"'%>>Reject</button>
+				</div> <!-- /well -->
+			</div> <!-- /row -->
+    	</div> <!-- /container-wide -->
+	</div> <!-- /masthead -->
+
+        
+	<!-- Load Java Script -->
+    <% include includes/footer %>
+        
+    <script>
+    	function approvePerson(id) {
+        	$.ajax({
+            	type: "GET",
+                url: "/approveApp/"+id,
+                success: function(data)
+                {
+                	window.alert("Approved!");
+                    window.location = "/dashboard";
+				},
+                error: function()
+                {
                         alert("error");
-                    }
-                });
-                return false;
-             }
+                }
+            });
+        	return false;
+		}
                 
-             function rejectPerson(id) {
-                $.ajax({
-                    type: "GET",
-                    url: "/rejectApp/"+id,
-                    success: function(data)
-                    {
-                        window.alert("Rejected!");
-                        window.location = "/dashboard";
-                    },
-                    error: function()
-                    {
-                        alert("error");
-                    }
-                });
-                return false;
-             }
-                //return false;
-            //});
-
-        </script>
+		function rejectPerson(id) {
+        	$.ajax({
+            	type: "GET",
+                url: "/rejectApp/"+id,
+                success: function(data)
+                {
+                	window.alert("Rejected!");
+                    window.location = "/dashboard";
+				},
+                error: function()
+                {
+                	alert("error");
+				}
+			});
+            return false;
+		}
+	</script>

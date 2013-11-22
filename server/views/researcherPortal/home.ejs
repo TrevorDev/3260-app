@@ -1,52 +1,47 @@
+<!-- HTML Header File -->
 <% include includes/header %>
-<div class="centeredContent">
-	<div class="masthead">
-		<div class="container-wide">
-        	<div class="row centered-text">
-            	<img class="" src="/public/assets/custom/img/Research Pal v5.png" alt="Research Pal">
-                <h1 class="title">
-                	Research Pal
-				</h1>
-        	</div>
-    	</div>
+
+	<div class="centeredContent">
+		<div class="masthead">
+			<div class="container-wide">
+	        	<div class="row centered-text">
+	            	<img class="" src="/public/assets/custom/img/Research Pal v5.png" alt="Research Pal">
+	                <h1 class="title">
+	                	Research Pal
+					</h1>
+	        	</div>
+	    	</div>
+		</div>
+	            
+	    <div class="row">
+	        <div class="col-md-6">
+				<div class="hero-unit">
+				    <h2>Researchers</h2>
+				    <p>To get started in creating and managing your own research group please login or easily go through the process of 
+				    creating a new account.</p>
+				    
+				    <p>
+					    <button id="logonButton" class="btn btn-primary btn-large" onclick="javascript:window.location.href='/logon'">
+					    	Login
+					    </button>
+				    </p>
+			    </div>    
+	        </div>
+	        <div class="col-md-6 text-right">
+				<div class="hero-unit">
+				    <h2>Available Projects</h2>
+				    <p>Browse active research projects looking for participants.</p>
+				    <p>
+					    <a class="btn btn-primary btn-large" onclick="javascript:window.location.href='/projects'">
+					    	Search Projects
+					    </a>
+				    </p>
+				 </div>
+	        </div>
+	    </div>
 	</div>
-            
-    <div class="row">
-        <div class="col-md-6">
-			<div class="hero-unit">
-			    <h2>Researchers</h2>
-			    <p>To get started in creating and managing your own research group please login or easily go through the process of 
-			    creating a new account.</p>
-			    
-			    <p>
-				    <button id="logonButton" class="btn btn-primary btn-large" onclick="javascript:window.location.href='/logon'">
-				    	Login
-				    </button>
-			    </p>
-		    </div>    
-        </div>
-        <div class="col-md-6 text-right">
-			<div class="hero-unit">
-			    <h2>Available Projects</h2>
-			    <p>Browse active research projects looking for participants.</p>
-			    <p>
-				    <a class="btn btn-primary btn-large" onclick="javascript:window.location.href='/projects'">
-				    	Search Projects
-				    </a>
-			    </p>
-			 </div>
-        </div>
-    </div>
-</div>
     
-    
-  
+    <!-- Loads Java Script -->
+    <% include includes/footer %>
 
-
- 
-	
-
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
   

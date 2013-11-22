@@ -1,5 +1,7 @@
-<!-- HTML Header File -->
+<!-- HTML Header Files -->
+<% include includes/dashboardSideBar %>
 <% include includes/dashboardHeader %>
+
 
     <!-- Top Menu Bar -->
     <div class="menuBar">
@@ -32,9 +34,10 @@
                         </tr>
                     </table>
                 </div>
-            </div>
+            </div> <!-- /row -->
         </nav>
-    </div>
+    </div> <!-- /menuBar -->
+   
    
     <!--  Web Page Content -->
     <div class="container">
@@ -58,4 +61,9 @@
                  </tr>
             <% } %>
 		</table>
-	  <br>
+		<br>
+	</div> <!-- /container -->
+	  
+	  
+	<!-- Loads Java Script -->
+	<% include includes/footer %>
