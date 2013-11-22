@@ -5,52 +5,27 @@
         	<div class="row centered-text">
             	<img class="" src="/public/assets/custom/img/Research Pal v5.png" alt="Research Pal">
                 <h1 class="title">
-                	Research Pal
+                	Active Projects
 				</h1>
         	</div>
     	</div>
 	</div>
  
-	<!-- Top Menu Bar -->
-	<div class="menuBar">
-		<!-- <nav class="navbar navbar-default" role="navigation"> -->
-		<nav class="navbar navbar-default">
-			<div class="row">
-				<div class="topMenu col-md-6">
-					<table>
-						<tr>
-							<td>
-								<a href="#"> <img class="icon" src="/public/assets/custom/img/Research Pal v5.png"
-									alt="Research Pal">
-								</a>
-							</td>
-							<td>
-								<p class="title">Dashboard</p>
-							</td>
-						</tr>
-					</table>					
-				</div> <!-- /topMenu -->
 	
-			</div> <!-- /row -->
-		</nav>
 	
-	</div> <!-- /menuBar -->
-	
-   
-    
     <!--  Web Page Content -->
     <div class="container">
     	<% for(var i=0; i<project.length; i++) {%>
 		<div class="hero-unit" onclick="showForm(<%= project[i].groupID %>)">
 			<div class="row">
-				<h2><%= project[i].groupName %></h2>
+				<h2><b><%= project[i].groupName %></b></h2>
 				<div class="row">	
 					<div class="col-md-5">
-				    	<h3><%= project[i].name %> <%= project[i].lastname %></h3>
+				    	<h3><b>Researcher: </b><%= project[i].name %> <%= project[i].lastname %></h3>
 					</div>
 					<div class="col-md-4">
-						<h4>Start Date: <%= project[i].startDate %></h4>
-				    	<h4>End Date: <%= project[i].endDate %></h4>
+						<h4><b>Start Date: </b><%= project[i].startDate %></h4>
+				    	<h4><b>End Date: </b><%= project[i].endDate %></h4>
 					</div>
 					<div class="col-md-3">
 						Apply
@@ -62,15 +37,12 @@
 		
 	</div>
     
-    <script>
-    
+    <script>    
     	/*Directs the user to the application for to the project they have selected*/
 		function showForm(groupID) {
-			alert(groupID);
 		    window.location.href = "/apply/"+groupID;
 			return false;
 		}
-
     </script>
     
     
