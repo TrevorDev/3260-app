@@ -76,6 +76,7 @@
 			<tr>
 				<th>Group</th>
 				<th>Number of Participants</th>
+				<th>Application Form Link</th>
 	            <th>Start Date</th>
 	            <th>End Date</th>
 			</tr>
@@ -84,6 +85,7 @@
                 <tr id='<%= groups[i].groupID %>' onclick="showParticipants(this.id)">
                     <td><%= groups[i].name %></td>
                     <td><%= groups[i].numOfParticipants %></td>
+                    <td><a href="/apply/<%= groups[i].groupID %>">Application Form</a></td>
                     <td><%= groups[i].startDate %></td>
                     <td><%= groups[i].endDate %></td>
                  </tr>
