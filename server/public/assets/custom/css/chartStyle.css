@@ -1,178 +1,206 @@
 /* Table */
 #data-table {
-    border: none; /* Turn off all borders */
-    border-top: 1px solid #ccc;
-    width: 540px;
+	border: none; /* Turn off all borders */
+	border-top: 1px solid #ccc;
+	min-width: 540px;
 }
 #data-table caption {
-    color: #545454;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 20px;
-    margin: 0 0 20px 0;
-    padding: 0;
-    text-align: center;
+	color: #545454;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 20px;
+	margin: 0 0 20px 0;
+	padding: 0;
+	text-align: center;
 }
 #data-table thead {
-    background: #f0f0f0;
+	background: #f0f0f0;
 }
 #data-table th, 
 #data-table td {
-    border: none; /* Turn off all borders */
-    border-bottom: 1px solid #ccc;
-    margin: 0;
-    padding: 10px;
-    text-align: left;	
+	border: none; /* Turn off all borders */
+	border-bottom: 1px solid #ccc;
+	margin: 0;
+	padding: 10px;
+	text-align: left;	
 }
 
 /* Toggle */
 .toggles {
-    background: #ebebeb;	
-    color: #545454;
-    height: 20px;
-    padding: 15px;
+	background: #ebebeb;	
+	color: #545454;
+	height: 20px;
+	padding: 15px;
 }
 .toggles p {
-    margin: 0;
+	margin: 0;
 }
 .toggles a {
-    background: #222;
-    border-radius: 3px;	
-    color: #fff;
-    display: block;
-    float: left;
-    margin: 0 10px 0 0;
-    padding: 0 6px;
-    text-decoration: none;
+	background: #222;
+	border-radius: 3px;	
+	color: #fff;
+	display: block;
+	float: left;
+	margin: 0 10px 0 0;
+	padding: 0 6px;
+	text-decoration: none;
 }
 .toggles a:hover {
-    background: #666;
+	background: #666;
 }
 #reset-graph-button {
-    float:right;
+	float:right;
 }
 
 /* Graph */
 /* Containers */
 #wrapper {
-    height: 420px;
-    left: 50%;
-    margin: -210px 0 0 -270px;
-    position: absolute;
-    top: 50%;	
-    width: 540px;
+	height: 420px;
+	left: 50%;
+	margin: -210px 0 0 -270px;
+	position: absolute;
+	top: 50%;	
+	min-width: 540px;
 }
 #figure {
-    height: 380px;
-    position: relative;
+	height: 380px;
+	position: relative;
 }
 #figure ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
 .graph {
-    height: 283px;
-    position: relative;
+	height: 283px;
+	position: relative;
 }
 
 /* Legend */
 .legend {
-    background: #f0f0f0;
-    border-radius: 4px;
-    bottom: 0;
-    position: absolute;
-    text-align: left;
-    width: 540px;	
+	background: #f0f0f0;
+	border-radius: 4px;
+	bottom: 0;
+	position: absolute;
+	text-align: left;
+	width: 540px;	
 }
 .legend li {
-    display: block;
-    float: left;
-    height: 20px;
-    margin: 0;
-    padding: 10px 30px;
-    width: 120px;
+	display: block;
+	float: left;
+	height: 50px;
+	margin: 0;
+	padding: 10px 30px;
+	width: 200px;
 }
 .legend span.icon {
-    background-position: 50% 0;
-    border-radius: 2px;
-    display: block;
-    float: left;
-    height: 16px;
-    margin: 2px 10px 0 0;
-    width: 16px;	
+	background-position: 50% 0;
+	border-radius: 2px;
+	display: block;
+	float: left;
+	height: 16px;
+	margin: 2px 10px 0 0;
+	width: 16px;	
 }
 
 /* X-Axis */
 .x-axis {
-    bottom: 0;
-    color: #555;
-    position: absolute;
-    text-align: center;
-    width: 540px;
+	bottom: 0;
+	color: #555;
+	position: absolute;
+	text-align: center;
+	min-width: 540px;
 }
 .x-axis li {
-    float: left;
-    margin: 0 15px;
-    padding: 5px 0;
-    width: 76px;	
+	float: left;
+	margin: -5px 20px;
+	padding: 0px 0;
+	width: 76px;
+	text-align: center;
 }
 
 /* Y-Axis */
 .y-axis {
-    color: #555;
-    position: absolute;
-    text-align: right;
-    width: 100%;
+	color: #555;
+	position: absolute;
+	text-align: right;
+	width: 100%;
 }
 .y-axis li {
-    border-top: 1px solid #ccc;
-    display: block;
-    height: 62px;
-    width: 100%;
+	border-top: 1px solid #ccc;
+	display: block;
+	height: 62px;
+	width: 100%;
 }
 .y-axis li span {
-    display: block;
-    margin: -10px 0 0 -60px;
-    padding: 0 10px;
-    width: 40px;
+	display: block;
+	margin: -10px 0 0 -60px;
+	padding: 0 10px;
+	width: 40px;
 }
 
 /* Graph Bars */
 .bars {
-    height: 253px;
-    position: absolute;
-    width: 100%;
-    z-index: 10;
+	height: 253px;
+	position: absolute;
+	width: 100%;
+	z-index: 10;
 }
 .bar-group {
-    float: left;
-    height: 100%;
-    margin: 0 15px;
-    position: relative;
-    width: 76px;
+	float: left;
+	height: 100%;
+	margin: 0 20px;
+	position: relative;
+	width: 76px;
 }
 .bar {
-    border-radius: 3px 3px 0 0;
-    bottom: 0;
-    cursor: pointer;	
-    height: 0;
-    position: absolute;
-    text-align: center;
-    width: 24px;
+	border-radius: 3px 3px 0 0;
+	bottom: 0;
+	cursor: pointer;	
+	height: 0;
+	position: absolute;
+	text-align: center;
+	width: 24px;
 }
 .bar.fig0 {
-    left: 0;
+    left: 10px;
+    bottom: 5px;
 }
 .bar.fig1 {
-    left: 26px;
+    left: 36px;
+    bottom: 5px;
 }
-.bar.fig2 {
-    left: 52px;
-}
-.bar.fig3 {
-    left: 78px;
-}
+/* .bar.fig2 { */
+/*     left: 52px; */
+/*     bottom: 5px; */
+/* } */
+/* .bar.fig3 { */
+/*     left: 78px; */
+/* } */
+/* .bar.fig4 { */
+/*     left: 104px; */
+/* } */
+/* .bar.fig5 { */
+/*     left: 130px; */
+/* } */
+/* .bar.fig6 { */
+/*     left: 156px; */
+/* } */
+/* .bar.fig7 { */
+/*     left: 182px; */
+/* } */
+/* .bar.fig8 { */
+/*     left: 208px; */
+/* } */
+/* .bar.fig9 { */
+/*     left: 236px; */
+/* } */
+/* .bar.fig10 { */
+/*     left: 260px; */
+/* } */
+/* .bar.fig11 { */
+/*     left: 286px; */
+/* } */
 .bar span {
     background: #fefefe;
     border-radius: 3px;
@@ -208,19 +236,43 @@
 .fig2 {
     background: #eea151 url(../images/bar-03-bg.gif) 0 0 repeat-y;
 }
-.fig3 {
-    background: #7165e8 url(../images/bar-02-bg.gif) 0 0 repeat-y;
-}
+/* .fig3 { */
+/*     background: #7165e8 url(../images/bar-02-bg.gif) 0 0 repeat-y; */
+/* } */
+/* .fig4 { */
+/*     background: #e865cb url(../images/bar-02-bg.gif) 0 0 repeat-y; */
+/* } */
+/* .fig5 { */
+/*     background: #65e8ce url(../images/bar-02-bg.gif) 0 0 repeat-y; */
+/* } */
+/* .fig6 { */
+/*     background: #a9e865 url(../images/bar-02-bg.gif) 0 0 repeat-y; */
+/* } */
+/* .fig7 { */
+/*     background: #e86584 url(../images/bar-02-bg.gif) 0 0 repeat-y; */
+/* } */
+/* .fig8 { */
+/*     background: #65e8a0 url(../images/bar-02-bg.gif) 0 0 repeat-y; */
+/* } */
+/* .fig9 { */
+/*     background: #e8dd65 url(../images/bar-02-bg.gif) 0 0 repeat-y; */
+/* } */
+/* .fig10 { */
+/*     background: #a9e865 url(../images/bar-02-bg.gif) 0 0 repeat-y; */
+/* } */
+/* .fig11 { */
+/*     background: #e8dd65 url(../images/bar-02-bg.gif) 0 0 repeat-y; */
+/* } */
 
 /*
 
 e865cb
-e86584
+
 e86565
 e89665
-e8dd65
-a9e865
-65e8a0
-65e8ce
+
+
+
+
 
 */

@@ -10,52 +10,38 @@
     	<!-- Chart -->
     	<div class="chart">
 			<h3 align="center">Number of Diary Entries</h3>
-			<table id="data-table" border="1" cellpadding="10" cellspacing="0" summary="The effects of the zombie outbreak on the populations of endangered species from 2012 to 2016">
+			<table id="data-table" border="1" cellpadding="10" cellspacing="0">
 				<caption></caption>
 				<thead>
 					<tr>
-						<td>&nbsp;</td>						
-						<th scope="col">2012</th>
-						<th scope="col">2013</th>
-						<th scope="col">2014</th>
-						<th scope="col">2015</th>
-						<th scope="col">2016</th>
-						<th scope="col">2017</th>
+						<td>&nbsp;</td>	
+						<% for(var i=0; i<diary.length; i++) {%>   
+						<tr>	
+							<th scope="col"><%= diary[i].groupName %></th>
+						</tr>
+						<% } %>					
 					</tr>
 				</thead>
 				<tbody>
-					<% for(var i=0; i<groups.length; i++) {%>   
-						<tr>	
-							<th scope="row"><%= groups[i].name %></th>
-							<td>4080</td>
-							<td>6080</td>
-							<td>6240</td>
-							<td>3520</td>
-							<td>2240</td>			             
-						</tr>
-					<% } %>
+					<!-- Set up Read Diary Graph Bar -->
+					<tr>
+						<th scope="row">Unread</th>
+						<% for(var i=0; i<diary.length; i++) {%>
+							<td><%= diary[i].unreadMsg %></td>
+						<% } %>	
+					</tr>
 					
-					
-					<tr>	
-							<th scope="row">new unnamed group</th>
-							<td>4080</td>
-							<td>6080</td>
-							<td>6240</td>
-							<td>3520</td>
-							<td>2240</td>			             
-						</tr>		
-						
-						<tr>	
-							<th scope="row">Sun group</th>
-							<td>4080</td>
-							<td>6080</td>
-							<td>6240</td>
-							<td>3520</td>
-							<td>2240</td>			             
-						</tr>			
+					<!-- Set up Unread Diary Graph Bar -->
+					<tr>
+						<th scope="row">Read</th>
+						<% for(var i=0; i<diary.length; i++) {%>
+							<td><%= diary[i].readMsg %></td>
+						<% } %>	
+					</tr>						
 				</tbody>
 			</table>
 		</div> <!-- /chart -->	    
+
 	    
 		<!-- Group List -->
 	    <h3>Groups</h3>
