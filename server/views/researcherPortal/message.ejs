@@ -4,8 +4,9 @@
 <% include includes/dashboardSideBar %>
 <% include includes/dashboardHeaderBar %>
 
-  <div class="centeredContent">
-    <h1 class="title">
+
+  <div class="centeredContent" style="padding-top: 100px;">  	
+    <h1 class="title" style="display: inline;">
       Messages
     </h1>
 
@@ -121,26 +122,4 @@
             generateMarkers(locations);
           }
       });
-
-
-      //Updates the database reasearcher has read diary
-      function readDiary(msgID) {
-      	$.ajax({
-        	type: "GET",
-            url: "/updateMsg/"+msgID,
-            success: function(data)
-            {
-            	location.reload();
-                
-			},
-			error: function(data) 
-			{
-				alert("Error");
-			}
-		});
-        return false;
-	}
-
-    	
-  	
   </script>

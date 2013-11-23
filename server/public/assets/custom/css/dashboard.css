@@ -2,16 +2,17 @@
 
 body {
     min-width: 350px;
+    min-height: 99.5%; 
 }
 .container {
-  padding-top: 20px;
+  padding-top: 50px;
   padding-bottom: 0px;
-  /*background-color: #2e64fe;*/
   
   padding-right: 100px;
   padding-left: 200px;
   
   min-width: 320px;
+  min-height: 99.5%;
   
   align: center;  
 }
@@ -30,6 +31,9 @@ h1 {
 /****Menu Bar****/
  .menuBar {
  	width: 100%;
+ 	position:fixed;
+ 	
+ 	margin:0px;
  }
  
  .masthead {
@@ -139,7 +143,6 @@ a.navbar-side:hover {
 	max-width: 200px;
 	max-height: 150px;	
 }
-
 
 
 /****Table Styles****/
