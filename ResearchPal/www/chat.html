@@ -44,20 +44,17 @@
     </script>
   </head>
   <body>
-    <div style="text-align: center;">
-        <button id="refreshMsgs" class="btn btn-primary">Refresh</button>
-    </div>
     <div class="app">
-      <div class="messageWindow">
-        <div id="messages">
+      <div style="text-align: center; margin=0; height: 3px">
+        <button id="refreshMsgs" class="btn btn-primary">Refresh</button>
+      </div>
+      <div class="messagePage">
+        <div class="messageWindow" id="msgWindow">
+          <div id="messages"></div>
         </div>
-        <div style='position: absolute; left: 0; width: 100%; bottom: 0;'>
-              <div class="statusLabel"></div>
-              <textarea id="textMessage" style='height: 25px; margin: 0 auto;'></textarea>
-              <a id="send" class="btn btn-primary">Send</a>
-        </div>
-
-        
+        <div style='position: absolute; left: 5px; width: 100%; bottom: 0;'>
+        <textarea id="textMessage" style='height: 25px; margin: 0 auto;'></textarea>
+        <a id="send" class="btn btn-primary">Send</a>
         </div>
       </div>
     </div>

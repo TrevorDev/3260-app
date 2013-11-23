@@ -38,7 +38,7 @@
 				<fieldset>
 					<label id="pinLabel">Enter your PIN</label>
 					<label id="error" class="warning"></label>
-					<input id="pin" type="password" placeholder="PIN..." />
+					<input id="pin" name="mypin" type="password" placeholder="PIN..." />
 					<button type="button" class="btn btn-danger" onclick="validateUser($('#pin').val());">Enter</button>
 				</fieldset>
 			</form>
@@ -53,12 +53,20 @@
 		<script type="text/javascript" src="js/authentication.js"></script>
         <script type="text/javascript" src="js/PushNotification.js"></script>
         <script type="text/javascript">
-            app.initialize();
             $('#loginForm').on('submit', function(event) {
-                event.preventDefault(); // cancel default form submit
-                validateUser($('#pin').val());
-	           	return false;
-           	});
+                if ($('#pin').val() != '')
+                {
+                    event.preventDefault();
+                    validateUser($('#pin').val()); 
+                }
+                else
+                {
+                    event.preventDefault();
+                    return false;
+                }
+            });
+            $('#pin').focus();
+            app.initialize();
         </script>
     </body>
 </html>

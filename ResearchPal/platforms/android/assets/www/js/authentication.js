@@ -14,6 +14,7 @@ function checkIfAuthenticated(callback){
 function validateUser(pinEntered){
 	/* Add this eventually to check session.
 	checkIfAuthenticated(); */
+	console.log("before");
 	if (navigator.connection.type == Connection.NONE) {
         $('#error').text('No network connection');
         $('#error').show();   
@@ -21,6 +22,7 @@ function validateUser(pinEntered){
     else {
 		$('#error').hide();        
     }
+  console.log("AFTER");
 	if (pinEntered.length > 0)
 	{
 		$.ajax({

@@ -10,7 +10,7 @@ function loadMessages(){
           if ($.trim(messages) == 'failed'){
             alert('Error retrieving messages');
           } else {
-            updateStatus(messages.length + " Messages ");
+            //updateStatus(messages.length + " Messages ");
             for (var i = 0; i < messages.length; i++){
               var msgType = messages[i].messageType;
               if (msgType == '1'){
@@ -26,11 +26,11 @@ function loadMessages(){
                   template += 'left';
                   user = "Researcher";
                 }
-
-                template += '"><div class="well bubble"><h3>' + user + '</h3><p>' + message + '</p></div></div>';
+                template += '"><div class="well bubble"><h4>' + user + '</h3><p>' + message + '</p></div></div>';
                 $('#messages').append(template);
               }
             }
+            $("#msgWindow").scrollTop($("#msgWindow")[0].scrollHeight);
           }
         },
         error: onError
@@ -55,6 +55,7 @@ function sendMessage(msg){
     success: function(success) {
       if ($.trim(success) == "success"){
         updateStatus('Message sent successfully');
+        loadMessages();
       } else {
         updateStatus('There was an error sending your message');
       }
