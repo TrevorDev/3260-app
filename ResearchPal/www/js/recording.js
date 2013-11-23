@@ -7,29 +7,28 @@ var mediaTimer = null;
 $(document).ready(function(){
     var recordBtn = $('#recordButton');
     var stopBtn = $('#stopButton');
+    var stopRecordingBtn = $('#stopRecordingButton');
     var playBtn = $('#playButton');
     var sendRecBtn = $('#sendRecordingBtn');
 
-    getGPSLocation(function(latitude, longitude){
-        updateRecordingLabel("latitude " + latitude + " longitude " + longitude);
-    });
-
     recordBtn.click(function(){
         record();
-        recordBtn.hide();
+        /* recordBtn.hide(); */
         stopBtn.show();
     });
-
+    stopRecordingBtn.click(function(){
+        stopRecording();
+    })
     stopBtn.click(function(){
         stop();
-        stopBtn.hide();
+        /* stopBtn.hide(); */
         playBtn.show();
         sendRecBtn.show();
     });
 
     playBtn.click(function(){
         play();
-        playBtn.hide();
+        /* playBtn.hide(); */
         stopBtn.show();
     });
 
@@ -158,20 +157,16 @@ function createMedia(onMediaCreated, mediaStatusCallback){
     }, onError); //of requestFileSystem
 }
 
+function stopRecording(){
+    mediaVar.stopRecord();
+    updateRecordingLabel("Recording stopped");
+}
 function stop() {
     if (mediaVar == null)
         return;
 
-    if (status == 'recording') {
-        mediaVar.stopRecord();
-        updateRecordingLabel("Recording stopped");
-    }
-    else if (status == 'playing') {
-        mediaVar.stop();
-        updateRecordingLabel("Play stopped");
-    } else {
-        updateRecordingLabel("Nothing stopped");
-    }
+    mediaVar.stop();
+    updateRecordingLabel("Play stopped");
     status = 'stopped';
 }
 

@@ -134,7 +134,7 @@ function checkConnection() {
     if (navigator.connection.type == Connection.NONE) {
         $('#error').text('No network connection');
         $('#error').show();
-    else {
+    } else {
         initPushwoosh();
         $('#error').hide();
     }
