@@ -73,13 +73,11 @@ function showConfirm() {
 }
 
 function onConfirm() {
-    alert("sending");
     sendRecording();
     sendRecBtn.hide();
     stopBtn.hide();
     playBtn.hide();
     recordBtn.show();
-    alert("done");
 }
 
 function play(){
