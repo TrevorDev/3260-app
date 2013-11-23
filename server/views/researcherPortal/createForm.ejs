@@ -1,49 +1,157 @@
-<% include includes/header %>
+<!-- HTML Header Files -->
+<% include includes/dashboardHeader %> 
+<% include includes/header %> 
+<% include includes/dashboardSideBar %> 
+<% include includes/dashboardHeaderBar %>
 
-            <div class="masthead">
-                <div class="container-wide">
-                    <div class="row">
-                        
-                        <h1 style="display: inline;">
-                            Create Group
-                        </h1>
-                        <div class="well" style="margin-top:100px;border:solid 10px;">
-                        <form id="createGroup">
-                                <h3>Group Info</h3>
-                                <input name="name" type="text" placeholder="Group Name">
-                                <input name="keyword" type="text" placeholder="Keyword">
-                                <input type="date" name="start">
-                                <input type="date" name="end">
-                                <h3>Additional Info and questions to be displayed on application form</h3>
-                                <br>
-                                <textarea rows="10" name="questions" style="width:100%;"></textarea>
-                                <br>
-                                <br>
-                                <button id="create" type="submit" class="btn btn-danger">Create</button>
-                        </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div id="push">
-            </div>
-        </div>
+	<!-- Group Creation Section -->
+	<div class="centeredContent">
+		<h1 style="display: inline;">Create Group</h1>
+		<div class="well" style="margin-top: 100px; border: solid 10px;">
+			<form id="createGroup">
+				<h3>Group Info</h3>
+				<input id="groupName" name="name" type="text"
+					placeholder="Group Name"> <input id='keywordID' name="keyword"
+					type="text" placeholder="Keyword"> <input id='startDate' type="date"
+					name="start"> <input id='endDate' type="date" name="end">
+	
+				<div id='gNameErr' style="display: none">
+					<font color="#FF0000">* Group name must be entered</font>
+				</div>
+				<div id='keywordErr' style="display: none">
+					<font color="#FF0000">* Keyword must be entered</font>
+				</div>
+				<div id='startDateErr' style="display: none">
+					<font color="#FF0000">* You must select a Start Date</font>
+				</div>
+				<div id='startDateErr3' style="display: none">
+					<font color="#FF0000">* Please enter a valid start date</font>
+				</div>
+				<div id='startDateErr2' style="display: none">
+					<font color="#FF0000">* The End Date must be after the Start Date</font>
+				</div>
+				<div id='endDateErr' style="display: none">
+					<font color="#FF0000">* You must select an End Date</font>
+				</div>
+				<div id='endDateErr2' style="display: none">
+					<font color="#FF0000">* The End Date must be after the Start Date</font>
+				</div>
+				<h3>Additional Info and questions to be displayed on application form</h3>
+				<br>
+				<textarea id="questionsID" rows="10" name="questions"
+					style="width: 100%;"></textarea>
+				<div id='questionsErr' style="display: none">
+					<font color="#FF0000">* You must enter questions</font>
+				</div>
+				<br> <br>
+				<button id="create" type="submit" class="btn btn-danger">Create</button>
+			</form>
+		</div>
+	</div>
 
-        <% include includes/footer %>
-        <script>
-             $("#create").click(function() {
-                 $.ajax({
-                   type: "POST",
-                   url: '/createGroup',
-                   data: $("#createGroup").serialize(), // serializes the form's elements.
-                   success: function(data)
-                   {
-                        alert('Created!');
-                        window.location = "/dashboard";
-                   }
-                 });
 
-                 return false;
-            });
-        </script>
+	<!-- Load Java Script -->
+	<% include includes/footer %>
+	
+	<script>
+		$("#create").click(function() {
+	
+		    // Variable declarations for easy readability
+		    var errorFlag = 0;
+		    var missingDateFlag = 0;
+	
+		    // group name & error
+		    var groupName = document.getElementById('groupName');
+		    var gNameErr = document.getElementById('gNameErr');
+	
+		    // keword name & error
+		    var keywordID = document.getElementById('keywordID');
+		    var keywordErr = document.getElementById('keywordErr');
+	
+		    // question name & error
+		    var questionsID = document.getElementById('questionsID');
+		    var questionsErr = document.getElementById('questionsErr');
+	
+		    // start date & error
+		    var startDate = document.getElementById('startDate');
+		    var startDateErr = document.getElementById('startDateErr');
+		    var startDateErr2 = document.getElementById('startDateErr2');
+		    var startDateErr3 = document.getElementById('startDateErr3');
+	
+		    // end date & error
+		    var endDate = document.getElementById('endDate');
+		    var endDateErr = document.getElementById('endDateErr');
+		    var endDateErr2 = document.getElementById('endDateErr2');
+	
+		    // Current date variables
+		    var todayDate = new Date();
+		    var month = todayDate.getMonth() + 1;
+		    var day = todayDate.getDate();
+		    var year = todayDate.getFullYear();
+		    var newDate = year + "-" + month + "-" + day;
+	
+		    console.log(newDate);
+		    console.log(document.getElementById('startDate').value);
+		    console.log(document.getElementById('endDate').value);
+	
+		    gNameErr.style.display = 'none'
+		    keywordErr.style.display = 'none'
+		    questionsErr.style.display = 'none'
+		    startDateErr.style.display = 'none'
+		    startDateErr2.style.display = 'none'
+		    endDateErr.style.display = 'none'
+		    endDateErr2.style.display = 'none'
+		    startDateErr3.style.display = 'none'
+	
+		    // checking for missing or incorrect user input
+		    if (groupName.value == "") {
+		        gNameErr.style.display = 'block'
+		        errorFlag = 1;
+		    }
+		    if (keywordID.value == "") {
+		        keywordErr.style.display = 'block'
+		        errorFlag = 1;
+		    }
+		    if (questionsID.value == "") {
+		        questionsErr.style.display = 'block'
+		        errorFlag = 1;
+		    }
+	
+		    if (startDate.value == "") {
+		        startDateErr.style.display = 'block'
+		        errorFlag = 1;
+		        missingDateFlag = 1;
+		    }
+		    if (endDate.value == "") {
+		        endDateErr.style.display = 'block'
+		        errorFlag = 1;
+		        missingDateFlag = 1;
+		    }
+		    if (startDate.value < newDate && startDate.value != "") {
+		        startDateErr3.style.display = 'block'
+		        errorFlag = 1;
+		    }
+		    if (startDate.value > endDate.value && missingDateFlag == 0) {
+		        startDateErr2.style.display = 'block'
+		        errorFlag = 1;
+		    }
+	
+		    console.log(errorFlag);
+		    if (errorFlag == 1) {
+		        return false;
+		    }
+	
+		    $.ajax({
+		        type : "POST",
+		        url : '/createGroup',
+		        data : $("#createGroup").serialize(), // serializes the form's
+		                                                // elements.
+		        success : function(data) {
+		            alert('Created!');
+		            window.location = "/dashboard";
+		        }
+		    });
+	
+		    return false;
+		});
+	</script>
