@@ -27,6 +27,7 @@ var formM = rek('formModel.js');
 var userM = rek('userModel.js');
 var groupM = rek('groupModel.js');
 var messageM = rek('messageModel.js');
+var email = rek('email.js');
 
 
 /*Redirects to home page*/
@@ -149,8 +150,11 @@ exports.approveApp = function(req, res, next) {
     /*Determines if the user is logged in*/
     if(researchAuth.auth(req)){
         /*Call controller to approve applicant*/
-        userM.approveApplicant(req.params.id, function(applyData){         
-            res.redirect('/dashboard');
+        userM.approveApplicant(req.params.id, function(applyData){
+            userM.getParticipant(req.params.id, function(err, participant){
+                email.sendEmail(participant.email,"Reasearch Pal Application","You have been approved on researchPal! Your pin is "+participant.pin);         
+                res.redirect('/dashboard');
+            });
         });
     }else{
         res.redirect('/');

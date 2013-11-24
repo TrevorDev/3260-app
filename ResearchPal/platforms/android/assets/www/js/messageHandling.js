@@ -26,7 +26,7 @@ function loadMessages(){
                   template += 'left';
                   user = "Researcher";
                 }
-                template += '"><div class="well bubble"><h3>' + user + '</h3><p>' + message + '</p></div></div>';
+                template += '"><div class="well bubble"><h4>' + user + '</h3><p>' + message + '</p></div></div>';
                 $('#messages').append(template);
               }
             }
@@ -55,6 +55,7 @@ function sendMessage(msg){
     success: function(success) {
       if ($.trim(success) == "success"){
         updateStatus('Message sent successfully');
+        loadMessages();
       } else {
         updateStatus('There was an error sending your message');
       }

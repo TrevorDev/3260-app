@@ -135,7 +135,8 @@ function checkConnection() {
         $('#error').text('No network connection');
         $('#error').show();
     } else {
-        initPushwoosh();
+        /* Sucking the battery life. Not sure why. Heesung, feel free to uncomment this if you find a fix
+        initPushwoosh(); */
         $('#error').hide();
     }
 }
@@ -158,7 +159,7 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         checkConnection();
-        app.receivedEvent('deviceready');
+        /* app.receivedEvent('deviceready'); */
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {

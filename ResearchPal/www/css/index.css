@@ -164,3 +164,36 @@ h1 {
 .msgInputArea{
     height: 30px;
 }
+
+.footer-bar{
+    position: absolute;
+    bottom: 0;
+    height: 40px;
+    background: #222;
+    line-height: 40px;
+    width: 100%;
+}
+.header-bar{
+    position: absolute;
+    top: 0;
+    height: 40px;
+    background: #222;
+    width: 100%;
+    line-height: 40px;
+}
+
+.paddedContent{
+    padding: 0 10px;
+}
+
+.centeredContent{
+    text-align: center;
+}
+
+.infoPanel{
+    line-height: 40px;
+    background: #5cb85c;
+    width: 100%;
+    display: none;
+    padding-left: 10px;
+}

@@ -154,8 +154,26 @@ exports.getResearcher= function(userID,callback) {
   });
 }
 
+<<<<<<< HEAD
 
 /*Get List of Participant for a Group*/
+=======
+exports.getParticipant= function(userID,callback) {
+  var conn = db.getConnection();
+  conn.query("Select * " +
+                "from participant, user " +
+                "where participant.userID = user.userID " +
+                  "and participant.userID = " + conn.escape(userID), function(err, rows, fields) {
+    if (err) throw err;
+    if(rows.length>0){
+      callback(true,rows[0]);
+    }else{
+      callback(false);
+    }
+  });
+}
+
+>>>>>>> 15d01efb29c3bf6d2fb5b139f3176cad2ab6f803
 exports.getGroupParticipants = function(groupID, callback) {
     var conn = db.getConnection();
     conn.query(

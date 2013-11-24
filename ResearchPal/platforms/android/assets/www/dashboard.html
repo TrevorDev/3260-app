@@ -26,7 +26,7 @@
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css" />
-        <script type="text/javascript" src="phonegap.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script src="js/authentication.js" type="text/javascript"></script>
@@ -35,16 +35,29 @@
     </head>
     <body>
         <div class="app">
+          <div class="header-bar">
+            <div class="paddedContent">    
+                <button class="btn btn-default" onclick='logout();'>Logout</button>
+            </div>
+            <div class="infoPanel">
+                <p><b>Message sent!</b></p>
+            </div>
+          </div>
           <div class="login">
             <h1>Welcome</h1>
-            <button class="btn btn-danger" onclick='logout();'>Logout</button>
+            <p>Press "Record" to begin recording your thoughts.</p>
+            <button id="recordButton" class="btn btn-danger">Record</button>
+            <button id="stopRecordingButton" class="btn btn-danger" style="display: none;">Stop</button>
+            <br />
             <button class="btn btn-default" onclick='chat();'>chat</button>
-            <button id="recordButton" class="btn btn-default">Record</button>
-            <button id="stopButton" class="btn btn-default">Stop</button>
-            <button id="stopRecordingButton" class="btn btn-default">StopRecording</button>
-            <button id="playButton" class="btn btn-default" >Play</button>
-            <button id="sendRecordingBtn" class="btn btn-success">Send Recording</button>
             <p id="recordingLabel"></p>
+          </div>
+          <div class="footer-bar" style= "display: none;">
+            <div class="centeredContent">
+                <button id="playButton" class="btn btn-success" >Play</button>
+                <button id="stopButton" class="btn btn-danger" style="display: none;">Stop</button>
+                <button id="sendRecordingBtn" class="btn btn-info">Send</button>
+            </div>
           </div>
         </div>
     </body>

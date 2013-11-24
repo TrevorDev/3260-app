@@ -71,8 +71,11 @@ app.post('/appAuth/login', appAuth.validateUser);
 app.post('/researchAuth', researchAuth.login);
 app.post('/createGroup', applyForm.createGroup);
 app.post('/submitApplication', applyForm.submitForm);
+<<<<<<< HEAD
 app.get('/approveApplicant/:participantID', userModel.approveApplicant);
 app.post('/createResearcherAcc', applyForm.addResearcher);
+=======
+>>>>>>> 15d01efb29c3bf6d2fb5b139f3176cad2ab6f803
 app.post('/newRecording', messaging.addRecording);
 app.post('/sendTextMessage', messaging.sendTextMessage);
 app.listen(80);
