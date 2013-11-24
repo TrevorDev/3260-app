@@ -39,6 +39,7 @@
         $('#refreshMsgs').click(function(){loadMessages(); });
         $("#send").click(function(){
           sendMessage($('#textMessage').val());
+          $('#textMessage').val('');
         });
       });
     </script>

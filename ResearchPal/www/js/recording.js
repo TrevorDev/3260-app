@@ -49,7 +49,6 @@ $(document).ready(function(){
             return false;
         }
 
-        console.log("STATE " + states[navigator.connection.type]);
         if (navigator.connection.type == Connection.WIFI)
         {
             onConfirm();
@@ -85,6 +84,9 @@ function play(){
         }, onError, null);
 
     mediaVar.play();
+
+    playBtn.hide();
+    stopBtn.show();
 
     if (mediaTimer == null) {
         mediaTimer = setInterval(function() {
@@ -129,6 +131,9 @@ function record(){
         console.log("Starting to record");
         mediaVar.startRecord();
         updateRecordingLabel("recording");
+        // Show stopRecording button
+        recordBtn.hide();
+        stopRecordingBtn.show();
     },onStatusChange);
 }
 
@@ -162,6 +167,12 @@ function stopRecording(){
     if (mediaVar != null){
         mediaVar.stopRecord();
         updateRecordingLabel("Recording stopped");
+
+        // Hide stop button
+        stopRecordingBtn.hide();
+        recordBtn.show();
+        resetSendBtn();
+        $('.footer-bar').slideDown();
     }
 }
 function stop() {
@@ -172,6 +183,10 @@ function stop() {
     clearInterval(mediaTimer);
     mediaTimer = null;
     updateRecordingLabel("Play stopped");
+
+    // hide stop button show play button.
+    stopBtn.hide();
+    playBtn.show();
 }
 
 function onStatusChange(status){
@@ -233,6 +248,7 @@ function sendRecording(){
         file.upload(fullUploadPath, encodeURI("http://131.104.48.208/newRecording"), function(success){
                 if (success = "success"){
                     updateRecordingLabel('Recording sent!');
+                    onSent();
                     // TODO: Delete recording here.
                 } else {
                     updateRecordingLabel('Failed to send the recording to the server. Check your connection.');
@@ -247,4 +263,22 @@ function getGPSLocation(callback){
     navigator.geolocation.getCurrentPosition(function(position){
         callback(position.coords.latitude, position.coords.longitude);
     }, onError);
+}
+
+function onSent(){
+    sendRecBtn.attr('disabled', 'disabled');
+    sendRecBtn.removeClass('btn-info');
+    sendRecBtn.addClass('btn-success');
+    sendRecBtn.html('Sent!');
+
+    $('.footer-bar').slideUp();
+    $('.infoPanel').slideDown();
+    setTimeout(function(){ $('.infoPanel').slideUp(); },2000);
+}
+
+function resetSendBtn(){
+    sendRecBtn.removeAttr('disabled');
+    sendRecBtn.removeClass('btn-success');
+    sendRecBtn.addClass('btn-info');
+    sendRecBtn.html('Send');
 }
