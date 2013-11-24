@@ -57,9 +57,6 @@ body {
   float: right;
  }
  
- td {
-/*    margin-right:50%; */
- }
  
  .researcherInfo {
   padding-left: 12%;
@@ -87,8 +84,8 @@ h1 {
 
 
 .hero-unit {
-  padding: 60px;
-  margin-bottom: 30px;
+  padding: 50px;
+  margin-top: 30px;
   font-size: 18px;
   font-weight: 200;
   line-height: 30px;
@@ -98,14 +95,15 @@ h1 {
          -moz-border-radius: 10px;
           border-radius: 10px;
           
-   min-height: 370px;
+   min-height: 370px;  
+   
  }
  
  
  .hero-unit .btn {
  	vertical-align:bottom;
  	bottom: 0px;
- 	width: 160px;
+ 	width: 140px;
  }
 
  /* Message Page */

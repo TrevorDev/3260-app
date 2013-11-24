@@ -1,95 +1,119 @@
 <% include includes/header %>
 
-            
-                <div class="container-wide">
-                    <div class="row">
-                        
-                        <h1 style="display: inline;">
-                            Application Form
-                        </h1>
-                        <div class="well" style="margin-top:100px;border:solid 10px;">
-                        <form id="application">
-                                <h3>Your Info</h3>
-                                <input id="fNameID" name="fname" type="text" placeholder="First Name">
-                                <input id="lNameID" name="lname" type="text" placeholder="Last Name">
-                                <input id="emailID" name="email" type="text" placeholder="Email">
-                                <div id='fNameError' style="display: none"><font color="#FF0000">* First Name must be entered</font></div>
-                                <div id='lNameError' style="display: none"><font color="#FF0000">* Last Name must be entered</font></div>
-                                <div id='emailError' style="display: none"><font color="#FF0000">* An email must be entered</font></div>
-                                <input name="groupID" type="hidden" value=<%= form.groupID %>>
-                                <h3>Additional Questions</h3>
-                                <%- form.extraQuestions %>
-                                <br>
-                                <textarea id="ansID" rows="10" name="answers" style="width:100%;"></textarea>
-                                <div id='answerError' style="display: none"><font color="#FF0000">* Answers to the above questions must be provided</font></div>
-                                <br>
-                                <p>I agree to everything above <input id="agreeID" type="checkbox"></p>
-                                <button id="apply" type="submit" class="btn btn-danger">Submit</button>
-                            <!--<fieldset>
-                                <input name="username" type="text" placeholder="Username" /><br><br>
-                                <input name="password" type="text" placeholder="Password" /><br><br>
-                                <button id="loginButton" type="submit" class="btn btn-danger">Login</button>
-                            </fieldset>-->
-                        </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-        
-
-        <% include includes/footer %>
-        <script>
-              
-
-              $("#apply").click(function() {
-                var errorFlag = 0;
-                document.getElementById('fNameError').style.display='none'
-                document.getElementById('lNameError').style.display='none'
-                document.getElementById('emailError').style.display='none'
-
-                var isChecked = $('#agreeID').is(':checked');
+	<!-- Registration Form -->
+	<div class="container">
+	    <div class="row">	        
+	        <h1 style="display: inline;">
+	            Registration
+	        </h1>
+	        
+	        <!-- User Information Request -->
+	        <div class="well" style="margin-top:100px;border:solid 10px;">
+	        <form id="application">
+	                <h3>Your Info</h3>
+	                <br>
+	                
+	                <h4>To register as a researcher please complete the following form:</h4>
+	                <input id="fNameID" name="fname" type="text" placeholder="First Name">
+	                <input id="lNameID" name="lname" type="text" placeholder="Last Name">
+	                <input id="emailID" name="email" type="text" placeholder="Email">
+	                <div id='fNameError' style="display: none"><font color="#FF0000">* First Name must be entered</font></div>
+	                <div id='lNameError' style="display: none"><font color="#FF0000">* Last Name must be entered</font></div>
+	                <div id='emailError' style="display: none"><font color="#FF0000">* An email must be entered</font></div>
+	                <br><br>
+	                
+	                <h4>Please think of a username and password to log into the system with:</h4>
+	                <input id="usernameID" name="username" type="text" placeholder="User Name">
+	                <input id="passwordID" name="password" type="password" placeholder="Password">
+	                <div id='usernameError' style="display: none"><font color="#FF0000">* Username must be entered</font></div>
+	                <div id='passwordError' style="display: none"><font color="#FF0000">* Password must be entered</font></div>
+	                <br><br>
+	                
+	                <input id="passwordConfirmID" name="passwordConfirm" type="password" placeholder="Confirm Password">
+	                <div id='passwordConfirmError' style="display: none"><font color="#FF0000">* Password doesn't match</font></div>
+	                	                
+	                <!-- Terms of Use of the ResearchPal system -->
+	                <p>
+	                    <input id="agreeID" type="checkbox">
+	                    I agree that I will not abuse the use of the system in the act of selling individuals' information or any illegal acts that will be punishable by the law.
+	                </p>
+	                <button id="apply" type="submit" class="btn btn-danger">Submit</button>
+	        </form>
+	        </div>
+	    </div>
+	</div>
 
 
+	<!-- Load Java Script -->
+	<% include includes/footer %>
+	<script>	
+	      $("#apply").click(function() {
+		    /*Set Error Messages on Page*/
+	        var errorFlag = 0;
+	        document.getElementById('fNameError').style.display='none';
+	        document.getElementById('lNameError').style.display='none';
+	        document.getElementById('emailError').style.display='none';
+			document.getElementById('usernameError').style.display='none';		        
+			document.getElementById('passwordError').style.display='none';
+			document.getElementById('passwordConfirmError').style.display='none';
 
-                if(document.getElementById("fNameID").value == "")
-                {
-                  document.getElementById('fNameError').style.display='block'
-                  errorFlag = 1;
-                }
-                if(document.getElementById("lNameID").value == "") {
-                  document.getElementById('lNameError').style.display='block'
-                  errorFlag = 1;
-                }
-                if(document.getElementById("emailID").value == "") {
-                  document.getElementById('emailError').style.display='block'
-                  errorFlag = 1;
-                }
-                if(document.getElementById("ansID").value == "") {
-                  document.getElementById('answerError').style.display='block'
-                  errorFlag = 1;
-                }
-                if (isChecked == false) {
-                  alert("You must agree to all research policies.");
-                  errorFlag = 1;
-                }
+			/*Get checkbox value*/
+	        var isChecked = $('#agreeID').is(':checked');
+	
+			/*Check that all fields have been completed*/
+	        if(document.getElementById("fNameID").value == "")
+	        {
+	          document.getElementById('fNameError').style.display='block';
+	          errorFlag = 1;
+	        }
+	        if(document.getElementById("lNameID").value == "") {
+	          document.getElementById('lNameError').style.display='block';
+	          errorFlag = 1;
+	        }
+	        if(document.getElementById("emailID").value == "") {
+	          document.getElementById('emailError').style.display='block';
+	          errorFlag = 1;
+	        }
+	        if(document.getElementById("usernameID").value == "") {
+		          document.getElementById('usernameError').style.display='block';
+		          errorFlag = 1;
+			}
+	        if(document.getElementById("passwordID").value == "") {
+		          document.getElementById('passwordError').style.display='block';
+		          errorFlag = 1;
+		    }
+	        if(document.getElementById("passwordConfirmID").value == "" || document.getElementById("passwordConfirmID").value != document.getElementById("passwordID").value) {
+		          document.getElementById('passwordConfirmError').style.display='block';
+		          errorFlag = 1;
+		    }
+	        if (isChecked == false) {
+	          alert("You must agree ResearchPal policies.");
+	          errorFlag = 1;
+	        }
 
-                console.log(errorFlag);
-                if (errorFlag == 1) {
-                   return false;
-                }
+	    	/*Determine if any errors present*/
+	        console.log(errorFlag);
+	        if (errorFlag == 1) {
+	           return false;
+	        }
 
-                 $.ajax({
-                   type: "POST",
-                   url: '/submitApplication',
-                   data: $("#application").serialize(), // serializes the form's elements.
-                   success: function(data)
-                   {
-                        alert('Application Submitted!');
-                        window.location = "/dashboard";
-                   }
-                 });
-
-                 return false;
-            });
-        </script>
+	    	/*Create researcher account*/
+	         $.ajax({
+	           type: "POST",
+	           url: '/createResearcherAcc',
+	           data: $("#application").serialize(), // serializes the form's elements.
+	           success: function(data)
+	           {
+		           if (data == false) {
+	 	                alert('Account Created');
+	                	window.location = "/home";
+		           }
+		           else {
+			           alert("Username already exists please choose a different one");
+		           }
+	           }
+	         });
+	
+	         return false;
+	    });
+</script>        
