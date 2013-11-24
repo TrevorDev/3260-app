@@ -2,6 +2,7 @@
 var express = require('express');
 var ejs = require('ejs');
 var app = express();
+
 //CUSTOM modules
 var rek = require('rekuire');
 var db = rek('database.js');
@@ -44,6 +45,7 @@ app.get('/group/:id', mainSite.showGroupParticipant);
 
 app.get('/message/:participantID', mainSite.showMessage);
 app.get('/message', mainSite.getMessages);
+app.get ('/updateMsg/:msgID', mainSite.updateDiaryStatus);
 
 app.get('/approveApp/:id', mainSite.approveApp);
 app.get('/rejectApp/:id', mainSite.rejectApp);

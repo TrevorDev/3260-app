@@ -1,7 +1,7 @@
-/*NodeJS Function Variable Declaration*/
+/*NodeJS Modules*/
 var rek = require('rekuire');
 
-/*Variable Referencing to additional files*/
+/*Custom Modules*/
 var db = rek('database.js');
 var uuid = require('node-uuid');
 
@@ -42,13 +42,13 @@ exports.storeText = function(msgFrom, msgTo, msg, callback) {
 }
 
 
-/*Retreive Messages and Diary Entries*/
+/*Retrieve Messages and Diary Entries*/
 exports.getConversation = function(msgFrom, msgTo, callback){
   var conn = db.getConnection();
 
   /*Get Messages and General of Diary Information*/
   conn.query(
-    "Select path, timeSent, msg, messageType,fromUserID, latitude, longitude"+
+    "Select path, timeSent, msg, messageType,fromUserID, latitude, longitude, messageRead, message.messageID"+
     " from recording, message, textMsg"+
     " where (recording.messageID = message.messageID or textMsg.messageID = message.messageID)"+
         " and ((fromUserID=" + conn.escape(msgFrom) + " and toUserID=" + conn.escape(msgTo) + ") or (fromUserID=" + conn.escape(msgTo) + " and toUserID=" + conn.escape(msgFrom) + "))"+
@@ -88,6 +88,7 @@ exports.retrieveList = function(msgFrom, msgTo, callback){
 exports.NumReadEntries = function(username, callback){
     var conn = db.getConnection();
     
+    /*Pull the total number of diary Entries that have been read and haven't*/
     conn.query(
         "SELECT group.groupID, group.name as groupName, " +
         "SUM(case when messageRead is not NULL " +
@@ -114,5 +115,20 @@ exports.NumReadEntries = function(username, callback){
         "GROUP by group.groupID;", function(err, rows, fields) {
         if (err) throw err;
         callback(rows);
+    });
+}
+
+
+/*Update status of Diary Entry being read*/
+exports.updateMsgRead = function(msgID, callback){
+    var conn = db.getConnection();
+    
+    /*Update database*/
+    conn.query(
+        "UPDATE pal.message " +
+        "SET message.messageRead = 1 " +
+        "WHERE message.messageID = "  + conn.escape(msgID) + ";", function(err, result) {
+        if (err) throw err;
+        callback(true);
     });
 }

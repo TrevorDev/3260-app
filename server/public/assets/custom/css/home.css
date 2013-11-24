@@ -12,9 +12,10 @@ body {
   margin: auto;
 }
 
-/****Menu Bar****/
+/* ***Menu Bar*** */
  .menuBar {
   width: 100%;
+  position:fixed;
  }
  
  .masthead {
@@ -69,7 +70,7 @@ body {
   padding-left: 7%;
   padding-right: 7%;
  }
-/** END Menu Bar ***/
+/** END Menu Bar ** */
 .row img {
 	height: 200px;	
 }
