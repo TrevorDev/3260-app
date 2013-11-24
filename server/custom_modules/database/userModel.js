@@ -154,10 +154,7 @@ exports.getResearcher= function(userID,callback) {
   });
 }
 
-<<<<<<< HEAD
 
-/*Get List of Participant for a Group*/
-=======
 exports.getParticipant= function(userID,callback) {
   var conn = db.getConnection();
   conn.query("Select * " +
@@ -173,7 +170,7 @@ exports.getParticipant= function(userID,callback) {
   });
 }
 
->>>>>>> 15d01efb29c3bf6d2fb5b139f3176cad2ab6f803
+/*Get List of Participant for a Group*/
 exports.getGroupParticipants = function(groupID, callback) {
     var conn = db.getConnection();
     conn.query(
