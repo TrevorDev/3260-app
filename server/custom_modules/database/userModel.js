@@ -90,6 +90,21 @@ exports.getResearcher= function(userID,callback) {
   });
 }
 
+exports.getParticipant= function(userID,callback) {
+  var conn = db.getConnection();
+  conn.query("Select * " +
+                "from participant, user " +
+                "where participant.userID = user.userID " +
+                  "and participant.userID = " + conn.escape(userID), function(err, rows, fields) {
+    if (err) throw err;
+    if(rows.length>0){
+      callback(true,rows[0]);
+    }else{
+      callback(false);
+    }
+  });
+}
+
 exports.getGroupParticipants = function(groupID, callback) {
     var conn = db.getConnection();
     conn.query(
