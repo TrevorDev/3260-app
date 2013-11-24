@@ -4,7 +4,6 @@ var crypto = require('crypto');
 
 var algorithm = 'aes256'; // choose encryption algo type
 var key = 'password';
-var text = 'I love kittens';
 var cipher = crypto.createCipher(algorithm, key);
 var decipher = crypto.createDecipher(algorithm, key);
 
