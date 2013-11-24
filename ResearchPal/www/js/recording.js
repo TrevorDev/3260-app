@@ -1,35 +1,32 @@
 var mediaVar = null;
 var recordFileName = "recording.mp3";
-var status = null;
 var fullUploadPath = null;
 var mediaTimer = null;
+var recordBtn;
+var stopBtn;
+var stopRecordingBtn;
+var playBtn;
+var sendRecBtn;
 
 $(document).ready(function(){
-    var recordBtn = $('#recordButton');
-    var stopBtn = $('#stopButton');
-    var stopRecordingBtn = $('#stopRecordingButton');
-    var playBtn = $('#playButton');
-    var sendRecBtn = $('#sendRecordingBtn');
+    recordBtn = $('#recordButton');
+    stopBtn = $('#stopButton');
+    stopRecordingBtn = $('#stopRecordingButton');
+    playBtn = $('#playButton');
+    sendRecBtn = $('#sendRecordingBtn');
 
     recordBtn.click(function(){
         record();
-        /* recordBtn.hide(); */
-        stopBtn.show();
     });
     stopRecordingBtn.click(function(){
         stopRecording();
     })
     stopBtn.click(function(){
         stop();
-        /* stopBtn.hide(); */
-        playBtn.show();
-        sendRecBtn.show();
     });
 
     playBtn.click(function(){
         play();
-        /* playBtn.hide(); */
-        stopBtn.show();
     });
 
     sendRecBtn.click(function(){
@@ -52,9 +49,11 @@ $(document).ready(function(){
             return false;
         }
 
+        console.log("STATE " + states[navigator.connection.type]);
         if (navigator.connection.type == Connection.WIFI)
         {
-            onConfirm();   
+            onConfirm();
+            return;
         }
         showConfirm();
 
@@ -64,7 +63,7 @@ $(document).ready(function(){
 
 function showConfirm() {
     navigator.notification.confirm(
-        'Are you sure send the message over data plan?',  // message
+        'Are you sure send the message over your data plan?',  // message
         onConfirm,              // callback to invoke with index of button pressed
         'WIFI Warning',            // title
         ['Confirm', 'Cancel']          // buttonLabels
@@ -73,10 +72,6 @@ function showConfirm() {
 
 function onConfirm() {
     sendRecording();
-    sendRecBtn.hide();
-    stopBtn.hide();
-    playBtn.hide();
-    recordBtn.show();
 }
 
 function play(){
@@ -90,7 +85,6 @@ function play(){
         }, onError, null);
 
     mediaVar.play();
-    status = "playing";
 
     if (mediaTimer == null) {
         mediaTimer = setInterval(function() {
@@ -98,7 +92,8 @@ function play(){
             mediaVar.getCurrentPosition(
                 // success callback
                 function(position) {
-                    if (position > -1) {
+                    position = Math.round(position);
+                    if (position >= 0) {
                         updateRecordingLabel((position) + " sec");
                     } else {
                         stopBtn.click();
@@ -126,51 +121,82 @@ function updateRecordingLabel(message){
 }
 
 function record(){
+    console.log("Recording button clicked");
     if (mediaVar != null) {
         mediaVar.release();
     }
     createMedia(function(){
-        status = "recording";
+        console.log("Starting to record");
         mediaVar.startRecord();
-        updateRecordingLabel(status);
+        updateRecordingLabel("recording");
     },onStatusChange);
 }
 
 function createMedia(onMediaCreated, mediaStatusCallback){
+    console.log("Attempting to create media");
+
     if (mediaVar != null) {
+        console.log("Media var already exists.");
         onMediaCreated();
         return;
     }
 
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-
+        console.log("Requesting file system");
         fileSystem.root.getFile(recordFileName, {
             create: true,
             exclusive: false
         }, function(fileEntry){
             fullUploadPath = fileEntry.fullPath;
+            console.log("Attempting to create new media object");
             mediaVar = new Media(recordFileName, function(){
-                log("Android media created successfully");
+                log("Successful action");
             }, onError, mediaStatusCallback);
+            console.log("Recording");
             onMediaCreated();
         }, onError); //of getFile
     }, onError); //of requestFileSystem
 }
 
 function stopRecording(){
-    mediaVar.stopRecord();
-    updateRecordingLabel("Recording stopped");
+    if (mediaVar != null){
+        mediaVar.stopRecord();
+        updateRecordingLabel("Recording stopped");
+    }
 }
 function stop() {
     if (mediaVar == null)
         return;
 
     mediaVar.stop();
+    clearInterval(mediaTimer);
+    mediaTimer = null;
     updateRecordingLabel("Play stopped");
-    status = 'stopped';
 }
 
-function onStatusChange(){
+function onStatusChange(status){
+    var msg;
+    switch (status){
+        case Media.MEDIA_NONE:
+            msg = "Media None?";
+            break;
+        case Media.MEDIA_STARTING:
+            msg = "Playing";
+            break;
+        case Media.MEDIA_RUNNING:
+            msg= "Running";
+            break;
+        case Media.MEDIA_PAUSED:
+            msg = "Paused";
+            break;
+        case Media.MEDIA_STOPPED:
+            msg = "Stopped";
+            break;
+        default:
+            console.log("Unknown media status");
+            break;
+    }
+    updateRecordingLabel(msg);
 }
 
 function onSuccess(){
@@ -182,7 +208,6 @@ function onError(err){
         err = err.message;
     alert("Error : " + err);
 }
-
 function log(message){
     console.log(message);
 }
