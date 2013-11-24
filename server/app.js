@@ -1,3 +1,17 @@
+/*********************************************************************
+* PROJECT: ResearchPal
+* FILE NAME: app.js
+*
+* AUTHOR: 
+*   Heesung Ahn
+*   Trevor Baron
+*   Anuj Bhatia
+*   Angela Pang
+*   Dan Robinson 
+*
+* DATE CREATED: 01/10/2013
+*********************************************************************/
+
 /*NODE JS modules*/
 var express = require('express');
 var ejs = require('ejs');

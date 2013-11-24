@@ -1,3 +1,17 @@
+/*********************************************************************
+* PROJECT: ResearchPal
+* FILE NAME: email.js
+*
+* AUTHOR: 
+*   Heesung Ahn
+*   Trevor Baron
+*   Anuj Bhatia
+*   Angela Pang
+*   Dan Robinson 
+*
+* DATE CREATED: 01/10/2013
+*********************************************************************/
+
 var nodemailer = require("nodemailer");
 // create reusable transport method (opens pool of SMTP connections)
 var smtpTransport = nodemailer.createTransport("SMTP",{

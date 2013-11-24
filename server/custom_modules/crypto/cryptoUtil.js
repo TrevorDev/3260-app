@@ -1,3 +1,17 @@
+/*********************************************************************
+* PROJECT: ResearchPal
+* FILE NAME: cryptoUtil.js
+*
+* AUTHOR: 
+*   Heesung Ahn
+*   Trevor Baron
+*   Anuj Bhatia
+*   Angela Pang
+*   Dan Robinson 
+*
+* DATE CREATED: 01/10/2013
+*********************************************************************/
+
 var bcrypt = require('bcrypt');
 
 var crypto = require('crypto');

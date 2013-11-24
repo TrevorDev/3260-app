@@ -1,6 +1,6 @@
 /*********************************************************************
 * PROJECT: ResearchPal
-* FILE NAME: userModel.js
+* FILE NAME: applyForm.js
 *
 * AUTHOR: 
 *   Heesung Ahn

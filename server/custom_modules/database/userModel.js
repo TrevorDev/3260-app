@@ -16,6 +16,7 @@
 *   Contains the functions that handles user information to and 
 *   from the database on the server.
 *********************************************************************/
+
 /*Custom Modules*/
 var rek = require('rekuire');
 var db = rek('database.js');
