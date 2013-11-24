@@ -1,3 +1,20 @@
+/*********************************************************************
+* PROJECT: ResearchPal
+* FILE NAME: recording.js
+*
+* AUTHOR: 
+*   Heesung Ahn
+*   Trevor Baron
+*   Anuj Bhatia
+*   Angela Pang
+*   Dan Robinson 
+*
+* DATE CREATED: 01/10/2013
+*
+* DESCRIPTION:
+*   Contains the functions for recording system.
+*********************************************************************/
+
 var mediaVar = null;
 var recordFileName = "recording.mp3";
 var fullUploadPath = null;
