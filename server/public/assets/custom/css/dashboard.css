@@ -46,7 +46,7 @@ h1 {
  .menuBar {
  	width: 100%;
  	position:fixed;
- 	
+ 	z-index: 100;
  	margin:0px;
  }
  
