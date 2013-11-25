@@ -1,3 +1,17 @@
+/*********************************************************************
+* PROJECT: ResearchPal
+* FILE NAME: chatStyle.css
+*
+* AUTHOR: 
+*   Heesung Ahn
+*   Trevor Baron
+*   Anuj Bhatia
+*   Angela Pang
+*   Dan Robinson 
+*
+* DATE CREATED: 01/10/2013
+*********************************************************************/
+
 /* Table */
 #data-table {
 	border: none; /* Turn off all borders */
@@ -91,7 +105,7 @@
 	height: 50px;
 	margin: 0;
 	padding: 10px 30px;
-	width: 200px;
+	width: 250px;
 }
 .legend span.icon {
 	background-position: 50% 0;
@@ -170,37 +184,11 @@
     left: 36px;
     bottom: 5px;
 }
-/* .bar.fig2 { */
-/*     left: 52px; */
-/*     bottom: 5px; */
-/* } */
-/* .bar.fig3 { */
-/*     left: 78px; */
-/* } */
-/* .bar.fig4 { */
-/*     left: 104px; */
-/* } */
-/* .bar.fig5 { */
-/*     left: 130px; */
-/* } */
-/* .bar.fig6 { */
-/*     left: 156px; */
-/* } */
-/* .bar.fig7 { */
-/*     left: 182px; */
-/* } */
-/* .bar.fig8 { */
-/*     left: 208px; */
-/* } */
-/* .bar.fig9 { */
-/*     left: 236px; */
-/* } */
-/* .bar.fig10 { */
-/*     left: 260px; */
-/* } */
-/* .bar.fig11 { */
-/*     left: 286px; */
-/* } */
+.bar.fig2 { 
+    left: 52px; 
+    bottom: 5px; 
+} 
+
 .bar span {
     background: #fefefe;
     border-radius: 3px;
@@ -236,43 +224,4 @@
 .fig2 {
     background: #eea151 url(../images/bar-03-bg.gif) 0 0 repeat-y;
 }
-/* .fig3 { */
-/*     background: #7165e8 url(../images/bar-02-bg.gif) 0 0 repeat-y; */
-/* } */
-/* .fig4 { */
-/*     background: #e865cb url(../images/bar-02-bg.gif) 0 0 repeat-y; */
-/* } */
-/* .fig5 { */
-/*     background: #65e8ce url(../images/bar-02-bg.gif) 0 0 repeat-y; */
-/* } */
-/* .fig6 { */
-/*     background: #a9e865 url(../images/bar-02-bg.gif) 0 0 repeat-y; */
-/* } */
-/* .fig7 { */
-/*     background: #e86584 url(../images/bar-02-bg.gif) 0 0 repeat-y; */
-/* } */
-/* .fig8 { */
-/*     background: #65e8a0 url(../images/bar-02-bg.gif) 0 0 repeat-y; */
-/* } */
-/* .fig9 { */
-/*     background: #e8dd65 url(../images/bar-02-bg.gif) 0 0 repeat-y; */
-/* } */
-/* .fig10 { */
-/*     background: #a9e865 url(../images/bar-02-bg.gif) 0 0 repeat-y; */
-/* } */
-/* .fig11 { */
-/*     background: #e8dd65 url(../images/bar-02-bg.gif) 0 0 repeat-y; */
-/* } */
 
-/*
-
-e865cb
-
-e86565
-e89665
-
-
-
-
-
-*/

@@ -1,4 +1,18 @@
-<!-- HTML Header Files -->
+<!-- 
+/*********************************************************************
+* PROJECT: ResearchPal
+* FILE NAME: message.ejs
+*
+* AUTHOR: 
+*   Heesung Ahn
+*   Trevor Baron
+*   Anuj Bhatia
+*   Angela Pang
+*   Dan Robinson 
+*
+* DATE CREATED: 01/10/2013
+*********************************************************************/
+-->
 <% include includes/dashboardHeader %>
 <% include includes/header %>
 <% include includes/dashboardSideBar %>
@@ -11,7 +25,7 @@
     </h1>
 
     <!-- Nav tabs -->
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs" style="background-color: #ffffff;">
       <li class="active"><a href="#messages" data-toggle="tab">Messages</a></li>
       <li><a id="mapLink" href="#googleMap" data-toggle="tab">Map</a></li>
     </ul>
@@ -122,4 +136,25 @@
             generateMarkers(locations);
           }
       });
-  </script>
+
+      
+
+	  //Updates the database reasearcher has read diary
+      function readDiary(msgID) {
+          $.ajax({
+              type: "GET",
+              url: "/updateMsg/"+msgID,
+              success: function(data)
+              {
+                location.reload();
+
+              },
+              error: function(data) 
+              {
+              	alert("Error");
+
+              }
+          });
+          return false;
+      }
+  	</script>

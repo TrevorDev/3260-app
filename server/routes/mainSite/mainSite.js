@@ -1,9 +1,28 @@
-/*nodeJS Function Variable Declaration*/
+/*********************************************************************
+* PROJECT: ResearchPal
+* FILE NAME: userModel.js
+*
+* AUTHOR: 
+*   Heesung Ahn
+*   Trevor Baron
+*   Anuj Bhatia
+*   Angela Pang
+*   Dan Robinson 
+*
+* DATE CREATED: 01/10/2013
+* DATE LAST MODIFIED: 25/11/2013
+*
+* DESCRIPTION:
+*   Contains the functions that handles user information to and 
+*   from the database on the server.
+*********************************************************************/
+/*NodeJS Modules*/
+
 var fs = require('fs');
 var ejs = require('ejs');
 var rek = require('rekuire');
 
-/*Variable Referencing to additional files*/
+/*Custom Modules*/
 var researchAuth = rek('researchAuth.js');
 var formM = rek('formModel.js');
 var userM = rek('userModel.js');
@@ -22,6 +41,12 @@ exports.showMainPage = function(req, res, next) {
 /*Redirects to display page*/
 exports.showLogon = function(req, res, next) {
     view = 'logon';
+    exports.render(req, res, next, 'researcherPortal/' + view);
+};
+
+/*Get Researcher Registration Page*/
+exports.showRegistration = function(req, res, next) {
+    view = 'register';
     exports.render(req, res, next, 'researcherPortal/' + view);
 };
 

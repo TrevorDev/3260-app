@@ -1,4 +1,18 @@
-<!-- HTML Header Files -->
+<!-- 
+/*********************************************************************
+* PROJECT: ResearchPal
+* FILE NAME: dashboard.ejs
+*
+* AUTHOR: 
+*   Heesung Ahn
+*   Trevor Baron
+*   Anuj Bhatia
+*   Angela Pang
+*   Dan Robinson 
+*
+* DATE CREATED: 01/10/2013
+*********************************************************************/
+-->
 <% include includes/dashboardHeader %>
 <% include includes/dashboardSideBar %>
 <% include includes/dashboardHeaderBar %>
@@ -9,7 +23,7 @@
     
     	<!-- Chart -->
     	<div class="chart">
-			<h3 align="center">Number of Diary Entries</h3>
+			<h3 align="center">Number of Diary Entries within Each Group</h3>
 			<table id="data-table" border="1" cellpadding="10" cellspacing="0">
 				<caption></caption>
 				<thead>
@@ -25,7 +39,7 @@
 				<tbody>
 					<!-- Set up Read Diary Graph Bar -->
 					<tr>
-						<th scope="row">Unread</th>
+						<th scope="row">Unread Diary Entries</th>
 						<% for(var i=0; i<diary.length; i++) {%>
 							<td><%= diary[i].unreadMsg %></td>
 						<% } %>	
@@ -33,7 +47,7 @@
 					
 					<!-- Set up Unread Diary Graph Bar -->
 					<tr>
-						<th scope="row">Read</th>
+						<th scope="row">Read Diary Entries</th>
 						<% for(var i=0; i<diary.length; i++) {%>
 							<td><%= diary[i].readMsg %></td>
 						<% } %>	
