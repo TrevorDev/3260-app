@@ -16,6 +16,7 @@ $(document).ready(function(){
     sendRecBtn = $('#sendRecordingBtn');
 
     recordBtn.click(function(){
+        $('.footer-bar').slideUp();
         record();
     });
     stopRecordingBtn.click(function(){
@@ -30,6 +31,7 @@ $(document).ready(function(){
     });
 
     sendRecBtn.click(function(){
+        disableSend();
         var networkState = navigator.connection.type;
 
         var states = {};
@@ -46,6 +48,7 @@ $(document).ready(function(){
         if (navigator.connection.type == Connection.NONE)
         {
             alert('No network connection');
+            enableSend();
             return false;
         }
 
@@ -91,14 +94,16 @@ function play(){
     if (mediaTimer == null) {
         mediaTimer = setInterval(function() {
             // get my_media position
+            var totalLength = mediaVar.getDuration();
             mediaVar.getCurrentPosition(
                 // success callback
                 function(position) {
                     position = Math.round(position);
-                    if (position >= 0) {
+                    if (position < totalLength && position != 0) {
                         updateRecordingLabel((position) + " sec");
                     } else {
-                        stopBtn.click();
+                        stopBtn.hide();
+                        playBtn.show();
                     }
                 },
                 // error callback
@@ -274,6 +279,8 @@ function onSent(){
     $('.footer-bar').slideUp();
     $('.infoPanel').slideDown();
     setTimeout(function(){ $('.infoPanel').slideUp(); },2000);
+
+    enableSend();
 }
 
 function resetSendBtn(){
@@ -281,4 +288,13 @@ function resetSendBtn(){
     sendRecBtn.removeClass('btn-success');
     sendRecBtn.addClass('btn-info');
     sendRecBtn.html('Send');
+}
+
+function disableSend(){
+    sendRecBtn.attr('disabled', 'disabled');
+    sendRecBtn.html('Sending...');
+}
+
+function enableSend(){
+    resetSendBtn();
 }
