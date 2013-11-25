@@ -23,12 +23,23 @@ var db = rek('database.js');
 exports.getResearchersGroups= function(username,callback) {
 	var conn = db.getConnection();
 	conn.query(
-	        "SELECT group.groupID, group.name, group.startDate, group.endDate, count(participant.userID) as numOfParticipants " +
-            "FROM pal.group, pal.participant, pal.researcher " +
-            "WHERE participant.active = 1 " +
-                "and participant.groupID = pal.group.groupID " +
-                "and researcher.userID = pal.group.ownerID " + 
-                "and researcher.username = " + conn.escape(username) + " group by pal.group.groupID;", function(err, rows, fields) {
+          "SELECT *, count(TABLEB.userID) as numOfParticipants "+
+          "from "+
+
+          "(SELECT group.groupID, group.name, group.startDate, group.endDate "+
+          "FROM pal.group, pal.researcher "+
+          "WHERE pal.group.ownerID = researcher.userID "+
+          "and researcher.username =  " + conn.escape(username) + " ) as TABLEA "+
+
+          "left join "+
+
+          "(SELECT participant.groupID, participant.userID "+
+          "FROM participant "+
+          "where participant.active = 1) as TABLEB "+
+
+          "on TABLEB.groupID = TABLEA.groupID "+
+
+          "group by TABLEA.groupID;", function(err, rows, fields) {
 	  if (err) throw err;
 	  callback(rows);
 	});
