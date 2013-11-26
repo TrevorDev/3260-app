@@ -8,7 +8,7 @@ function loadMessages(){
         crossDomain: true,
         success: function(messages) {
           if ($.trim(messages) == 'failed'){
-            alert('Error retrieving messages');
+            // Do nothing
           } else {
             //updateStatus(messages.length + " Messages ");
             for (var i = 0; i < messages.length; i++){

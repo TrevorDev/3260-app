@@ -33,11 +33,11 @@ exports.getResearchersGroups= function(username,callback) {
 
           "left join "+
 
-          "(SELECT participant.groupID, participant.userID "+
+          "(SELECT participant.groupID as gID, participant.userID "+
           "FROM participant "+
           "where participant.active = 1) as TABLEB "+
 
-          "on TABLEB.groupID = TABLEA.groupID "+
+          "on TABLEB.gID = TABLEA.groupID "+
 
           "group by TABLEA.groupID;", function(err, rows, fields) {
 	  if (err) throw err;
