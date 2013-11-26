@@ -1,3 +1,20 @@
+/*********************************************************************
+* PROJECT: ResearchPal
+* FILE NAME: authentication.js
+*
+* AUTHOR: 
+*   Heesung Ahn
+*   Trevor Baron
+*   Anuj Bhatia
+*   Angela Pang
+*   Dan Robinson 
+*
+* DATE CREATED: 01/10/2013
+*
+* DESCRIPTION:
+*   Contains the functions for authenticate user.
+*********************************************************************/
+
 function checkIfAuthenticated(callback){
 		$.ajax({
 		type: "GET",

@@ -1,3 +1,20 @@
+/*********************************************************************
+* PROJECT: ResearchPal
+* FILE NAME: messageHandling.js
+*
+* AUTHOR: 
+*   Heesung Ahn
+*   Trevor Baron
+*   Anuj Bhatia
+*   Angela Pang
+*   Dan Robinson 
+*
+* DATE CREATED: 01/10/2013
+*
+* DESCRIPTION:
+*   Contains the functions for messaging system.
+*********************************************************************/
+
 function loadMessages(){
   $('#messages').html('');
   getUserID(function(userID){
@@ -8,7 +25,7 @@ function loadMessages(){
         crossDomain: true,
         success: function(messages) {
           if ($.trim(messages) == 'failed'){
-            // Do nothing
+            alert('Error retrieving messages');
           } else {
             //updateStatus(messages.length + " Messages ");
             for (var i = 0; i < messages.length; i++){

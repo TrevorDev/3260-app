@@ -1,3 +1,20 @@
+/*********************************************************************
+* PROJECT: ResearchPal
+* FILE NAME: general.js
+*
+* AUTHOR: 
+*   Heesung Ahn
+*   Trevor Baron
+*   Anuj Bhatia
+*   Angela Pang
+*   Dan Robinson 
+*
+* DATE CREATED: 01/10/2013
+*
+* DESCRIPTION:
+*   Contains general functions for Research Pal App.
+*********************************************************************/
+
 function chat(){
 	window.location = "chat.html";
 	/*$.ajax({

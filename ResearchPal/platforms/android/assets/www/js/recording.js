@@ -1,3 +1,20 @@
+/*********************************************************************
+* PROJECT: ResearchPal
+* FILE NAME: recording.js
+*
+* AUTHOR: 
+*   Heesung Ahn
+*   Trevor Baron
+*   Anuj Bhatia
+*   Angela Pang
+*   Dan Robinson 
+*
+* DATE CREATED: 01/10/2013
+*
+* DESCRIPTION:
+*   Contains the functions for recording system.
+*********************************************************************/
+
 var mediaVar = null;
 var recordFileName = "recording.mp3";
 var fullUploadPath = null;
@@ -54,7 +71,7 @@ $(document).ready(function(){
 
         if (navigator.connection.type == Connection.WIFI)
         {
-            onConfirm();
+            onConfirm(1);
             return;
         }
         showConfirm();
@@ -72,8 +89,10 @@ function showConfirm() {
     );
 }
 
-function onConfirm() {
-    sendRecording();
+function onConfirm(btnPressed) {
+    if (btnPressed == 1){
+        sendRecording();
+    }
 }
 
 function play(){

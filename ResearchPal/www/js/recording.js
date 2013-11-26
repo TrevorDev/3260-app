@@ -71,7 +71,7 @@ $(document).ready(function(){
 
         if (navigator.connection.type == Connection.WIFI)
         {
-            onConfirm();
+            onConfirm(1);
             return;
         }
         showConfirm();
@@ -89,8 +89,10 @@ function showConfirm() {
     );
 }
 
-function onConfirm() {
-    sendRecording();
+function onConfirm(btnPressed) {
+    if (btnPressed == 1){
+        sendRecording();
+    }
 }
 
 function play(){
