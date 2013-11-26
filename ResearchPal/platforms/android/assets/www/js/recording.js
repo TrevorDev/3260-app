@@ -92,6 +92,8 @@ function showConfirm() {
 function onConfirm(btnPressed) {
     if (btnPressed == 1){
         sendRecording();
+    } else {
+        enableSend();
     }
 }
 
