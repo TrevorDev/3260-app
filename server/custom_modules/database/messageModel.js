@@ -71,8 +71,8 @@ exports.getConversation = function(msgFrom, msgTo, callback){
 */
   conn.query(
     "Select * from (Select message.messageID, timeSent, msg, messageType, fromUserID, latitude, longitude, messageRead " +
-    "from message, textMsg " +
-    "where textMsg.messageID = message.messageID and ((fromUserID=" + conn.escape(msgFrom) + " and toUserID=" + conn.escape(msgTo)+ ") or (toUserID="+conn.escape(msgFrom)+" and fromUserID="+conn.escape(msgTo)+"))) as TABLEA " +
+    "from message left join textMsg on textMsg.messageID = message.messageID " +
+    "where ((fromUserID=" + conn.escape(msgFrom) + " and toUserID=" + conn.escape(msgTo)+ ") or (toUserID="+conn.escape(msgFrom)+" and fromUserID="+conn.escape(msgTo)+"))) as TABLEA " +
     "left join " +
     "(Select * " +
     "     from recording) as TABLEB " +
